@@ -1,0 +1,24 @@
+{
+  "name": "skill-miora-video-generation",
+  "version": "5.5.6-wb.38337834.g5f969292.h4918b5ced607",
+  "description": "WorkBuddy bundled skill resource: miora-video-generation.",
+  "author": {
+    "name": "WorkBuddy"
+  },
+  "category": "skill",
+  "keywords": [
+    "workbuddy",
+    "builtin-skill",
+    "miora-video-generation"
+  ],
+  "workbuddy": {
+    "kind": "builtin-skill",
+    "legacyResourceName": "miora-video-generation",
+    "bundleSegments": [
+      "plugins",
+      "workbuddy-builtin",
+      "skills",
+      "miora-video-generation"
+    ]
+  }
+}

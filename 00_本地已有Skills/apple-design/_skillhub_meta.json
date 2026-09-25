@@ -1,0 +1,12 @@
+{
+  "name": "Apple流体界面设计指南",
+  "installedAt": 1788541354722,
+  "source": "marketplace",
+  "version": "1.0.0",
+  "skillId": "skill_2095572066616803328",
+  "description_zh": "提炼苹果流体交互设计思想，面向设计师与前端，可输出交互方案、弹簧参数、拖拽手势实现、毛玻璃样式、无障碍适配代码。",
+  "description_en": "Distill Apple fluid interface design for designers and frontend engineers, output interaction proposals, spring parameters, gesture code samples, material style and accessibility adaptation.",
+  "iconSource": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/3fb951a5-e99a-4d14-beb4-125a704eb339/0c22c45e-5d9a-498e-ac96-baaaf8766a7f.png",
+  "iconLocalPath": "C:\\Users\\<user>\\.workbuddy\\skills\\apple-design\\_icon.png",
+  "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/3fb951a5-e99a-4d14-beb4-125a704eb339/0c22c45e-5d9a-498e-ac96-baaaf8766a7f.png"
+}

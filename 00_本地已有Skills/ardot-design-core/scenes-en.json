@@ -1,0 +1,277 @@
+[
+  {
+    "id": 32,
+    "name": "Visual Posters",
+    "unified_id": 121,
+    "icon": "mouse",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "NEXA Chip Launch",
+      "STRIDE Sports Poster",
+      "Anime Magazine Cover",
+      "TIDEWAY Summit Poster",
+      "Black-Red Cinematic Poster",
+      "Photography Biennial Poster",
+      "Autonomous Driving Poster"
+    ],
+    "prompts": [
+      "NEXA inference chip launch. Scene: AI chip company NEXA announces the successful tape-out of its first in-house inference chip, Silicon-1, at a global launch event. Main title: NEXA Silicon-1 Global Launch. Subtitle: 2nm process · 3 years of R&D · first successful tape-out. Info layer: July 9, 2026 · Shanghai · simultaneous global livestream. AI image prompt: a bare chip die floating in absolute darkness, cleaved from directly above by an extremely narrow beam of cool white light; the nanoscale metal traces on the chip surface shimmer with rainbow diffraction halos under the light — transitioning from copper-gold to indigo to electric violet. Extreme macro photography, extremely shallow depth of field, focus precisely on the compute core region at the very center of the chip, while the edge pad array blurs into vague geometric textures. Real studio lighting, no composite feel, no noise, industrial-grade texture, like a Science magazine cover. Font suggestions: Inter Black for the title; Source Han Sans Medium for Chinese.",
+      "16:9 full-bleed action poster, brand STRIDE, main title OWN THE PACE. A runner sprinting on a coastal highway shot from a low-angle wide lens, harsh noon light, fluorescent yellow-green running shoes as the only accent color, sky-blue environment. Giant warm-cream blocky type placed behind the subject, with white editorial micro-copy and a large '032' anchoring the grid. 4 colors and 2 fonts, high-contrast realistic commercial photography, all text kept within the safe zone with no overlap and no bleed.",
+      "Vertical 9:16 cover, oil-painting-textured realistic anime style, deep indigo background with dark gold accents (#080814 / #C9A84C). Main title in Yuji Syuku brush-calligraphy running-script at a large size anchored at the top (white + 5 layers of blue-purple neon glow); subtitle in Shippori Mincho B1 serif flanked by gold decorative lines. A decorative band at the top carries the English series identifier, the middle leaves room for the illustration subject, and the bottom uses a darkened gradient overlaid with a four-tier layout: 'intro line — three-column info row (character / volume no. / magazine) — fine info bar (price / ISBN / date)', plus vertical rotated English decoration on the right. Mixed running-script + Mincho dual-font typesetting throughout, unified low-saturation gold accents, and layered dark shadows to enhance depth.",
+      "TIDEWAY Singapore global summit as a 1080×1620 portrait cold cinematic poster (P08 TextureFull) — eyebrow 'JUL 18 — 20, 2026 · SINGAPORE', main title stack 'TIDEWAY / Global / Summit / 2026' stacked (with a purple '11 / EDITION' badge at top-right), Chinese subtitle 'The 11th year going global · 1,200 founders from 47 countries', meta '2026.07.18 — 07.20 · Marina Bay Sands · Singapore · tideway.com'. AI image: 'the steel bow of a modern cargo ship cuts through the ink-blue deep sea from the extreme low angle at the bottom-right of the frame, pushing water into a clean, crisp white arc under the cool morning daylight; the horizon is open and quiet, the sky a cloudless cool-blue-to-light-gray gradient, real ocean-surface photography, cinematic composition, azurite and cool-white as the main tones, sharp hull and heavy water, sharp and powerful, not romanticized, not sentimental, 2:3 portrait'. Fonts Inter Black 130/170/180 (main title stack); locked colors #0A0E1A / #1B3A57 / #E8F0FA / #A1A1AA / #7C3AED single-point purple electric; 4 blocks with y-zones 110 / 170-880 / 1080-1250 / 1400-1600; three gradient overlay masks at top + bottom + left vignette; text ≥ 28px, the hero is the image not the type.",
+      "Vertical 9:16 black-red cinematic poster: #080808/#D90429/#ECECEC; stacked Anton mega-title + Noto Sans SC Chinese subtitle; 5 glowing red panels + a pure-black seated silhouette + floor reflection + red glow; font size ≥28, Swiss whitespace.",
+      "'Presence' Contemporary Photography Biennial (referencing the Steidl Gordon Parks black-and-white archive album). Main title: Presence — A Contemporary Photography Biennial. Subtitle: 31 photographers · 7 cities · one question. Info layer: September 10 – November 30, 2026 · PSA 1F. AI image prompt: a photo of a city sidewalk shot upward from ground level, the subject being an ordinary pair of black leather shoes mid-stride, stepping on a wet gray asphalt road, with blurry city lights and the lower-body silhouette of a passerby reflected in the puddles. The entire frame contains only the shoes, legs, and the puddle reflections on the ground — no faces, no sense of narrative, only anonymity. Black-and-white street photography, high contrast, coarse film grain, like Garry Winogrand's 1960s New York street shots. The poster's overall design style is Editorial Design and documentary photography; the layout uses a 12-column grid, the subject occupies 65%, the title is bottom-centered in uppercase serif at 96pt, with 30% whitespace. Font suggestions: Source Han Serif Medium for Chinese (serif with documentary texture); Times New Roman Bold for English; all-caps Helvetica for the exhibition info.",
+      "Autonomous driving system road test (referencing Tokyo TDC minimalist posters). Main title: HALO 90-Day Zero-Disengagement. Subtitle: 1,284 km · 0 manual takeovers · Nanshan, Shenzhen. Info layer: Road Test White Paper v2.1 · released July 9. AI image prompt: a long-exposure photo of a nighttime city highway shot from the passenger-seat perspective; the foreground is a close-up of a small segment of the cool-white instrument-panel needle at the edge of the dashboard (out of focus), the mid-ground is a straight stretch of urban expressway, with freshly rain-wetted white lane-line reflections on the road surface, and a continuous warm-toned city skyline in the distance. The overall image is calm and restrained, with no sense of speed and no sense of technology — only the authentic feel of nighttime driving. City night photography, warm-cool contrast, film grain, like a 1970s New York taxi driver's dashcam. The poster's overall design style is Brutalism; the layout uses a 12-column grid, the subject occupies 75%, the title is bottom-centered, numbers use monospaced Tabular Figures at 96pt, with 20% whitespace. Font suggestions: Helvetica Now Display Bold for the large title; Source Han Sans Bold for Chinese; monospaced Tabular Figures for numbers."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 38,
+    "name": "Operations Poster",
+    "unified_id": 123,
+    "icon": "video",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "Technology Product Launch",
+      "Two-Person Interview",
+      "Online Masterclass",
+      "E-commerce Livestream",
+      "Gaming Tournament",
+      "Business Summit"
+    ],
+    "prompts": [
+      "Create a promotional poster for an online technology product launch. The theme is 'Next-Generation AI Assistant Global Premiere'. Highlight the product launch as the main title and include August 18, 2026 at 8:00 PM, simultaneous streaming on the video channel and official website, product lead Lin Zhou, and three highlights: new interaction, on-device intelligence, and an open ecosystem. Vertical 9:16, dark futuristic technology style, with clear separation between the person and text areas.",
+      "Create a livestream announcement poster for a two-person interview. The program is 'Founder Face to Face', and this episode is titled 'Building a Global Product from 0 to 1'. The guests are founder Zhou Ning and investor Chen Xiao, with the livestream scheduled for Thursday at 7:30 PM. Vertical 3:4, professional yet approachable, naturally integrating both guest photos and reserving space for the platform and reservation call to action.",
+      "Create a livestream poster for an online masterclass titled 'Personal Knowledge Management in the AI Era'. The speaker is knowledge management consultant Su He, scheduled for September 6 at 8:00 PM. Key topics are information filtering, knowledge connections, and AI workflows. Vertical 9:16, light technology style, with a clear information hierarchy emphasizing the course topic, speaker, and start time.",
+      "Create a promotional poster for an e-commerce livestream titled 'Summer Refresh Live Room'. Include: starts tonight at 8:00 PM, bestselling products at reduced prices, limited-time flash deals, and livestream-exclusive gifts. Vertical 9:16, youthful, energetic, and brightly saturated. Place the host in the lower-right and reserve generous space in the upper-left and center for the title, offers, and call to action.",
+      "Create a livestream poster for the 'Interstellar Champions Cup Grand Final' between NOVA and ECLIPSE, scheduled for August 30 at 7:00 PM. Include BO7, streaming on all platforms, and the championship trophy showdown. Horizontal 16:9, esports cyber style, two-person face-off composition, with the center reserved for the tournament logo and match information.",
+      "Create an online livestream poster for the '2026 Global Growth Summit', subtitled 'Connecting New Growth Across Markets, Products, and Organizations'. The livestream begins October 16 at 9:30 AM and features 12 industry guests, 6 keynote sessions, and simultaneous global streaming. Horizontal 16:9, restrained premium international conference style, with smaller people and a complete information area on the right."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 31,
+    "name": "PPT Design",
+    "unified_id": 117,
+    "icon": "slide",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "Pixel Minecraft PPT",
+      "Wuxia Game Launch",
+      "Thesis Defense PPT",
+      "Humanoid Robot Brief",
+      "Omakase Pitch PPT",
+      "AI Hardware Launch"
+    ],
+    "prompts": [
+      "Create a 6-page PPT introducing Minecraft, with a cool and rich pixel-style layout and a pixel-themed design style.",
+      "Help me generate a set of launch event slide mockups for a Chinese-style wuxia open-world exploration game, including 6 main pages. The layout should be large and suitable for big-screen playback at the venue. Boldly use SVG decorations on the slides, keep page elements rich and refined, and showcase the game's art design, UI design, rich content, and other elements. ",
+      "Create a master's thesis defense PPT, 10 pages total, in a rigorous academic style. The main colors use dark navy (#0F172A) for titles, charcoal gray (#334155) for body text, and academic red (#B91C1C) to highlight key findings, with a pure white background. The page structure is: cover, research background and significance, literature review, research questions and hypotheses, research methodology, experimental design, data analysis, main conclusions, limitations and future work, and acknowledgments. Charts use classic black-white-gray colors, with no gradients. Each page has a chapter number in the top-right corner to help the defense committee navigate quickly. Chinese fonts use SimSun; English uses Times New Roman. The footer includes the school logo, name, student ID, and date. The overall feel is restrained and professional, highlighting the academic value of the research.",
+      "Create a 10-page internal research PPT presentation on 'Humanoid Robots 2026'. Requirements: conduct online searches to gather the latest trends and developments in the humanoid robotics field, with a focus on the latest progress and breakthroughs in embodied intelligence; analyze the transition of humanoid robots from laboratory R&D to real factory deployment; and integrate rich, reliable data visualization charts covering market forecasts, technology comparisons, application scenarios, and more. The result should be a complete research deliverable suitable for internal reporting. Use a Titanium gray visual style: #1C1C1E titanium black + #A1A1AA silver gray + #F59E0B warm-gold accents — overall industrial, precise, and rigorous.",
+      "Create an investment pitch PPT for an Omakase Japanese cuisine franchise, 10 pages total, in a 'Wabi-sabi aesthetic × Extreme negative space' style. Use rice-white washi paper color (#F5F0E8) as the main background, with ink black (#1A1A1A) and cinnabar red (#B8292E) accents in key positions. Negative space occupies more than 70% of each page; text is sparse and restrained, often with just a single line plus a stamp-like mark per page. The cover features only a hand-brushed calligraphy character '鮨' (in cinnabar red) in the bottom-left corner, with a vertical line of small text in the top-right noting the brand name — the rest is blank. Titles use a Japanese calligraphy style mixing kana and kanji; body text uses an ultra-thin sans-serif. All divider lines are replaced with hand-drawn ink brushstrokes. Data pages break conventional charts, presenting key numbers as haiku-style short phrases arranged vertically, such as '一期一会 / 八席 / 三十六道'. The franchise policy page unfolds as a Japanese scroll, read from right to left. Image placeholders use Japanese square-seal styles and irregular ink-blot shapes (labeled 'Dish Photo', 'Chef Portrait'). The overall feel is tranquil, restrained, and zen-like, conveying brand tone over information density.",
+      "Create a PPT for an AI hardware product launch event, 10 pages total, in a 'Minimalist Futurism × Dieter Rams homage' style. Use pure light gray-white (#F5F5F7) as the main background, near-black (#1D1D1F) for text, and the product's signature bright orange (#FF5C1A) as the sole accent color used only for key data. The entire deck follows the 'less is more' principle: each page has at most 7 characters as the title, with body text under 20 characters. The cover shows only the three-letter product name 'ORB' centered, at a font size occupying 1/3 of the screen height, with a small '2026 - 04 - 15' line below. The product showcase page uses a fully centered single-element composition: the product image placeholder is a perfect circle at the center (labeled 'Product Hero Shot'), surrounded by abundant breathing space, with a small model number line at the bottom. The spec comparison page uses ultra-fine 1px divider lines to split the page into an equal grid, with each cell containing only one number and one word (such as '12h' and 'Battery Life'). The overall feel is calm, premium, and full of breathing space, making the product itself the sole protagonist."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 39,
+    "name": "Image Generation",
+    "icon": "mouse",
+    "mode": "design",
+    "promptTitles": [
+      "Graffiti Chase Ad",
+      "Parasitic Helmet",
+      "WorkBuddy Magazine Cover",
+      "Workplace Mood Poster"
+    ],
+    "prompts": [
+      "Create a playful, bright, high-key commercial advertising visual for [brand/product]. [Subject] runs happily in front of a seamless light-gray backdrop, frozen mid-stride with one leg lifted and a naturally radiant smile.\n\nThe subject wears loose casual clothing that matches the brand tone, in soft neutrals or vivid brand colors. Behind them, a simple black hand-drawn cartoon stick figure grabs and pulls the subject's clothes backward, stretching the fabric in an exaggerated, elastic way as if trying to stop them from running forward. The graffiti character blends naturally into the real scene, with motion lines and a humorous expression.\n\nThe subject holds [product/brand prop], letting the product sit naturally in the story while remaining clearly recognizable. Suitable for product launches, brand campaigns, social ads, e-commerce hero visuals, and holiday marketing.\n\nMinimal composition, clean studio lighting, soft shadows, ultra-sharp focus, realistic skin and material texture, vivid yet natural color, playful editorial photography, premium commercial advertising quality, photorealistic, high detail.",
+      "Close-up of an abandoned rusted tactical helmet, visor glass cracked, interior completely filled with glowing bioluminescent fungi and exotic tropical orchids, vines penetrating the metal shell like blood vessels, complex moss textures covering the surface, parasitic plants, Annihilation film style, mutated nature, surrealism, soft volumetric light, dust and spores floating in the air, 8K resolution, extreme detail, Unreal Engine 5 render",
+      "A magazine cover titled Workbuddy, April/May 2026 combined issue, minimal light-gray studio backdrop, a red Shiba Inu wearing an orange zip-up hoodie, body in a surreal forced-perspective distortion: hind legs over-extended forward, head and forebody unusually small on the right side, looking back at the camera with a smug, playful expression, fluffy realistic fur texture, high-fashion editorial style, soft clean studio light, sharp focus, large bold deep-navy sans-serif masthead at the top, white and orange magazine coverlines distributed across the frame with witty dog-themed copy, commercial fashion magazine cover aesthetic, 8K, ultra-realistic, high detail, shallow depth of field",
+      "A workplace-emotion poster with an exaggerated scene and bold, eye-catching type.\nScene: a modern minimalist office, matte off-white walls, dark-gray carpet with fine short-pile texture, a clean white filing cabinet on the right.\n\nHero: a young person face-down asleep on a light-gray office printer in a fully relaxed pose, conveying exhaustion and casual rest. They wear a mustard-yellow plaid long-sleeve cotton shirt with natural wrinkles; white shorts with blue and red abstract patterns, thin fabric, vivid prints; paired with matte white mid-calf cotton socks. The printer is a light-gray office device with a fine matte plastic shell and a tech-feeling control panel.\n\nType in red-and-black, mixed Chinese-English layout:\n\nMain copy “工作累了就睡会” and “Workbuddy 来帮你” as ultra-bold red vertical type, huge, dominating the composition.\n“WANT TO SLEEP” as bold English copy.\nTop: “Workbuddy 就是好” and “倒头就睡”.\nBottom: “20260615” and “WORK Unbound Thinking”.\n\nOverall style: workplace-decompression graphic poster with a strong type hierarchy. Combine short-pile carpet texture, soft fabric, and matte device surfaces. The composition conveys a young, unbound attitude at work. Striking red-black type and the relaxed figure jointly dominate the frame. Professional poster photography mixed with graphic design."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 40,
+    "name": "Video Generation",
+    "icon": "video",
+    "mode": "design",
+    "promptTitles": [
+      "Youth Campus Drama",
+      "Anthropomorphic Fun Clip",
+      "AAA Adventure Film",
+      "Poster Comes Alive"
+    ],
+    "prompts": [
+      "Taiwanese drama style, 16:9 landscape, a school hallway on a spring morning, crowds flowing, warm sunlight slanting in through corridor windows, creating a fresh, bright, youthful campus atmosphere.\nChen Youchen (high-school boy, white shirt with dark trousers, short neat hair, warm smile) accidentally knocks down Lin Yiqing's books (high-school girl, white shirt with dark pleated skirt, long black hair, fresh natural presence), then crouches to pick them up, looks up, smiles, and introduces himself: “欸，不好意思啦，我叫陈宥辰，你叫什么名字？”\nLin Yiqing replies softly: “林以晴。”\nChen Youchen smiles: “以晴，好好听喔。”\nWhen the camera looks at the boy's face from the girl's POV, add obvious cinematic lens flare and soft glowing orbs; sunlight produces natural halos and hazy highlights in front of the lens. Overall Japanese-drama cinematic texture, film grain, shallow depth of field, soft natural light, authentic campus film feel.\nNo subtitles, no text overlays, Taiwanese-accented Mandarin dialogue.",
+      "Anthropomorphic short video of an ancient Chinese carved stone drum gate-pier (men dun). Photorealistic style; perfectly preserve the hard, rough texture of gray-white stone, weathering, and real lighting. Opening: the gate-pier stands still on the ground. Then it suddenly comes alive: do NOT spawn extra cartoon elements out of thin air! Using its own structure, the heavy circular stone drum in the middle suddenly unlocks from the square base with a click and rolls forward cheerfully like a wheel for several turns; at the same time, the small stone beast carved on top of the drum frantically paddles its short stone legs on the rolling drum surface like a balance-beam act, creating extreme contrast and circus-like comedy. Suddenly someone approaches; the little beast slams the brakes, the circular drum reverse-rolls back into place at speed, clicks flush into the square base, and the beast instantly freezes into its original seated pose — the whole thing returns to a heavy, motionless gate-pier. All motion must perfectly retain the original stone texture and carved detail, fully integrated. Cute and playful overall, large motion amplitude. Camera naturally follows the roll, mostly medium close-ups. Realistic, detailed, one continuous shot, no people, no subtitles.",
+      "A torrential rain in a primitive deep-mountain rainforest, millennia-old abandoned tomb with wet moss-covered stone walls, a female explorer with both hands bound in coarse hemp, body hanging in mid-air falling while climbing the rock face, rain pouring across the sky, blue rain-fog through the forest, damp secret-realm ruins, main palette of cool cyan-blue rain-fog ambient light, faint local warm bounce on skin, volumetric scattering on rain streaks, heavy rain-night mist, mirror reflections on pooled rock, low-key late-night lighting, thick slippery cyan-green moss covering everything, waterlogged seeping rock, mud-soaked fabric, transparent flowing rain-streak particles, seepage stains on walls, AAA adventure-film widescreen, 8K ultra-HD IMAX quality, Unreal Engine 5 ray tracing, film grain, cinematic grade, extreme close-up, 24mm wide-angle close shot, f/2.2 shallow DOF, low-angle upward, first-person rock-wall foreground composition, body full of falling tension, motion-blurred rain streaks, extreme moss detail on foreground stone, tense crisis-escape atmosphere",
+      "I will provide a poster image (if I haven't sent one yet, ask me for an image or invent one, e.g. premium cosmetics). Produce a 10-second \"poster comes alive\" video:\n\nCall the video generation tool in \"first-frame image-to-video\" mode. Use the poster I provide as frame 0 (fully reference the first frame: keep composition, subject position and pose, background layers, color grade, light direction, and all layout type), duration 10 seconds, aspect ratio matching the poster, save as 02_poster_alive.mp4.\n\nImportant:\n1. The prompt below is a generic template for any poster. Pass it to the video generation tool verbatim — do not rewrite, summarize, translate, or add/remove descriptions based on the poster;\n2. <Picture 1> in the prompt refers to this poster; leave it as-is.\n\nPrompt:\nFor the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\n\nintegrated_multimodal_description: [Shot 1] Live-action cinematic quality. The frame starts fully from the poster <Picture 1>, completely preserving its composition, the subject's position and pose, background layers, color grade, light direction, and the position, letterforms, and size of all layout type. At the opening instant it is still a completely still printed piece; extremely fine paper texture and matte reflection are visible. Then the frame comes alive in three layers: first the background layer, where all light-emitting elements begin a breathing pulse of brightness, tiny illuminated particles appear in the air and drift slowly, and background depth opens slightly in shallow DOF; next the subject layer, where parts that air can move — fabric edges, hair, hanging elements, or lightweight materials — are blown by a sideward airflow; the subject extremely slowly comes alive from stillness, with a tiny shift of weight, gaze moving from the original direction toward the lens and gradually focusing; finally the type layer, where the edges of layout type shed fine light-dust that drifts upward, while the type itself stays in place with letterforms and sharpness fully unchanged. The camera dollies slowly forward a small amount. [Shot 2] At 00:06.000, cut to a medium close-up of the subject, camera locked off, shallow DOF turning the background into soft bokeh; the subject completes one natural micro-action — a blink, a breath lifting the shoulders, or a natural drop of material. The previously drifting type-dust streaks across the foreground and re-gathers backward; the poster's original layout type faintly reappears in the defocused background, position and letterforms matching <Picture 1>. The frame freezes as the subject's motion settles and fades to black.\n\noverall_soundscape: Opening is an extremely short paper-friction and dry matte-print texture sound. Then environmental bed noise matching the picture fades in from silence. A sideward airflow brings slight material friction and fabric billow; mid-section has a very light breath. At the freeze, all ambient sound collapses within half a second.\n\nnon_diegetic_music: A low-frequency synth drone beds the track slowly; mid-section adds sparse piano notes and a gradually swelling string layer, peaking one beat before the freeze then cutting off abruptly.\n\n[Delivery]\n1. After generation, send me the video file path;\n2. If generation fails, retry once automatically, then tell me the failure reason;\n3. If you lack a video generation tool, tell me directly — do not invent results."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 41,
+    "name": "Brand Design",
+    "icon": "paint",
+    "mode": "design",
+    "promptTitles": [
+      "Brand Lettering Design",
+      "Coffee Brand Packaging Set",
+      "Tea Brand Visual System",
+      "Makeup Brand Poster"
+    ],
+    "prompts": [
+      "Generate a 4:3 trendy party-style artistic lettering design. The content is the Chinese \"胡来主义\", typeset with the English \"Reckless by Design\". Vary type sizes with a staggered layout. Strokes are thick and striking, forms exaggerated and distorted, some strokes with playful arcs or unique bends, creating a lively, reckless, high-energy party mood. Black background, green accents, clean backdrop, white type, master-level work.",
+      "Design a 16:9 coffee-brand series packaging display. Subject: a packaging set (tote / paper cup / bread bag / carton / tray), all printed with the sans-serif logo \"ROASTLAB\", repeated to reinforce brand memory. Supporting elements are coffee-related graphic symbols. Combine top-down and slight-oblique angles to simulate a product display. Grid layout, subjects arranged in a staggered Z-path, mixing horizontal stacks and vertical displays. Light-gray solid background, no texture, blue-black-white contrast plus khaki plus a sky-blue tote. Modern minimalism: Swiss graphic design, all elements strictly aligned, type exclusively sans-serif.",
+      "Design a landscape 16:9 visual-system proposal board for the black-tea brand \"岚间红\". Warm-gray base, all cards tiled with even gaps.\nAll illustrations are red monochrome woodcut, with fine hatching and stippling for light and shade, no gradients; cream paper with visible texture. Chinese in serif Song, English in small-caps serif.\nOn the left, six square step cards in two rows of three, identical layout: small \"泡茶六步骤\" at top-left, woodcut illustration in the center, large italic number plus Chinese-English step name at bottom-left. In order: 01 \"烧水\" BOIL WATER iron kettle steaming on a stove; 02 \"洗杯\" WASHING CUP pouring from kettle into a tea bowl; 03 \"投茶\" ADD TEA teaspoon dropping tea into a gaiwan; 04 \"冲泡\" BREW pouring from high above; 05 \"倒茶\" POUR TEA pouring from kettle into gaiwan; 06 \"奉茶\" SERVE TEA both hands offering the gaiwan.\nOn the right, two side-by-side vertical brand posters, same layout and style, different content; both have \"岚间红\" type at top-right — one is a palm holding a tea leaf, the other a still life of teapot, gaiwan, and bamboo leaves.",
+      "Design a vertical 3:4 makeup-brand poster in an edible-aesthetic style. Center: a lip glaze half-embedded in dense cherry ice cream, surrounded by fresh cherries and cream, with cherry pieces and cream crumbs suspended and falling. High-saturation monochromatic cherry-red palette using only high-contrast pink and true red, juicy and tempting. Top: sans-serif uppercase brand name \"CHERRISH\"; below: handwritten script Chinese tagline \"「樱」然心动\". Center-symmetric composition, commercial-advertising photography quality."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 30,
+    "name": "Web Design",
+    "unified_id": 113,
+    "icon": "web",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "AI Trends Site",
+      "Sneaker Culture Site",
+      "Neo-Brutalism Site"
+    ],
+    "prompts": [
+      "Create a website themed 'AI Development Trends · 2025-2026 Latest Trend Analysis'. The visuals follow Linear aesthetics with an engineering, cool, austere style. Content covers six core slices: the leap to Agent-ization, the collapse of inference costs, multimodal fusion, the explosion of on-device intelligence, deep cultivation of vertical industries, and governance and alignment. Include a set of key data (market size, enterprise adoption rate, annual decline in Token prices), a simplified diagram of the China-US-EU tripolar landscape, and five key predictions for 2026 (labeled with high/medium/low confidence). Data sources refer to Stanford HAI, McKinsey, a16z, Gartner, and IDC via online search.",
+      "Design a sneaker culture introduction website page, including a Hero section, a timeline of iconic sneaker evolution, street culture stories, and signature brand collaborations — streetwear, bold, and full of attitude.",
+      "Design a creative design website page from a Neo-Brutalism designer's perspective, combining brutalism's hard edges with saturated candy color blocks, bold outlines, and offset shadows. Visual design concept: thick borders, large rounded corners or hard-angled blocks, saturated pink/yellow/blue/green, bold sans-serif or monospace fonts; prominent offset shadows. Use sticker/hand-drawn elements to add playfulness while keeping layout divisions clear. Material and texture: solid fills, noise/stripe backgrounds, sticker/graffiti symbols; shadows are short but with clear offset, borders 2-4px. Avoid excessive glass and gradients. Overall mood: bold, playful yet orderly, like an interface made of colorful building blocks."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 33,
+    "name": "Mobile App",
+    "unified_id": 114,
+    "icon": "phone",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "Fitness App Design",
+      "Community Discovery",
+      "Y2K Social App"
+    ],
+    "prompts": [
+      "Design a fitness App. Create a complete user registration flow and a workout data dashboard page for a fitness tracking App, with charts that display daily exercise data.",
+      "Referencing Xiaohongshu's (Little Red Book) design style, help me design a discovery page for a content community App, featuring a waterfall card layout and search/filter functionality.",
+      "Design a youth-oriented city check-in social App called 'CityGo' with a bold, vibrant, Y2K retro-futuristic style. The primary colors are fluorescent green, electric purple, and bright yellow, with extensive use of bold sans-serif fonts and irregular sticker elements. The home page features a city map scattered with bubbles marking user-captured check-in spots; tapping a bubble opens a 3x3 photo grid. The post interface supports adding hand-drawn doodles, stickers, and glitch-art filters to photos. All buttons are large rounded pill shapes with a bouncy tap animation. The overall feel is like a digital doodle-and-sticker book."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 34,
+    "name": "Design System",
+    "icon": "paint",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "Complete Design System",
+      "Admin Component Library",
+      "Design Token System"
+    ],
+    "prompts": [
+      "Help me build a complete Design System, including a color system, typography hierarchy, spacing rules, and foundational component specification documentation.",
+      "Referencing Ant Design's style, design a component library specification for my admin management system, including button, form, table, and modal components.",
+      "Create a Design Token system for a mobile App that supports light/dark theme switching, and output a complete variable table for colors, border radii, and shadows."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 35,
+    "name": "Web App",
+    "icon": "tools",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "Project Management",
+      "Resume Builder",
+      "Data Analytics Platform"
+    ],
+    "prompts": [
+      "Design a complete interface for a project management WebApp, including a dashboard overview, task kanban, team member management, and project settings pages. Style inspired by Linear — clean and efficient.",
+      "Design a resume-building Web App called 'Resume.io' with a clean, efficient, WYSIWYG style. Use a split-screen layout: the left side is the form editing area (collapsible panels for personal info, education, work experience, skills, etc.), and the right side displays a live preview of an A4-sized resume (with realistic shadows). The top bar allows switching between 6 template styles (minimalist black-and-white, business blue, designer colorful, academic serif, etc.), and the top-right corner has 'Download PDF' and 'Share Link' buttons. The preview on the right updates in real time as users edit, with modified fields briefly highlighted. The overall goal is to let users produce a high-quality resume within 10 minutes.",
+      "Design a SaaS data analytics platform WebApp interface, including data source connections, a visualization chart editor, report generation, and permission management modules. Professional business color scheme."
+    ],
+    "target": "all"
+  },
+  {
+    "id": 37,
+    "name": "Icons & Illustrations",
+    "unified_id": 120,
+    "icon": "mouse",
+    "mode": "design",
+    "plugins": [
+      {
+        "id": 0,
+        "name": "ardot-design-generator",
+        "marketplaceName": "cb_teams_marketplace"
+      }
+    ],
+    "promptTitles": [
+      "Admin Line Icons",
+      "Kids Edu Illustrations",
+      "Flat Finance Icons"
+    ],
+    "prompts": [
+      "Help me design a set of 24 linear-style general-purpose icons suitable for an admin management system, covering common scenarios such as Home, Users, Settings, and Data.",
+      "Design a set of cute-style illustrated icons for a children's education App, covering 12 scenes across the themes of reading, math, music, and science.",
+      "Design a set of flat-style financial icons covering 16 scenarios such as payment, billing, wallet, transfer, and wealth management, with a unified color scheme."
+    ],
+    "target": "all"
+  }
+]

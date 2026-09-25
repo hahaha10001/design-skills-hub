@@ -1,0 +1,24 @@
+{
+  "name": "skill-ardot-ui-design",
+  "version": "5.5.6-wb.38337834.g5f969292.h4918b5ced607",
+  "description": "WorkBuddy bundled skill resource: ardot-ui-design.",
+  "author": {
+    "name": "WorkBuddy"
+  },
+  "category": "skill",
+  "keywords": [
+    "workbuddy",
+    "builtin-skill",
+    "ardot-ui-design"
+  ],
+  "workbuddy": {
+    "kind": "builtin-skill",
+    "legacyResourceName": "ardot-ui-design",
+    "bundleSegments": [
+      "plugins",
+      "workbuddy-builtin",
+      "skills",
+      "ardot-ui-design"
+    ]
+  }
+}

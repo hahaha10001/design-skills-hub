@@ -1,0 +1,334 @@
+id	category	trigger	resources	entry
+apple-design	00_本地已有Skills	基于Apple WWDC流体交互设计，用于UI设计评审、手势驱动界面、弹簧动画、拖拽/侧滑/抽屉弹窗、动量过渡、毛玻璃材质、深度层级、光学字号排版、减弱动效无障碍场景	scripts/references/templates	00_本地已有Skills/apple-design/SKILL.md
+ardot-design-core	00_本地已有Skills	"Foundational workflow and hard rules shared by ALL Ardot canvas design tasks (UI screens, slides	references	00_本地已有Skills/ardot-design-core/SKILL.md
+ardot-design-to-code	00_本地已有Skills	"Use this skill for Ardot canvas tasks that convert a design into frontend code, or extract a design	references	00_本地已有Skills/ardot-design-to-code/SKILL.md
+ardot-poster	00_本地已有Skills	"Use this skill for Ardot canvas design tasks whose deliverable is a visual poster — posters, flyers	references	00_本地已有Skills/ardot-poster/SKILL.md
+ardot-ui-design	00_本地已有Skills	"Use this skill for Ardot canvas design tasks whose deliverable is a UI / interface design — web pages	references	00_本地已有Skills/ardot-ui-design/SKILL.md
+buddy-image-processing	00_本地已有Skills	Process existing images with text and watermark removal, general enhancement, portrait beautification	scripts	00_本地已有Skills/buddy-image-processing/SKILL.md
+buddy-multimodal-generation	00_本地已有Skills	3D模型生成和基于模板的视频特效能力。仅支持：文生3D模型、图生3D模型、基于模板的图片视频特效（video-fx）。 适用于用户需要 AI 创作 3D	scripts	00_本地已有Skills/buddy-multimodal-generation/SKILL.md
+chart-png-cjk	00_本地已有Skills	用 matplotlib 生成含中文的深色金融图表 PNG（K线/走势图/对比图）。当需要导出带中文标签的行情图、股价走势图、K线图、金融数据可视化图片时使用。内含中文字体正确加载、$		00_本地已有Skills/chart-png-cjk/SKILL.md
+design-router	00_本地已有Skills	"Dispatcher for WorkBuddy's Design assistant. Use this when a design task is in Craft/design mode but		00_本地已有Skills/design-router/SKILL.md
+design-taste-frontend	00_本地已有Skills	设计品味-前端专用技能，帮助AI Agent高效完成相关任务。		00_本地已有Skills/design-taste-frontend/SKILL.md
+livestream-poster	00_本地已有Skills	生成直播宣传海报：支持完整风格文件、风格目录静默匹配和用户风格参考图三种工作流，收集人物、Logo、文案与比例后，用 ImageGen 生成底图并在 Ardot 画布完成排版	scripts/references	00_本地已有Skills/livestream-poster/SKILL.md
+miora-brand-design	00_本地已有Skills	品牌视觉设计的决策层。当交付物是品牌资产时使用——Logo、品牌吉祥物 / IP 角色、品牌 VI 全案、IP 物料延展。负责品牌信息采集、需求范围识别，以及以 Logo 为锚点的一致性约束	references	00_本地已有Skills/miora-brand-design/SKILL.md
+miora-image-generation	00_本地已有Skills	图片生成与编辑的决策层。当交付物是静态图片时使用——覆盖 prompt 构建、比例与尺寸映射、参考图使用、系列一致性锚点链、数量纪律，以及电商详情图等具体场景。品牌类需求（Logo、吉祥物、VI 全案、IP	references	00_本地已有Skills/miora-image-generation/SKILL.md
+miora-video-generation	00_本地已有Skills	视频生成的决策层。当交付物是会动的内容时使用——覆盖镜头与运动描述、时长与画幅、主体一致性、失败处置与跨轮次。	references	00_本地已有Skills/miora-video-generation/SKILL.md
+sites	00_本地已有Skills	将生成内容发布为在线链接，或取消发布已上线的应用。适合网站、小游戏等交互式内容，支持任意可作为单端口 HTTP 服务运行的项目（静态站点 / PDF / Node.js / Python / Go）		00_本地已有Skills/sites/SKILL.md
+ui-design-system	00_本地已有Skills	专业UI生成与现有界面优化技能。当用户请求生成UI界面、设计页面、优化现有界面、创建组件库、设计系统、App界面、Web界面、Dashboard、Landing	references	00_本地已有Skills/ui-design-system/SKILL.md
+anthropic--algorithmic-art	01_设计品味与反AI味	Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use	templates	01_设计品味与反AI味/anthropic--algorithmic-art/SKILL.md
+anthropic--brand-guidelines	01_设计品味与反AI味	Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from		01_设计品味与反AI味/anthropic--brand-guidelines/SKILL.md
+anthropic--canvas-design	01_设计品味与反AI味	Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this		01_设计品味与反AI味/anthropic--canvas-design/SKILL.md
+anthropic--frontend-design	01_设计品味与反AI味	Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one		01_设计品味与反AI味/anthropic--frontend-design/SKILL.md
+anthropic--theme-factory	01_设计品味与反AI味	Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML	themes	01_设计品味与反AI味/anthropic--theme-factory/SKILL.md
+anthropic--web-artifacts-builder	01_设计品味与反AI味	Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend	scripts	01_设计品味与反AI味/anthropic--web-artifacts-builder/SKILL.md
+impeccable--impeccable	01_设计品味与反AI味	Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden	scripts/reference	01_设计品味与反AI味/impeccable--impeccable/SKILL.md
+mengto--audit-ai-design-slop	01_设计品味与反AI味	Audit websites, apps, screenshots, mockups, and design code for harmful AI-design clichés, generic	agents	01_设计品味与反AI味/mengto--audit-ai-design-slop/SKILL.md
+mengto--design-first-ui-prompting	01_设计品味与反AI味	Use when you need design-first, spec-driven, skimmable prompts for UI generation. Covers prompt		01_设计品味与反AI味/mengto--design-first-ui-prompting/SKILL.md
+mengto--no-ai-design-slop	01_设计品味与反AI味	Prevent and remove generic AI-generated design defaults, incoherent visual choices, and established UI	agents	01_设计品味与反AI味/mengto--no-ai-design-slop/SKILL.md
+superdesign--superdesign	01_设计品味与反AI味	"Design or redesign frontend UI, presentations, and graphics on the Superdesign canvas with a choice of	references/agents	01_设计品味与反AI味/superdesign--superdesign/SKILL.md
+taste--brandkit	01_设计品味与反AI味	Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems		01_设计品味与反AI味/taste--brandkit/SKILL.md
+taste--brutalist-skill	01_设计品味与反AI味	Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid		01_设计品味与反AI味/taste--brutalist-skill/SKILL.md
+taste--gpt-tasteskill	01_设计品味与反AI味	Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout		01_设计品味与反AI味/taste--gpt-tasteskill/SKILL.md
+taste--image-to-code-skill	01_设计品味与反AI味	Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate		01_设计品味与反AI味/taste--image-to-code-skill/SKILL.md
+taste--imagegen-frontend-mobile	01_设计品味与反AI味	Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows		01_设计品味与反AI味/taste--imagegen-frontend-mobile/SKILL.md
+taste--imagegen-frontend-web	01_设计品味与反AI味	Elite frontend image-direction skill for generating premium, conversion-aware website design		01_设计品味与反AI味/taste--imagegen-frontend-web/SKILL.md
+taste--minimalist-skill	01_设计品味与反AI味	Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids		01_设计品味与反AI味/taste--minimalist-skill/SKILL.md
+taste--output-skill	01_设计品味与反AI味	Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder		01_设计品味与反AI味/taste--output-skill/SKILL.md
+taste--redesign-skill	01_设计品味与反AI味	Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI		01_设计品味与反AI味/taste--redesign-skill/SKILL.md
+taste--soft-skill	01_设计品味与反AI味	Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card		01_设计品味与反AI味/taste--soft-skill/SKILL.md
+taste--stitch-skill	01_设计品味与反AI味	Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce		01_设计品味与反AI味/taste--stitch-skill/SKILL.md
+taste--taste-skill	01_设计品味与反AI味	Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief		01_设计品味与反AI味/taste--taste-skill/SKILL.md
+taste--taste-skill-v1	01_设计品味与反AI味	The original v1 taste-skill, preserved for projects depending on its exact behavior. The current		01_设计品味与反AI味/taste--taste-skill-v1/SKILL.md
+tastemaker--tastemaker	01_设计品味与反AI味	Generate genuinely beautiful, on-brand UI instead of generic "AI slop" — use whenever the user asks to	scripts/references/assets	01_设计品味与反AI味/tastemaker--tastemaker/SKILL.md
+emil--animate	02_震撼视觉特效	Build an animation from scratch, making the decisions in the order that determines whether it feels		02_震撼视觉特效/emil--animate/SKILL.md
+emil--animate-expo	02_震撼视觉特效	Build animations in React Native and Expo, making the decisions in the order that determines whether		02_震撼视觉特效/emil--animate-expo/SKILL.md
+mengto--3d-falling-leaves	02_震撼视觉特效	Build recognizable falling leaves in world space using instanced geometry, independent tumble, coupled	agents	02_震撼视觉特效/mengto--3d-falling-leaves/SKILL.md
+mengto--3d-four-seasons	02_震撼视觉特效	Add coordinated spring, summer, fall, and winter states to a 3D scene, blending foliage, sunlight, sky	agents	02_震撼视觉特效/mengto--3d-four-seasons/SKILL.md
+mengto--3d-high-poly-models	02_震撼视觉特效	Create or integrate highly detailed 3D models with smooth silhouettes, shaped surfaces, believable	agents	02_震撼视觉特效/mengto--3d-high-poly-models/SKILL.md
+mengto--3d-high-resolution-textures	02_震撼视觉特效	Build sharp, physically coherent high-resolution materials for 3D rendering with appropriate PBR maps	agents	02_震撼视觉特效/mengto--3d-high-resolution-textures/SKILL.md
+mengto--3d-retina-resolution	02_震撼视觉特效	Render a 3D canvas sharply on Retina and HiDPI displays, including explicit 200 percent resolution	agents	02_震撼视觉特效/mengto--3d-retina-resolution/SKILL.md
+mengto--3d-sky-background	02_震撼视觉特效	Create a camera-correct sky background for a 3D scene with a procedural atmosphere or panorama, horizon	agents	02_震撼视觉特效/mengto--3d-sky-background/SKILL.md
+mengto--3d-sky-rays	02_震撼视觉特效	Add sun shafts and crepuscular rays to a Three.js or equivalent 3D scene, using scene occlusion, a	agents	02_震撼视觉特效/mengto--3d-sky-rays/SKILL.md
+mengto--3d-ultra-realistic-water	02_震撼视觉特效	Build an ultra-realistic open ocean in Three.js with a deep-water Gerstner spectrum shaded per pixel	references/assets/agents	02_震撼视觉特效/mengto--3d-ultra-realistic-water/SKILL.md
+mengto--3d-virtual-tour	02_震撼视觉特效	Build guided and interactive virtual tours through a 3D environment with authored camera paths, room	agents	02_震撼视觉特效/mengto--3d-virtual-tour/SKILL.md
+mengto--add-mouse-driven-orbit	02_震撼视觉特效	Add restrained mouse-driven orbit and parallax depth to a Three.js hero by damping one pointer target	agents	02_震撼视觉特效/mengto--add-mouse-driven-orbit/SKILL.md
+mengto--add-shader-cursor-trail	02_震撼视觉特效	"Add the Shaders WebGPU mouse effect used for the Tidal Commons hero: a white twinkling halftone cursor	scripts/references/assets/agents	02_震撼视觉特效/mengto--add-shader-cursor-trail/SKILL.md
+mengto--ambient-section-particles	02_震撼视觉特效	Add a restrained particle atmosphere inside one section with configurable shapes, density, gravity	agents	02_震撼视觉特效/mengto--ambient-section-particles/SKILL.md
+mengto--animation-on-scroll	02_震撼视觉特效	Create an on-scroll animation trigger using IntersectionObserver with Tailwind-friendly animation		02_震撼视觉特效/mengto--animation-on-scroll/SKILL.md
+mengto--animation-systems	02_震撼视觉特效	Use when designing or implementing product-grade web motion like Stripe, Linear, Apple, and Vercel		02_震撼视觉特效/mengto--animation-systems/SKILL.md
+mengto--atmosphere-background	02_震撼视觉特效	"Create a dark atmospheric background with drifting vertical light folds, screen-blended glow, and a		02_震撼视觉特效/mengto--atmosphere-background/SKILL.md
+mengto--background-grid-webgl	02_震撼视觉特效	"Create a perspective WebGL background grid with fading lines, subtle particle haze, slow forward		02_震撼视觉特效/mengto--background-grid-webgl/SKILL.md
+mengto--beam-glow-states	02_震撼视觉特效	Create React loading, processing, selected, current, focus, and pressed states with the border-beam	agents	02_震撼视觉特效/mengto--beam-glow-states/SKILL.md
+mengto--beautiful-shadows	02_震撼视觉特效	Apply exact Tailwind arbitrary shadow utilities for polished, layered neutral elevation. Use when		02_震撼视觉特效/mengto--beautiful-shadows/SKILL.md
+mengto--bright-green-tech-system-webgl	02_震撼视觉特效	"Create a bright-green technical design system with structured split layouts, hard-framed dark		02_震撼视觉特效/mengto--bright-green-tech-system-webgl/SKILL.md
+mengto--build-interactive-particle-trail	02_震撼视觉特效	Build a cursor or touch particle interaction that emits by distance along the traveled segment into a	agents	02_震撼视觉特效/mengto--build-interactive-particle-trail/SKILL.md
+mengto--build-threejs-scroll-worlds	02_震撼视觉特效	Build rich, scroll-controlled real-time Three.js experiences as one persistent 3D world whose camera	references/agents	02_震撼视觉特效/mengto--build-threejs-scroll-worlds/SKILL.md
+mengto--build-wireframe-scan-reveal	02_震撼视觉特效	Reveal Three.js geometry with an expanding world-space scan whose wire cage leads the solid surface	agents	02_震撼视觉特效/mengto--build-wireframe-scan-reveal/SKILL.md
+mengto--cinematic-gsap-lenis-motion-system	02_震撼视觉特效	Create premium cinematic web motion systems with GSAP, ScrollTrigger, and Lenis. Use for luxury		02_震撼视觉特效/mengto--cinematic-gsap-lenis-motion-system/SKILL.md
+mengto--cinematic-scroll-storytelling	02_震撼视觉特效	Create cinematic scroll-driven landing pages with Lenis smooth scrolling, GSAP ScrollTrigger		02_震撼视觉特效/mengto--cinematic-scroll-storytelling/SKILL.md
+mengto--cobejs	02_震撼视觉特效	Use when adding a lightweight interactive globe with cobe (canvas setup, markers, interaction		02_震撼视觉特效/mengto--cobejs/SKILL.md
+mengto--container-lines	02_震撼视觉特效	Add vertical container-size guide lines with mini corner squares for precise, structured web layouts		02_震撼视觉特效/mengto--container-lines/SKILL.md
+mengto--corner-diagonals	02_震撼视觉特效	Apply diagonal-cut corners and chamfered edges to buttons, cards, panels, and container shells. Use		02_震撼视觉特效/mengto--corner-diagonals/SKILL.md
+mengto--corner-lasers	02_震撼视觉特效	"Create a corner-anchored laser composition with thin beams, a bright emitter node, bloom, and		02_震撼视觉特效/mengto--corner-lasers/SKILL.md
+mengto--css-alpha-masking	02_震撼视觉特效	Apply CSS alpha masking with linear-gradient for horizontal or vertical edge fades (mask-image and		02_震撼视觉特效/mengto--css-alpha-masking/SKILL.md
+mengto--css-border-gradient	02_震撼视觉特效	Apply subtle gradient-border treatments for premium web surfaces. Use when cards, pricing panels, nav		02_震撼视觉特效/mengto--css-border-gradient/SKILL.md
+mengto--dither-background	02_震撼视觉特效	Create a dark monochrome procedural background with enlarged square pixels and visible Bayer-style		02_震撼视觉特效/mengto--dither-background/SKILL.md
+mengto--dither-laser-dark-mode	02_震撼视觉特效	"Create a dark premium design system that combines near-black surfaces, subtle ordered-dither texture		02_震撼视觉特效/mengto--dither-laser-dark-mode/SKILL.md
+mengto--falling-leaves	02_震撼视觉特效	Build falling leaves that read as leaves, with each one tumbling on its own axis so it presents a face	agents	02_震撼视觉特效/mengto--falling-leaves/SKILL.md
+mengto--framed-grid-layout	02_震撼视觉特效	Create minimal framed grid layouts with thin visible boundary lines, L-shaped corner brackets, subtle		02_震撼视觉特效/mengto--framed-grid-layout/SKILL.md
+mengto--globe-gl	02_震撼视觉特效	Use when implementing globe.gl (Globe.GL) for 3D globe data visualization with WebGL/ThreeJS, including		02_震撼视觉特效/mengto--globe-gl/SKILL.md
+mengto--globe-particles	02_震撼视觉特效	Create a globe-like 3D particle visualization with a dense luminous spherical core and thinner orbital		02_震撼视觉特效/mengto--globe-particles/SKILL.md
+mengto--gooey-blob-system	02_震撼视觉特效	"Create a gooey blob system using SVG filters where multiple shapes merge into a single fluid form. Use		02_震撼视觉特效/mengto--gooey-blob-system/SKILL.md
+mengto--gsap	02_震撼视觉特效	Use when you need to add or debug professional web animations with GSAP (timelines, ScrollTrigger		02_震撼视觉特效/mengto--gsap/SKILL.md
+mengto--gsap-scrolltrigger-storytelling	02_震撼视觉特效	"Build cinematic sticky product storytelling with GSAP ScrollTrigger, progressive UI reveals		02_震撼视觉特效/mengto--gsap-scrolltrigger-storytelling/SKILL.md
+mengto--liquid-metal-border	02_震撼视觉特效	Add and tune animated liquid-metal WebGL borders with the React `metal-fx` package. Use when buttons	agents	02_震撼视觉特效/mengto--liquid-metal-border/SKILL.md
+mengto--marquee-loop	02_震撼视觉特效	"Apply seamless infinite marquee loops using duplicated items."		02_震撼视觉特效/mengto--marquee-loop/SKILL.md
+mengto--masked-reveal	02_震撼视觉特效	Create masked staggered word reveals on scroll with GSAP ScrollTrigger. Use when headings, hero copy		02_震撼视觉特效/mengto--masked-reveal/SKILL.md
+mengto--matterjs	02_震撼视觉特效	Use when implementing 2D physics interactions with Matter.js, including Engine/World setup		02_震撼视觉特效/mengto--matterjs/SKILL.md
+mengto--mesh-gradient-dark-blue-clean	02_震撼视觉特效	Create a futuristic, premium, clean dark-blue mesh-gradient design system across background rendering		02_震撼视觉特效/mengto--mesh-gradient-dark-blue-clean/SKILL.md
+mengto--nested-container-frames	02_震撼视觉特效	"Create a container-in-container layout system using nested frames. Use an outer centered container		02_震撼视觉特效/mengto--nested-container-frames/SKILL.md
+mengto--number-details	02_震撼视觉特效	"Add decorative 01, 02, 03 numeric detail markers."		02_震撼视觉特效/mengto--number-details/SKILL.md
+mengto--optimize-web-animations	02_震撼视觉特效	Profile, audit, and optimize frontend page performance with emphasis on animation work, memory-leak	references/agents	02_震撼视觉特效/mengto--optimize-web-animations/SKILL.md
+mengto--pointer-trail-emitter	02_震撼视觉特效	Build a cursor trail whose spacing stays constant at any hand speed, by emitting motes per unit of	agents	02_震撼视觉特效/mengto--pointer-trail-emitter/SKILL.md
+mengto--progressive-blur	02_震撼视觉特效	Create a layered CSS progressive blur (top or bottom) using multiple backdrop-filter masks for depth		02_震撼视觉特效/mengto--progressive-blur/SKILL.md
+mengto--reveal-hover-effect	02_震撼视觉特效	Build cursor-following spotlight reveals that expose a second aligned image through a soft radial mask	agents	02_震撼视觉特效/mengto--reveal-hover-effect/SKILL.md
+mengto--scroll-progress-timeline	02_震撼视觉特效	Turn any ordered process into a data-driven vertical or horizontal scroll story with a base line	agents	02_震撼视觉特效/mengto--scroll-progress-timeline/SKILL.md
+mengto--scroll-scrubbed-visual-sequence	02_震撼视觉特效	Build reversible scroll-controlled visual transformations with a pinned or sticky stage, normalized	agents	02_震撼视觉特效/mengto--scroll-scrubbed-visual-sequence/SKILL.md
+mengto--scroll-scrubbed-word-reveal	02_震撼视觉特效	Reveal marked-up text word by word as scroll progress advances, while preserving semantic inline links	agents	02_震撼视觉特效/mengto--scroll-scrubbed-word-reveal/SKILL.md
+mengto--scroll-world-storytelling	02_震撼视觉特效	"Turn an article, case study, brand narrative, product journey, or long-form story into a cinematic	agents	02_震撼视觉特效/mengto--scroll-world-storytelling/SKILL.md
+mengto--shaders-cursor-ripples	02_震撼视觉特效	Add cursor-following fluid WebGPU distortion over an existing image with the Shaders library's	assets/agents	02_震撼视觉特效/mengto--shaders-cursor-ripples/SKILL.md
+mengto--staggered-word-reveal	02_震撼视觉特效	Create subtle editorial word-by-word text reveal animations where each word fades and rises into place		02_震撼视觉特效/mengto--staggered-word-reveal/SKILL.md
+mengto--thinking-orbs	02_震撼视觉特效	Add accessible animated AI loading and agent-status indicators with the React thinking-orbs library	agents	02_震撼视觉特效/mengto--thinking-orbs/SKILL.md
+mengto--threejs	02_震撼视觉特效	Use when building or debugging interactive 3D scenes on the web with Three.js (scene/camera/renderer		02_震撼视觉特效/mengto--threejs/SKILL.md
+mengto--threejs-landscape	02_震撼视觉特效	Build a live Three.js landscape that stays quiet behind a subject — a noise heightfield on a polar grid	agents	02_震撼视觉特效/mengto--threejs-landscape/SKILL.md
+mengto--threejs-towers	02_震撼视觉特效	Generate architecture procedurally in Three.js and film it assembling — a small geometry vocabulary	agents	02_震撼视觉特效/mengto--threejs-towers/SKILL.md
+mengto--threejs-weather	02_震撼视觉特效	Put weather into a Three.js scene that reads as weather — rain anchored inside the frustum, a storm	agents	02_震撼视觉特效/mengto--threejs-weather/SKILL.md
+mengto--unicorn-studio	02_震撼视觉特效	Use when embedding and customizing Unicorn Studio interactive animations on the web (embed, responsive		02_震撼视觉特效/mengto--unicorn-studio/SKILL.md
+mengto--vantajs	02_震撼视觉特效	Use when adding animated WebGL background effects with Vanta.js (setup, parameters, resizing		02_震撼视觉特效/mengto--vantajs/SKILL.md
+mengto--webgl-3d-object	02_震撼视觉特效	Create a real 3D WebGL object with geometric mesh depth, physically based material, directional and		02_震撼视觉特效/mengto--webgl-3d-object/SKILL.md
+mengto--webgl-laser	02_震撼视觉特效	Create a fixed full-screen WebGL laser background effect with a thin white-hot vertical core		02_震撼视觉特效/mengto--webgl-laser/SKILL.md
+oc--3d-web-experience	02_震撼视觉特效	Expert in building 3D experiences for the web - Three.js, React Three Fiber, Spline, WebGL, and		02_震撼视觉特效/oc--3d-web-experience/SKILL.md
+oc--gsap-core	02_震撼视觉特效	Official GSAP skill for the core API — gsap.to(), from(), fromTo(), easing, duration, stagger		02_震撼视觉特效/oc--gsap-core/SKILL.md
+oc--gsap-frameworks	02_震撼视觉特效	Official GSAP skill for Vue, Svelte, and other non-React frameworks — lifecycle, scoping selectors		02_震撼视觉特效/oc--gsap-frameworks/SKILL.md
+oc--gsap-performance	02_震撼视觉特效	Official GSAP skill for performance — prefer transforms, avoid layout thrashing, will-change, batching		02_震撼视觉特效/oc--gsap-performance/SKILL.md
+oc--gsap-plugins	02_震撼视觉特效	Official GSAP skill for GSAP plugins — registration, ScrollToPlugin, ScrollSmoother, Flip, Draggable		02_震撼视觉特效/oc--gsap-plugins/SKILL.md
+oc--gsap-react	02_震撼视觉特效	Official GSAP skill for React — useGSAP hook, refs, gsap.context(), cleanup. Use when the user wants		02_震撼视觉特效/oc--gsap-react/SKILL.md
+oc--gsap-scrolltrigger	02_震撼视觉特效	Official GSAP skill for ScrollTrigger — scroll-linked animations, pinning, scrub, triggers. Use when		02_震撼视觉特效/oc--gsap-scrolltrigger/SKILL.md
+oc--gsap-timeline	02_震撼视觉特效	Official GSAP skill for timelines — gsap.timeline(), position parameter, nesting, playback. Use when		02_震撼视觉特效/oc--gsap-timeline/SKILL.md
+oc--gsap-utils	02_震撼视觉特效	Official GSAP skill for gsap.utils — clamp, mapRange, normalize, interpolate, random, snap, toArray		02_震撼视觉特效/oc--gsap-utils/SKILL.md
+oc--scroll-experience	02_震撼视觉特效	Expert in building immersive scroll-driven experiences - parallax storytelling, scroll animations		02_震撼视觉特效/oc--scroll-experience/SKILL.md
+oc--vue-bits	02_震撼视觉特效	Vue Bits 动画组件库使用指南 — Vue 3 + TypeScript + Tailwind 的高端动画 UI 组件库（React Bits 的 Vue 移植版）。当用户需要为 Vue		02_震撼视觉特效/oc--vue-bits/SKILL.md
+devgtm--frontend-design	03_落地页与视觉风格	Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one		03_落地页与视觉风格/devgtm--frontend-design/SKILL.md
+devgtm--site-architecture	03_落地页与视觉风格	When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL	references	03_落地页与视觉风格/devgtm--site-architecture/SKILL.md
+elayadesign--landing-page-design	03_落地页与视觉风格	"Complete system for building high converting landing pages: intake questions, page structure, layout		03_落地页与视觉风格/elayadesign--landing-page-design/SKILL.md
+gardenli--beautiful-article	03_落地页与视觉风格	"把用户提供的素材（网页 URL / PDF / DOCX / Markdown / 纯文本 / 截图 / 粘贴材料）编辑、设计成一篇美丽的、可离线打开和分享的**单文件 HTML 网页文章**。基于	scripts/references/assets	03_落地页与视觉风格/gardenli--beautiful-article/SKILL.md
+gardenli--web-design-engineer	03_落地页与视觉风格	"Build or redesign polished browser-rendered visual artifacts with HTML/CSS/JavaScript/React: pages	references/agents	03_落地页与视觉风格/gardenli--web-design-engineer/SKILL.md
+jezweb--landing-page	03_落地页与视觉风格	"Generate a complete, deployable landing page from a brief. Produces a single self-contained HTML file		03_落地页与视觉风格/jezweb--landing-page/SKILL.md
+jezweb--product-showcase	03_落地页与视觉风格	"Generate a comprehensive marketing website for a web app — multi-page with real screenshots, animated		03_落地页与视觉风格/jezweb--product-showcase/SKILL.md
+jezweb--tailwind-theme-builder	03_落地页与视觉风格	"Set up Tailwind v4 + shadcn/ui themed UI with dark mode. Install deps, configure CSS variables via	references/assets	03_落地页与视觉风格/jezweb--tailwind-theme-builder/SKILL.md
+mengto--agency-grid-layout-minimal	03_落地页与视觉风格	"Create a minimal agency design system with a disciplined editorial grid, oversized typography, quiet		03_落地页与视觉风格/mengto--agency-grid-layout-minimal/SKILL.md
+mengto--blue-cloudy-clean-modern	03_落地页与视觉风格	"Create a clean modern design system with a luminous blue sky atmosphere, soft drifting cloud light		03_落地页与视觉风格/mengto--blue-cloudy-clean-modern/SKILL.md
+mengto--blue-laser-clean-glass-layout	03_落地页与视觉风格	"Create a clean dark glass layout system with a thin blue laser atmosphere, frosted premium shells, and		03_落地页与视觉风格/mengto--blue-laser-clean-glass-layout/SKILL.md
+mengto--book-serif-index	03_落地页与视觉风格	"Create an archival book-reader design system with serif-led pages, mono index navigation, aged paper		03_落地页与视觉风格/mengto--book-serif-index/SKILL.md
+mengto--build-awwwards-quality-sites	03_落地页与视觉风格	Art-direct and implement distinctive, motion-rich marketing, editorial, portfolio, and landing websites	agents	03_落地页与视觉风格/mengto--build-awwwards-quality-sites/SKILL.md
+mengto--clean-minimal-beige-light-mode	03_落地页与视觉风格	"Create a clean minimal beige light-mode design system with warm neutral shells, quiet process grids		03_落地页与视觉风格/mengto--clean-minimal-beige-light-mode/SKILL.md
+mengto--dark-blue-contrasting-clean	03_落地页与视觉风格	"Create a dark-blue clean design system with strong contrast, cobalt gradient feature blocks, crisp		03_落地页与视觉风格/mengto--dark-blue-contrasting-clean/SKILL.md
+mengto--dark-glass-clean-layout	03_落地页与视觉风格	"Create a dark glass layout system with frosted premium shells, clean multi-column workspace structure		03_落地页与视觉风格/mengto--dark-glass-clean-layout/SKILL.md
+mengto--documentary-brutalist-agency	03_落地页与视觉风格	Create or redesign creative agency, production studio, architecture, culture, and portfolio websites	agents	03_落地页与视觉风格/mengto--documentary-brutalist-agency/SKILL.md
+mengto--editorial-portfolio-chapters	03_落地页与视觉风格	Create or redesign creative-studio, agency, photographer, artist, and portfolio websites where project	assets/agents	03_落地页与视觉风格/mengto--editorial-portfolio-chapters/SKILL.md
+mengto--editorial-service-booking	03_落地页与视觉风格	Create or redesign appointment-based service websites for salons, barbers, spas, wellness studios	agents	03_落地页与视觉风格/mengto--editorial-service-booking/SKILL.md
+mengto--editorial-tech	03_落地页与视觉风格	"Blend editorial magazine composition with precision product-tech detailing using asymmetrical grids		03_落地页与视觉风格/mengto--editorial-tech/SKILL.md
+mengto--framed-tech-dark-border-gradient	03_落地页与视觉风格	"Create a framed dark technical design system with border-gradient shells, asymmetrical grid panels		03_落地页与视觉风格/mengto--framed-tech-dark-border-gradient/SKILL.md
+mengto--funky-purple-container-tech	03_落地页与视觉风格	"Create a dark container-led technical design system with fuchsia-purple accents, layered rounded		03_落地页与视觉风格/mengto--funky-purple-container-tech/SKILL.md
+mengto--glass-dark-mode-clock	03_落地页与视觉风格	"Create a dark glass design system with frosted shells, soft beam grids, circular clock-like		03_落地页与视觉风格/mengto--glass-dark-mode-clock/SKILL.md
+mengto--glass-dark-ui	03_落地页与视觉风格	Build dark-mode glassmorphism interfaces with readable contrast, frosted surfaces, and gradient borders		03_落地页与视觉风格/mengto--glass-dark-ui/SKILL.md
+mengto--high-contrast-skeuomorphic-clean	03_落地页与视觉风格	"Create a high-contrast clean skeuomorphic design system with molded dark surfaces, crisp light		03_落地页与视觉风格/mengto--high-contrast-skeuomorphic-clean/SKILL.md
+mengto--image-first-grid-layout	03_落地页与视觉风格	"Create an image-led grid design system with full-bleed photography, structural guide lines, anchored		03_落地页与视觉风格/mengto--image-first-grid-layout/SKILL.md
+mengto--landing-page	03_落地页与视觉风格	Use when designing or rewriting a high-converting landing page (single-offer page) for		03_落地页与视觉风格/mengto--landing-page/SKILL.md
+mengto--light-mode-paper-technical	03_落地页与视觉风格	"Create a light-mode technical design system with warm paper surfaces, dark outer framing, subtle		03_落地页与视觉风格/mengto--light-mode-paper-technical/SKILL.md
+mengto--nested-container-clean-agency	03_落地页与视觉风格	"Create a clean agency design system built from nested containers, with an outer editorial shell, inset		03_落地页与视觉风格/mengto--nested-container-clean-agency/SKILL.md
+mengto--operational-enterprise-ai	03_落地页与视觉风格	Create or redesign enterprise AI, automation, security, and operations product pages that explain	agents	03_落地页与视觉风格/mengto--operational-enterprise-ai/SKILL.md
+mengto--orange-clean-paper-saas	03_落地页与视觉风格	"Create a clean paper-toned SaaS design system with warm neutrals, orange accent signals, rounded		03_落地页与视觉风格/mengto--orange-clean-paper-saas/SKILL.md
+mengto--pricing-page	03_落地页与视觉风格	Use when designing or rewriting a high-converting SaaS pricing page (structure, plan design		03_落地页与视觉风格/mengto--pricing-page/SKILL.md
+mengto--product-proof-saas	03_落地页与视觉风格	Create or redesign SaaS and AI product landing pages where a real workflow, interface, or deterministic	agents	03_落地页与视觉风格/mengto--product-proof-saas/SKILL.md
+mengto--skeuomorphic-ui	03_落地页与视觉风格	Create skeuomorphic web UI surfaces with layered gradients, stacked inner and outer shadows, reflective		03_落地页与视觉风格/mengto--skeuomorphic-ui/SKILL.md
+mengto--solar-duotone-bold	03_落地页与视觉风格	"Use Iconify Solar Duotone Bold icon style."		03_落地页与视觉风格/mengto--solar-duotone-bold/SKILL.md
+mengto--split-layout-technical	03_落地页与视觉风格	"Create a technical split-screen design system with dual panels, fine frame lines, mono metadata, quiet		03_落地页与视觉风格/mengto--split-layout-technical/SKILL.md
+mengto--tailwindcss	03_落地页与视觉风格	Use when designing/implementing UI with Tailwind CSS (layout, typography, responsive, theming		03_落地页与视觉风格/mengto--tailwindcss/SKILL.md
+mengto--tech-green-dark-mode-modern	03_落地页与视觉风格	"Create a modern dark-mode technical design system with matte-black surfaces, emerald signal accents		03_落地页与视觉风格/mengto--tech-green-dark-mode-modern/SKILL.md
+mengto--technical-wireframe-info-layout	03_落地页与视觉风格	"Create a monochrome technical wireframe design system with exploded 3D structure, connector		03_落地页与视觉风格/mengto--technical-wireframe-info-layout/SKILL.md
+mengto--webgl-landing-steering	03_落地页与视觉风格	Use when creating or refining WebGL-heavy landing pages and you need to steer toward a specific visual		03_落地页与视觉风格/mengto--webgl-landing-steering/SKILL.md
+oc--interactive-portfolio	03_落地页与视觉风格	Expert in building portfolios that actually land jobs and clients - not just showing work, but creating		03_落地页与视觉风格/oc--interactive-portfolio/SKILL.md
+oc--landing-page-generator	03_落地页与视觉风格	"Generates high-converting Next.js/React landing pages with Tailwind CSS. Uses PAS, AIDA, and BAB	scripts/references	03_落地页与视觉风格/oc--landing-page-generator/SKILL.md
+uiuxpromax--banner-design	03_落地页与视觉风格	"Design banners for social media, ads, website heroes, creative assets, and print. Multiple art	references	03_落地页与视觉风格/uiuxpromax--banner-design/SKILL.md
+uiuxpromax--brand	03_落地页与视觉风格	Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for	scripts/references/templates	03_落地页与视觉风格/uiuxpromax--brand/SKILL.md
+uiuxpromax--design	03_落地页与视觉风格	"Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles	scripts/references/data	03_落地页与视觉风格/uiuxpromax--design/SKILL.md
+uiuxpromax--design-system	03_落地页与视觉风格	Token architecture, component specifications, and slide generation. Three-layer tokens	scripts/references/data/templates	03_落地页与视觉风格/uiuxpromax--design-system/SKILL.md
+uiuxpromax--ui-styling	03_落地页与视觉风格	Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind)	scripts/references	03_落地页与视觉风格/uiuxpromax--ui-styling/SKILL.md
+uiuxpromax--ui-ux-pro-max	03_落地页与视觉风格	"UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing	scripts/references/data	03_落地页与视觉风格/uiuxpromax--ui-ux-pro-max/SKILL.md
+designer--accessibility-audit	04_视觉系统与规范	Audit an existing interface against WCAG, producing findings with severity ratings and remediation		04_视觉系统与规范/designer--accessibility-audit/SKILL.md
+designer--aesthetic-usability	04_视觉系统与规范	Apply the Aesthetic-Usability Effect — polished, consistent interfaces are perceived as more usable and		04_视觉系统与规范/designer--aesthetic-usability/SKILL.md
+designer--business-design	04_视觉系统与规范	Read financials, map competitive landscapes, and argue design decisions in the language of value. Use		04_视觉系统与规范/designer--business-design/SKILL.md
+designer--color-system	04_视觉系统与规范	Build a product colour system — tonal scales, semantic roles, and contrast compliance. Use when		04_视觉系统与规范/designer--color-system/SKILL.md
+designer--competitive-analysis	04_视觉系统与规范	Compare UX patterns, features, strengths, and gaps across rival products. Use when you need to know		04_视觉系统与规范/designer--competitive-analysis/SKILL.md
+designer--component-spec	04_视觉系统与规范	Specify one component — props, states, variants, accessibility, and usage rules. Use when defining a		04_视觉系统与规范/designer--component-spec/SKILL.md
+designer--content-strategy	04_视觉系统与规范	Define what content a product needs, how it is structured, and who owns it. Use when content itself is		04_视觉系统与规范/designer--content-strategy/SKILL.md
+designer--critique-affordance	04_视觉系统与规范	Critique a rendered screen's affordances — what looks clickable, state visibility, CTA clarity, and		04_视觉系统与规范/designer--critique-affordance/SKILL.md
+designer--critique-brand-consistency	04_视觉系统与规范	Critique a rendered screen against mood.md, voice.md, and tokens.md. Use when those brand files exist		04_视觉系统与规范/designer--critique-brand-consistency/SKILL.md
+designer--critique-color	04_视觉系统与规范	Critique a rendered screen's colour — contrast ratios, palette coherence, and semantic meaning. Use		04_视觉系统与规范/designer--critique-color/SKILL.md
+designer--critique-composition	04_视觉系统与规范	Critique a rendered screen's composition — balance, whitespace, rhythm, and gestalt grouping. Use when		04_视觉系统与规范/designer--critique-composition/SKILL.md
+designer--critique-information-density	04_视觉系统与规范	Critique a rendered screen's density — cognitive load, content prioritisation, scanning patterns, and		04_视觉系统与规范/designer--critique-information-density/SKILL.md
+designer--critique-typography	04_视觉系统与规范	Critique a rendered screen's typography — scale usage, readability, consistency, and token compliance		04_视觉系统与规范/designer--critique-typography/SKILL.md
+designer--critique-visual-hierarchy	04_视觉系统与规范	Critique a rendered screen's hierarchy — entry point, eye flow, weight distribution, and emphasis. Use		04_视觉系统与规范/designer--critique-visual-hierarchy/SKILL.md
+designer--dark-mode-design	04_视觉系统与规范	Adapt an existing palette to dark mode — surface elevation, contrast rebalancing, and desaturation		04_视觉系统与规范/designer--dark-mode-design/SKILL.md
+designer--data-visualization	04_视觉系统与规范	Select chart types and design data encodings — marks, axes, labels, and accessible chart styling. Use		04_视觉系统与规范/designer--data-visualization/SKILL.md
+designer--design-brief	04_视觉系统与规范	Write a project brief — problem space, constraints, audience, and success criteria. Use at kickoff for		04_视觉系统与规范/designer--design-brief/SKILL.md
+designer--design-principles	04_视觉系统与规范	Define actionable principles that resolve trade-offs when the team disagrees. Use when the same		04_视觉系统与规范/designer--design-principles/SKILL.md
+designer--design-system-governance	04_视觉系统与规范	Define how the system evolves — contribution model, versioning, deprecation, and change management. Use		04_视觉系统与规范/designer--design-system-governance/SKILL.md
+designer--design-token	04_视觉系统与规范	Define and organise tokens for colour, spacing, type, and elevation with naming and usage rules. Use		04_视觉系统与规范/designer--design-token/SKILL.md
+designer--documentation-template	04_视觉系统与规范	Generate a reusable documentation scaffold for components, patterns, or guidelines. Use when		04_视觉系统与规范/designer--documentation-template/SKILL.md
+designer--experience-map	04_视觉系统与规范	Map the full ecosystem of touchpoints, channels, and relationships across a service. Use when the		04_视觉系统与规范/designer--experience-map/SKILL.md
+designer--icon-system	04_视觉系统与规范	Specify an icon system — grid, sizing, stroke weight, naming, categories, and implementation. Use when		04_视觉系统与规范/designer--icon-system/SKILL.md
+designer--illustration-style	04_视觉系统与规范	Define an illustration style guide — visual language, colour usage, and application rules. Use when		04_视觉系统与规范/designer--illustration-style/SKILL.md
+designer--information-architecture	04_视觉系统与规范	Design content structure, hierarchy, labelling, and the navigation model. Use when organising what		04_视觉系统与规范/designer--information-architecture/SKILL.md
+designer--law-of-closure	04_视觉系统与规范	Apply the Law of Closure — the eye completes implied shapes from partial forms. Use when reducing		04_视觉系统与规范/designer--law-of-closure/SKILL.md
+designer--law-of-common-region	04_视觉系统与规范	Apply the Law of Common Region — a shared container, background, or border groups elements regardless		04_视觉系统与规范/designer--law-of-common-region/SKILL.md
+designer--law-of-continuity	04_视觉系统与规范	Apply the Law of Continuity — the eye follows alignment and unbroken paths. Use when sequencing steps		04_视觉系统与规范/designer--law-of-continuity/SKILL.md
+designer--law-of-figure-ground	04_视觉系统与规范	Apply the Law of Figure-Ground — establish which layer is foreground and actionable versus background		04_视觉系统与规范/designer--law-of-figure-ground/SKILL.md
+designer--law-of-proximity	04_视觉系统与规范	Apply the Law of Proximity — spatial closeness groups elements more strongly than any other cue. Use		04_视觉系统与规范/designer--law-of-proximity/SKILL.md
+designer--law-of-similarity	04_视觉系统与规范	Apply the Law of Similarity — shared colour, shape, or size signals that elements belong to one		04_视觉系统与规范/designer--law-of-similarity/SKILL.md
+designer--layout-grid	04_视觉系统与规范	Define a responsive grid — columns, gutters, margins, and breakpoint behaviour. Use when establishing		04_视觉系统与规范/designer--layout-grid/SKILL.md
+designer--localization-design	04_视觉系统与规范	Design for multiple languages, writing directions, and cultural contexts — text expansion, RTL		04_视觉系统与规范/designer--localization-design/SKILL.md
+designer--metrics-definition	04_视觉系统与规范	Define UX metrics and KPIs that connect design decisions to measurable outcomes. Use when choosing what		04_视觉系统与规范/designer--metrics-definition/SKILL.md
+designer--motion-system	04_视觉系统与规范	Define motion tokens — durations, easing vocabulary, and reduced-motion handling — for consistency		04_视觉系统与规范/designer--motion-system/SKILL.md
+designer--naming-convention	04_视觉系统与规范	Establish naming rules for components, tokens, and layers with patterns and worked examples. Use when		04_视觉系统与规范/designer--naming-convention/SKILL.md
+designer--north-star-vision	04_视觉系统与规范	Articulate a long-horizon product vision that aligns teams and anchors strategy. Use when direction is		04_视觉系统与规范/designer--north-star-vision/SKILL.md
+designer--opportunity-framework	04_视觉系统与规范	Identify, score, and prioritise design opportunities against impact and effort. Use when there are more		04_视觉系统与规范/designer--opportunity-framework/SKILL.md
+designer--pattern-library	04_视觉系统与规范	Structure a pattern entry — problem context, solution, usage examples, and related patterns. Use when		04_视觉系统与规范/designer--pattern-library/SKILL.md
+designer--platform-conventions	04_视觉系统与规范	Design to iOS and Android conventions — what each OS mandates, where they diverge, and when to unify		04_视觉系统与规范/designer--platform-conventions/SKILL.md
+designer--readable-measure	04_视觉系统与规范	Set line length and measure for comfortable reading across type sizes and breakpoints. Use when tuning		04_视觉系统与规范/designer--readable-measure/SKILL.md
+designer--responsive-design	04_视觉系统与规范	Design layouts and interactions that adapt across screen sizes and input methods. Use when one design		04_视觉系统与规范/designer--responsive-design/SKILL.md
+designer--service-blueprint	04_视觉系统与规范	Map service delivery across frontstage actions, backstage processes, and supporting systems. Use when		04_视觉系统与规范/designer--service-blueprint/SKILL.md
+designer--spacing-system	04_视觉系统与规范	Create a spacing scale from a base unit with rules for when each step applies. Use when standardising		04_视觉系统与规范/designer--spacing-system/SKILL.md
+designer--stakeholder-alignment	04_视觉系统与规范	Build alignment artifacts — responsibility matrices, decision rights, and communication plans. Use when		04_视觉系统与规范/designer--stakeholder-alignment/SKILL.md
+designer--theming-system	04_视觉系统与规范	Design theming architecture — brand variants, dark mode, and high-contrast — mapped through token		04_视觉系统与规范/designer--theming-system/SKILL.md
+designer--typography-scale	04_视觉系统与规范	Create a modular type scale with size, weight, and line-height relationships. Use when establishing		04_视觉系统与规范/designer--typography-scale/SKILL.md
+designer--visual-hierarchy	04_视觉系统与规范	Establish hierarchy through size, weight, colour, spacing, and position so the eye lands in the		04_视觉系统与规范/designer--visual-hierarchy/SKILL.md
+designer--von-restorff-effect	04_视觉系统与规范	Apply the Von Restorff Effect — the element that differs from its neighbours is the one remembered. Use		04_视觉系统与规范/designer--von-restorff-effect/SKILL.md
+emil--animation-vocabulary	04_视觉系统与规范	Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its		04_视觉系统与规范/emil--animation-vocabulary/SKILL.md
+jakub--better-accessibility	04_视觉系统与规范	Helps your project comply with accessibility standards and best practices.	agents	04_视觉系统与规范/jakub--better-accessibility/SKILL.md
+jakub--better-colors	04_视觉系统与规范	Helps you build a color system and answer anything about color in your project. You can generate	agents	04_视觉系统与规范/jakub--better-colors/SKILL.md
+jakub--better-interface	04_视觉系统与规范	Combines all of the `better-*` skills into a single review across accessibility, layout, writing	agents	04_视觉系统与规范/jakub--better-interface/SKILL.md
+jakub--better-layout	04_视觉系统与规范	Helps with grouping, alignment, reading order, progressive disclosure and other details that make a	agents	04_视觉系统与规范/jakub--better-layout/SKILL.md
+jakub--better-typography	04_视觉系统与规范	Focuses on type scale, spacing, sizing, variable fonts, OpenType features, wrapping, truncation and	agents	04_视觉系统与规范/jakub--better-typography/SKILL.md
+jakub--better-ui	04_视觉系统与规范	Polishes and improves the UI in your project. Covers concentric border radius, optical alignment	agents	04_视觉系统与规范/jakub--better-ui/SKILL.md
+jakub--better-writing	04_视觉系统与规范	Focuses on improving product copy in your project.	agents	04_视觉系统与规范/jakub--better-writing/SKILL.md
+jakub--break	04_视觉系统与规范	Renders a component you choose in every state and scenario on a temporary page and stress tests it.	agents	04_视觉系统与规范/jakub--break/SKILL.md
+jakub--explain-interface	04_视觉系统与规范	Helps you figure out how something was built on the web.	agents	04_视觉系统与规范/jakub--explain-interface/SKILL.md
+jakub--interface-review	04_视觉系统与规范	Reviews your work across multiple categories like UI, typography, layout, color, writing and	agents	04_视觉系统与规范/jakub--interface-review/SKILL.md
+jakub--variant	04_视觉系统与规范	Builds multiple variants of a component you're working on and helps you iterate and pick one.	agents	04_视觉系统与规范/jakub--variant/SKILL.md
+designer--animation-principles	05_交互与微动效	Apply animation principles — easing, staging, follow-through — to one specific UI motion. Use when		05_交互与微动效/designer--animation-principles/SKILL.md
+designer--conversational-ux	05_交互与微动效	Design voice and conversational interfaces — dialog flows, error recovery, and persona. Use when the		05_交互与微动效/designer--conversational-ux/SKILL.md
+designer--doherty-threshold	05_交互与微动效	Apply the Doherty Threshold — keep system response under 400ms to preserve user flow. Use when		05_交互与微动效/designer--doherty-threshold/SKILL.md
+designer--error-handling-ux	05_交互与微动效	Design error prevention, detection, and recovery across a product — message content, placement, and		05_交互与微动效/designer--error-handling-ux/SKILL.md
+designer--feedback-patterns	05_交互与微动效	Design confirmations, status updates, and notifications that tell users an action registered. Use when		05_交互与微动效/designer--feedback-patterns/SKILL.md
+designer--fitts-law	05_交互与微动效	Apply Fitts's Law — target acquisition time depends on size and distance. Use when sizing and		05_交互与微动效/designer--fitts-law/SKILL.md
+designer--form-design	05_交互与微动效	Design a form end to end — field order, grouping, validation, and completion. Use when the artifact is		05_交互与微动效/designer--form-design/SKILL.md
+designer--gesture-patterns	05_交互与微动效	Design gesture interactions for touch and pointer — swipe, drag, long-press, and their discoverability		05_交互与微动效/designer--gesture-patterns/SKILL.md
+designer--hicks-law	05_交互与微动效	Apply Hick's Law — decision time grows with the number of simultaneous choices. Use when a screen		05_交互与微动效/designer--hicks-law/SKILL.md
+designer--interfaces-that-feel	05_交互与微动效	Apply an emotional resonance lens to a UI that is technically correct but flat, prescribing changes at		05_交互与微动效/designer--interfaces-that-feel/SKILL.md
+designer--jakobs-law	05_交互与微动效	Apply Jakob's Law — users expect your product to work like the others they already use. Use when		05_交互与微动效/designer--jakobs-law/SKILL.md
+designer--loading-states	05_交互与微动效	Design waiting experiences — spinners, skeletons, optimistic updates, and progressive reveal. Use when		05_交互与微动效/designer--loading-states/SKILL.md
+designer--micro-interaction-spec	05_交互与微动效	Specify one micro-interaction completely — trigger, rules, feedback, loops, and modes. Use when handing		05_交互与微动效/designer--micro-interaction-spec/SKILL.md
+designer--millers-law	05_交互与微动效	Apply Miller's Law — chunk information into groups of about four to fit working memory. Use when		05_交互与微动效/designer--millers-law/SKILL.md
+designer--navigation-patterns	05_交互与微动效	Select and design a navigation pattern — tabs, drawer, hierarchy, or hub — matched to product structure		05_交互与微动效/designer--navigation-patterns/SKILL.md
+designer--onboarding-design	05_交互与微动效	Design the first-run experience — activation path, progressive disclosure, and time to first value. Use		05_交互与微动效/designer--onboarding-design/SKILL.md
+designer--peak-end-rule	05_交互与微动效	Apply the Peak-End Rule — a flow is remembered by its most intense moment and its last. Use when		05_交互与微动效/designer--peak-end-rule/SKILL.md
+designer--search-ux	05_交互与微动效	Design search — query input, zero results, refinement, and result presentation. Use when users retrieve		05_交互与微动效/designer--search-ux/SKILL.md
+designer--serial-position-effect	05_交互与微动效	Apply the Serial Position Effect — first and last items in a sequence are recalled best. Use when		05_交互与微动效/designer--serial-position-effect/SKILL.md
+designer--state-machine	05_交互与微动效	Model component behaviour as explicit states, events, and transitions. Use when a component has many		05_交互与微动效/designer--state-machine/SKILL.md
+designer--teslers-law	05_交互与微动效	Apply Tesler's Law — every process has irreducible complexity that someone must absorb. Use when		05_交互与微动效/designer--teslers-law/SKILL.md
+designer--zeigarnik-effect	05_交互与微动效	Apply the Zeigarnik Effect — incomplete tasks stay mentally active. Use when designing progress		05_交互与微动效/designer--zeigarnik-effect/SKILL.md
+emil--ask-sonner	05_交互与微动效	Guide to Sonner, the React toast library — install and wire up the Toaster, pick the right toast()		05_交互与微动效/emil--ask-sonner/SKILL.md
+emil--emil-design-eng	05_交互与微动效	This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and		05_交互与微动效/emil--emil-design-eng/SKILL.md
+emil--find-animation-opportunities	05_交互与微动效	Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't		05_交互与微动效/emil--find-animation-opportunities/SKILL.md
+emil--improve-animations	05_交互与微动效	Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized		05_交互与微动效/emil--improve-animations/SKILL.md
+emil--mobile-native	05_交互与微动效	Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a		05_交互与微动效/emil--mobile-native/SKILL.md
+emil--pick-ui-library	05_交互与微动效	Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP		05_交互与微动效/emil--pick-ui-library/SKILL.md
+emil--prototype	05_交互与微动效	Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker		05_交互与微动效/emil--prototype/SKILL.md
+emil--review-animations	05_交互与微动效	Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design		05_交互与微动效/emil--review-animations/SKILL.md
+emil--write-swift	05_交互与微动效	How to write modern Swift well — modeling with value types, Swift 6 data-race safety and approachable		05_交互与微动效/emil--write-swift/SKILL.md
+designer--a-b-test-design	06_评审_审计_交付流程	Design an A/B experiment — hypothesis, variants, primary metric, and sample size. Use when a change can		06_评审_审计_交付流程/designer--a-b-test-design/SKILL.md
+designer--accessibility-test-plan	06_评审_审计_交付流程	Plan accessibility testing — assistive technologies, participant criteria, WCAG coverage, and session		06_评审_审计_交付流程/designer--accessibility-test-plan/SKILL.md
+designer--affinity-diagram	06_评审_审计_交付流程	Cluster many qualitative data points into themes and insight statements. Use when synthesising across		06_评审_审计_交付流程/designer--affinity-diagram/SKILL.md
+designer--behavioural-analytics	06_评审_审计_交付流程	Read funnels, retention curves, and event data as a designer — separating a design problem from a		06_评审_审计_交付流程/designer--behavioural-analytics/SKILL.md
+designer--card-sort-analysis	06_评审_审计_交付流程	Analyse open or closed card sort results into a proposed grouping and label set. Use after running a		06_评审_审计_交付流程/designer--card-sort-analysis/SKILL.md
+designer--click-test-plan	06_评审_审计_交付流程	Design first-click and click tests for findability and navigation. Use when testing whether people can		06_评审_审计_交付流程/designer--click-test-plan/SKILL.md
+designer--concept-selection	06_评审_审计_交付流程	Choose between competing concepts against criteria fixed in advance, and record what each rejected		06_评审_审计_交付流程/designer--concept-selection/SKILL.md
+designer--design-critique	06_评审_审计_交付流程	Facilitate a structured team critique — framing, feedback rules, and actionable outcomes. Use when		06_评审_审计_交付流程/designer--design-critique/SKILL.md
+designer--design-debt-audit	06_评审_审计_交付流程	Inventory and prioritise accumulated design inconsistencies across a product. Use when drift has built		06_评审_审计_交付流程/designer--design-debt-audit/SKILL.md
+designer--design-impact-reporting	06_评审_审计_交付流程	Communicate design's contribution to business and user outcomes in stakeholder language. Use when		06_评审_审计_交付流程/designer--design-impact-reporting/SKILL.md
+designer--design-qa-checklist	06_评审_审计_交付流程	Build a QA checklist for verifying that a build matches the design. Use at implementation review. For		06_评审_审计_交付流程/designer--design-qa-checklist/SKILL.md
+designer--design-review-process	06_评审_审计_交付流程	Establish review gates — criteria, checkpoints, and approval flow. Use when work ships without		06_评审_审计_交付流程/designer--design-review-process/SKILL.md
+designer--design-sprint-plan	06_评审_审计_交付流程	Plan and facilitate a design sprint from challenge framing through prototype testing. Use when		06_评审_审计_交付流程/designer--design-sprint-plan/SKILL.md
+designer--diary-study-plan	06_评审_审计_交付流程	Design a diary study — prompts, cadence, duration, participant criteria, and analysis frame. Use when		06_评审_审计_交付流程/designer--diary-study-plan/SKILL.md
+designer--empathy-map	06_评审_审计_交付流程	Build a Says, Thinks, Does, Feels map for one user or segment. Use when sharing user understanding		06_评审_审计_交付流程/designer--empathy-map/SKILL.md
+designer--handoff-spec	06_评审_审计_交付流程	Write the implementation handoff — measurements, behaviours, assets, states, and edge cases. Use when		06_评审_审计_交付流程/designer--handoff-spec/SKILL.md
+designer--heuristic-evaluation	06_评审_审计_交付流程	Run an expert review against Nielsen's heuristics and domain criteria, with severity ratings. Use when		06_评审_审计_交付流程/designer--heuristic-evaluation/SKILL.md
+designer--interview-script	06_评审_审计_交付流程	Write a structured interview guide — warm-up, core exploration, and wrap-up. Use before running		06_评审_审计_交付流程/designer--interview-script/SKILL.md
+designer--jobs-to-be-done	06_评审_审计_交付流程	Map functional, emotional, and social jobs with outcome expectations. Use when reframing decisions		06_评审_审计_交付流程/designer--jobs-to-be-done/SKILL.md
+designer--journey-map	06_评审_审计_交付流程	Map one persona's end-to-end experience with stages, touchpoints, emotions, and pain points. Use when		06_评审_审计_交付流程/designer--journey-map/SKILL.md
+designer--parallel-concepts	06_评审_审计_交付流程	Build several genuinely different solutions to the same problem at once, spread across what the user		06_评审_审计_交付流程/designer--parallel-concepts/SKILL.md
+designer--prototype-strategy	06_评审_审计_交付流程	Choose prototype fidelity and method to match the design question and the decision at stake. Use before		06_评审_审计_交付流程/designer--prototype-strategy/SKILL.md
+designer--qual-quant-triangulation	06_评审_审计_交付流程	Reconcile what the numbers say with what users say, and design the study that settles it rather than		06_评审_审计_交付流程/designer--qual-quant-triangulation/SKILL.md
+designer--research-repository	06_评审_审计_交付流程	Build a repository that makes findings findable, reusable, and cumulative across teams. Use when the		06_评审_审计_交付流程/designer--research-repository/SKILL.md
+designer--summarize-interview	06_评审_审计_交付流程	Turn one interview transcript into themes, supporting quotes, and action items. Use immediately after a		06_评审_审计_交付流程/designer--summarize-interview/SKILL.md
+designer--survey-design	06_评审_审计_交付流程	Design unbiased survey instruments — question wording, scales, and sampling — to measure attitudes at		06_评审_审计_交付流程/designer--survey-design/SKILL.md
+designer--team-workflow	06_评审_审计_交付流程	Design the team's operating rhythm — task management, collaboration rituals, and tooling. Use when the		06_评审_审计_交付流程/designer--team-workflow/SKILL.md
+designer--test-scenario	06_评审_审计_交付流程	Write realistic usability task scenarios with success criteria and facilitation notes. Use when you		06_评审_审计_交付流程/designer--test-scenario/SKILL.md
+designer--usability-test-plan	06_评审_审计_交付流程	Design a usability study — research questions, methodology, participant criteria, metrics, and		06_评审_审计_交付流程/designer--usability-test-plan/SKILL.md
+designer--user-flow-diagram	06_评审_审计_交付流程	Diagram screen-level paths, decision points, and branch logic. Use when specifying how a feature is		06_评审_审计_交付流程/designer--user-flow-diagram/SKILL.md
+designer--user-persona	06_评审_审计_交付流程	Build research-grounded personas with goals, frustrations, and behavioural patterns. Use when decisions		06_评审_审计_交付流程/designer--user-persona/SKILL.md
+designer--version-control-strategy	06_评审_审计_交付流程	Define version control for design files, components, and libraries — branching, naming, and release		06_评审_审计_交付流程/designer--version-control-strategy/SKILL.md
+designer--wireframe-spec	06_评审_审计_交付流程	Specify wireframe layout — content priority, component placement, and annotation. Use when defining		06_评审_审计_交付流程/designer--wireframe-spec/SKILL.md
+devgtm--landing-page-auditor	06_评审_审计_交付流程	Audits any landing or service page across 48 checks in 10 categories for LLM/AI discoverability, GEO	references	06_评审_审计_交付流程/devgtm--landing-page-auditor/SKILL.md
+devgtm--web-design-guidelines	06_评审_审计_交付流程	Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check		06_评审_审计_交付流程/devgtm--web-design-guidelines/SKILL.md
+jezweb--design-loop	06_评审_审计_交付流程	"Autonomous multi-page site builder using a baton-passing loop. Each iteration reads a task from		06_评审_审计_交付流程/jezweb--design-loop/SKILL.md
+jezweb--design-review	06_评审_审计_交付流程	"Review a web app or page for visual design quality — layout, typography, spacing, colour, hierarchy		06_评审_审计_交付流程/jezweb--design-review/SKILL.md
+jezweb--design-system	06_评审_审计_交付流程	"Extract a complete design system from an existing website or screenshot into a DESIGN.md file		06_评审_审计_交付流程/jezweb--design-system/SKILL.md
+jezweb--responsiveness-check	06_评审_审计_交付流程	"Test website responsiveness across viewport widths using browser automation. Resizes a single session	references	06_评审_审计_交付流程/jezweb--responsiveness-check/SKILL.md
+jezweb--ux-audit	06_评审_审计_交付流程	"Walk through a live web app AS a real user to find usability + behavioural bugs that static reviews	references	06_评审_审计_交付流程/jezweb--ux-audit/SKILL.md
+jezweb--ux-compare	06_评审_审计_交付流程	"Compare UX patterns across multiple reference apps using pattern libraries produced by ux-extract	references	06_评审_审计_交付流程/jezweb--ux-compare/SKILL.md
+jezweb--ux-extract	06_评审_审计_交付流程	"Exhaustively extract UX patterns from a reference web app. Walks every screen, captures screenshots of	references	06_评审_审计_交付流程/jezweb--ux-extract/SKILL.md
+gardenli--gpt-image-2	07_素材与图像生成	面向 GPT Image 2 的图像生成 / 编辑技能。可在 3 种环境下使用：(A) Garden 本地模式，通过 OpenAI 兼容接口直接出图并落盘；(B) Host-Native 模式，把本	scripts/references	07_素材与图像生成/gardenli--gpt-image-2/SKILL.md
+gardenli--web-video-presentation	07_素材与图像生成	把一篇文章或口播稿，做成"看起来像视频"的点击驱动 16:9 网页演示，可选合成口播音频。流程：原始文章 → **一次产出**口播稿 + outline 开发计划 → 用户**一次对齐** 5 件事（稿子	scripts/references/themes/templates	07_素材与图像生成/gardenli--web-video-presentation/SKILL.md
+jezweb--ai-image-generator	07_素材与图像生成	"Generate AI images using Gemini or GPT APIs directly. Covers model selection (Gemini for scenes; GPT	references	07_素材与图像生成/jezweb--ai-image-generator/SKILL.md
+jezweb--color-palette	07_素材与图像生成	"Generate complete, accessible colour palettes from a single brand hex. Produces 11-shade scale	assets	07_素材与图像生成/jezweb--color-palette/SKILL.md
+jezweb--favicon-gen	07_素材与图像生成	"Generate custom favicons from logos, text, or brand colours. Produces favicon.svg, favicon.ico	references/assets	07_素材与图像生成/jezweb--favicon-gen/SKILL.md
+jezweb--icon-set-generator	07_素材与图像生成	"Generate cohesive, project-specific SVG icon sets for websites and applications. Use this skill	references	07_素材与图像生成/jezweb--icon-set-generator/SKILL.md
+jezweb--image-processing	07_素材与图像生成	"Process images for web development — resize, crop, trim whitespace, convert formats (PNG/WebP/JPG)		07_素材与图像生成/jezweb--image-processing/SKILL.md
+mengto--aura-asset-images	07_素材与图像生成	"Use when you need high-quality stock-style images from Aura Assets (aura.build/assets) similar to		07_素材与图像生成/mengto--aura-asset-images/SKILL.md
+mengto--browser-video-recording	07_素材与图像生成	Create polished 60 fps 4:3 4K browser screen-recording style videos from Codex in-app browser captures	scripts	07_素材与图像生成/mengto--browser-video-recording/SKILL.md
+mengto--build-daily-inspiration-sites	07_素材与图像生成	Turn a completed daily UI inspiration capture into exactly five original landing-page builds, one per	scripts/references/agents	07_素材与图像生成/mengto--build-daily-inspiration-sites/SKILL.md
+mengto--company-logos	07_素材与图像生成	"Use Iconify Simple Icons logos (64x64) instead of text logos."		07_素材与图像生成/mengto--company-logos/SKILL.md
+mengto--daily-ui-inspiration-capture	07_素材与图像生成	Create a recurring daily UI inspiration capture. Use when the user asks to run, refresh, package, or	agents	07_素材与图像生成/mengto--daily-ui-inspiration-capture/SKILL.md
+mengto--generate-reference-inspired-brand-worlds	07_素材与图像生成	Generate multiple original brand campaign worlds from a supplied visual reference while controlling how	references/assets/agents	07_素材与图像生成/mengto--generate-reference-inspired-brand-worlds/SKILL.md
+mengto--stitched-full-page-capture	07_素材与图像生成	Capture or repair reliable full-page screenshots for lazy-loaded, scroll-animated, Framer	scripts/agents	07_素材与图像生成/mengto--stitched-full-page-capture/SKILL.md
+mengto--unsplash-asset-images	07_素材与图像生成	Use when you need to pick high-quality Unsplash images for product/design assets (avatars, headshots		07_素材与图像生成/mengto--unsplash-asset-images/SKILL.md
+oc--openai-compatible-imagegen	07_素材与图像生成	Primary image-generation route for this Codex environment. Generate, edit, and batch-generate images	scripts/references/examples/agents	07_素材与图像生成/oc--openai-compatible-imagegen/SKILL.md
+oc--openai-image-gen	07_素材与图像生成	Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery. 用 OpenAI 兼容	scripts	07_素材与图像生成/oc--openai-image-gen/SKILL.md
+jezweb--react-patterns	08_工程流程与质量	"React 19 performance patterns and composition architecture for Vite + Cloudflare projects. 50+ rules		08_工程流程与质量/jezweb--react-patterns/SKILL.md
+jezweb--shadcn-ui	08_工程流程与质量	"Install and configure shadcn/ui components for React projects. Guides component selection	references	08_工程流程与质量/jezweb--shadcn-ui/SKILL.md
+oc--vue-best-practices	08_工程流程与质量	MUST be used for Vue.js tasks. Strongly recommends Composition API with `<script setup>` and TypeScript	references	08_工程流程与质量/oc--vue-best-practices/SKILL.md
+oc--vue-jsx-best-practices	08_工程流程与质量	JSX syntax in Vue (e.g., class vs className, JSX plugin config).	reference	08_工程流程与质量/oc--vue-jsx-best-practices/SKILL.md
+oc--vue-options-api-best-practices	08_工程流程与质量	"Vue 3 Options API style (data(), methods, this context). Each reference shows Options API solution	reference	08_工程流程与质量/oc--vue-options-api-best-practices/SKILL.md
+oc--vue-pinia-best-practices	08_工程流程与质量	"Pinia stores, state management patterns, store setup, and reactivity with stores."	reference	08_工程流程与质量/oc--vue-pinia-best-practices/SKILL.md
+oc--vue-router-best-practices	08_工程流程与质量	"Vue Router 4 patterns, navigation guards, route params, and route-component lifecycle interactions."	reference	08_工程流程与质量/oc--vue-router-best-practices/SKILL.md
+oc--vue-testing-best-practices	08_工程流程与质量	Use for Vue.js testing. Covers Vitest, Vue Test Utils, component testing, mocking, testing patterns	reference	08_工程流程与质量/oc--vue-testing-best-practices/SKILL.md
+superpowers--brainstorming	08_工程流程与质量	"You MUST use this before any creative work - creating features, building components, adding	scripts	08_工程流程与质量/superpowers--brainstorming/SKILL.md
+superpowers--executing-plans	08_工程流程与质量	Use when executing an implementation plan in the current session as the implementer yourself — your	scripts	08_工程流程与质量/superpowers--executing-plans/SKILL.md
+superpowers--systematic-debugging	08_工程流程与质量	Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes		08_工程流程与质量/superpowers--systematic-debugging/SKILL.md
+superpowers--using-superpowers	08_工程流程与质量	Use when starting any conversation - establishes how to find and use skills, requiring skill invocation	references	08_工程流程与质量/superpowers--using-superpowers/SKILL.md
+superpowers--verification-before-completion	08_工程流程与质量	Use when about to claim work is complete, fixed, or passing, before committing or creating PRs		08_工程流程与质量/superpowers--verification-before-completion/SKILL.md
+superpowers--writing-plans	08_工程流程与质量	Use when you have a spec or requirements for a multi-step task, before touching code		08_工程流程与质量/superpowers--writing-plans/SKILL.md
+superpowers--writing-skills	08_工程流程与质量	Use when creating new skills, editing existing skills, or verifying skills work before deployment	examples	08_工程流程与质量/superpowers--writing-skills/SKILL.md

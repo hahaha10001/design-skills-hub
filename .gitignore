@@ -1,0 +1,19 @@
+# secrets / credentials
+auth.json
+credentials*.json
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# python / node
+__pycache__/
+*.pyc
+node_modules/

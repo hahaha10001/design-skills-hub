@@ -1,0 +1,24 @@
+{
+  "name": "skill-buddy-image-processing",
+  "version": "5.5.6-wb.38337834.g5f969292.h4918b5ced607",
+  "description": "WorkBuddy bundled skill resource: buddy-image-processing.",
+  "author": {
+    "name": "WorkBuddy"
+  },
+  "category": "skill",
+  "keywords": [
+    "workbuddy",
+    "builtin-skill",
+    "buddy-image-processing"
+  ],
+  "workbuddy": {
+    "kind": "builtin-skill",
+    "legacyResourceName": "buddy-image-processing",
+    "bundleSegments": [
+      "plugins",
+      "workbuddy-builtin",
+      "skills",
+      "buddy-image-processing"
+    ]
+  }
+}
