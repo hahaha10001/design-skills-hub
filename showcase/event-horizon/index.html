@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>视界 — 一次向人马座 A* 的下降</title>
+<meta name="description" content="在浏览器里实时计算的史瓦西黑洞光线追踪。滚动放出缆绳，一直降到视界之上 0.1 毫米。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600&family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#ECE6DA;
+  --dim:rgba(236,230,218,.52);
+  --faint:rgba(236,230,218,.18);
+  --accent:#FFB36B;           /* 由 JS 按红移/蓝移实时改写 */
+  --serif:"Noto Serif SC","Songti SC","STSong",serif;
+  --num:"Chivo",ui-sans-serif,system-ui,sans-serif;
+  --display:"Instrument Serif","Noto Serif SC",serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+::selection{background:var(--accent);color:#000}
+
+#gl{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0;cursor:grab;touch-action:pan-y}
+#gl.drag{cursor:grabbing}
+#track{position:relative;height:1100vh;z-index:-1}
+
+.layer{position:fixed;pointer-events:none;z-index:2}
+
+/* ---------- 标题：竖排 ---------- */
+#title{
+  left:max(4vw,20px);top:8vh;
+  writing-mode:vertical-rl;
+  font-weight:900;font-size:min(30vh,24vw);line-height:.9;letter-spacing:.02em;
+  color:#fff;mix-blend-mode:difference;
+  transition:opacity 1.2s var(--ease-out);
+}
+#lede{
+  left:calc(max(4vw,20px) + min(30vh,24vw) + 2.2vw);top:10vh;
+  max-width:19em;font-size:clamp(15px,1.15vw,18px);line-height:1.95;color:var(--dim);
+}
+#lede strong{color:var(--ink);font-weight:600}
+#lede .how{margin-top:1.4em;color:var(--ink)}
+
+/* ---------- 章节 ---------- */
+.chapter{
+  left:max(6vw,22px);bottom:25vh;max-width:min(30em,86vw);
+  opacity:0;will-change:opacity,transform;
+}
+.chapter h2{
+  margin:0 0 .45em;font-weight:900;font-size:clamp(40px,5.6vw,92px);line-height:1.02;letter-spacing:.01em;color:#fff;
+}
+.chapter p{margin:0;font-size:clamp(16px,1.35vw,21px);line-height:1.95;color:rgba(236,230,218,.82);text-wrap:pretty}
+.chapter .btn{margin-top:1.6em}
+
+.btn{
+  pointer-events:auto;appearance:none;border:1px solid var(--accent);background:transparent;color:var(--ink);
+  font-family:var(--serif);font-size:18px;letter-spacing:.2em;padding:.85em 2.1em .85em 2.3em;border-radius:999px;cursor:pointer;
+  transition:background .25s var(--ease-out),color .25s var(--ease-out),transform .15s var(--ease-out),box-shadow .4s;
+  box-shadow:0 0 0 0 var(--accent);
+}
+.btn:hover{background:var(--accent);color:#000;box-shadow:0 0 60px -10px var(--accent)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.btn.ghost{border-color:var(--faint);color:var(--dim)}
+.btn.ghost:hover{background:var(--ink);color:#000;box-shadow:none}
+
+/* ---------- 仪表 ---------- */
+#hud{
+  left:max(6vw,22px);right:120px;bottom:max(4.5vh,18px);
+  display:flex;flex-wrap:wrap;gap:1.2em 3.2em;align-items:flex-end;
+  transition:opacity .8s;
+}
+.read{min-width:8.5em}
+.read .k{font-size:12.5px;color:var(--dim);letter-spacing:.08em;margin-bottom:.35em;white-space:nowrap}
+.read .v{font-family:var(--num);font-weight:300;font-size:clamp(17px,1.45vw,23px);font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:.01em}
+.read .v small{font-size:.62em;color:var(--dim);margin-left:.25em;font-weight:400}
+.read.hot .v{color:var(--accent);text-shadow:0 0 18px var(--accent)}
+.read.hot .k{color:var(--ink)}
+#r-earth{transition:transform .6s var(--ease-out)}
+#r-earth.hot{transform:translateY(-6px)}
+
+/* ---------- 深度计（对数刻度） ---------- */
+#gauge{right:max(3vw,16px);top:12vh;bottom:12vh;width:92px}
+#gauge .rail{position:absolute;right:0;top:0;bottom:0;width:1px;background:var(--faint)}
+#gauge .tick{position:absolute;right:0;height:1px;background:var(--faint);width:7px}
+#gauge .mark{position:absolute;right:0;transform:translateY(-50%);text-align:right;font-size:11.5px;line-height:1.35;color:var(--dim);padding-right:14px;white-space:nowrap}
+#gauge .mark::after{content:"";position:absolute;right:0;top:50%;width:10px;height:1px;background:var(--dim)}
+#gauge .mark b{display:block;font-family:var(--num);font-weight:400;color:var(--ink);font-size:12px}
+#gauge .mark.h b{color:var(--accent)}
+#gauge .me{position:absolute;right:-5px;width:11px;height:11px;border-radius:50%;background:var(--accent);transform:translateY(-50%);box-shadow:0 0 16px 2px var(--accent)}
+#gauge .me::before{content:"你";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--ink)}
+
+/* ---------- 顶栏 ---------- */
+#top{left:max(6vw,22px);right:max(3vw,16px);top:max(3vh,14px);display:flex;justify-content:flex-end;gap:14px;align-items:center}
+#sound{pointer-events:auto;background:none;border:0;color:var(--dim);font-family:var(--serif);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:.6em;padding:.4em 0;letter-spacing:.1em}
+#sound:hover{color:var(--ink)}
+#sound:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+#sound i{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+#sound i s{display:block;width:2px;background:currentColor;height:4px;transition:height .3s}
+#sound.on i s{animation:bar 1s infinite ease-in-out alternate}
+#sound.on i s:nth-child(2){animation-delay:-.3s}#sound.on i s:nth-child(3){animation-delay:-.6s}#sound.on i s:nth-child(4){animation-delay:-.15s}
+@keyframes bar{from{height:3px}to{height:12px}}
+
+/* ---------- 开场 ---------- */
+#intro{position:fixed;inset:0;z-index:10;background:radial-gradient(ellipse at 70% 50%,rgba(0,0,0,.55),rgba(0,0,0,.94) 70%);display:grid;place-items:center;transition:opacity 1.6s var(--ease-out)}
+#intro.gone{opacity:0;pointer-events:none}
+#intro .in{max-width:34em;padding:0 24px;text-align:left}
+#intro .coord{font-family:var(--num);font-weight:300;color:var(--dim);font-size:13px;letter-spacing:.06em;margin-bottom:2.2em;font-variant-numeric:tabular-nums}
+#intro h1{margin:0 0 .6em;font-weight:400;font-size:clamp(26px,3vw,40px);line-height:1.5;color:var(--ink)}
+#intro p{margin:0 0 2.4em;color:var(--dim);line-height:1.9;font-size:16px}
+#intro .row{display:flex;gap:14px;flex-wrap:wrap}
+#intro .line{opacity:0;transform:translateY(10px);transition:opacity 1.2s var(--ease-out),transform 1.2s var(--ease-out)}
+#intro.ready .line{opacity:1;transform:none}
+#intro.ready .line:nth-child(2){transition-delay:.5s}
+#intro.ready .line:nth-child(3){transition-delay:1.1s}
+#intro.ready .line:nth-child(4){transition-delay:1.7s}
+#intro .err{color:#ff9a7a}
+
+/* ---------- 视界之内 ---------- */
+#inside{inset:0;opacity:0;transition:opacity 1.5s}
+#inside.on{opacity:1}
+#count{position:absolute;right:max(6vw,22px);bottom:max(5vh,20px);text-align:right;transform-origin:50% 100%}
+#count .n{font-family:var(--display);font-style:italic;font-size:min(22vh,26vw);line-height:.85;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+#count .l{font-size:13px;color:var(--dim);margin-top:.6em;letter-spacing:.1em}
+#thought{position:absolute;left:max(6vw,22px);top:22vh;max-width:min(19em,80vw);font-size:clamp(22px,2.4vw,38px);line-height:1.7;font-weight:600;color:#fff;transform-origin:0 0;transition:opacity .9s var(--ease-out)}
+#toast{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);z-index:6;pointer-events:none;font-size:clamp(18px,1.8vw,26px);color:#fff;opacity:0;transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);text-align:center;text-shadow:0 0 30px #000,0 0 60px #000;white-space:nowrap}
+#toast.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* ---------- 尾声 ---------- */
+#epilogue{position:fixed;inset:0;z-index:8;display:grid;place-items:center;background:#000;opacity:0;pointer-events:none;transition:opacity 3s var(--ease-out)}
+#epilogue.on{opacity:1;pointer-events:auto}
+#epilogue .in{max-width:30em;padding:0 24px}
+#epilogue .big{font-family:var(--display);font-size:clamp(64px,11vw,170px);line-height:1;color:#fff;margin-bottom:.35em;white-space:nowrap}
+#epilogue .big sup{font-size:.45em;vertical-align:.95em;margin-left:.02em}
+#epilogue .big span{font-family:var(--serif);font-weight:900;font-size:.42em;margin-left:.2em;vertical-align:.1em}
+#epilogue p{color:rgba(236,230,218,.8);line-height:2;font-size:clamp(16px,1.3vw,20px);margin:0 0 1.2em}
+#epilogue .note{color:var(--dim);font-size:13px;line-height:1.9;margin:2.4em 0 2em}
+
+#nogl{position:fixed;inset:0;display:none;place-items:center;z-index:20;background:#000;color:var(--dim);padding:24px;text-align:center;line-height:2}
+
+@media (max-width:760px){
+  #lede{left:max(4vw,20px);top:auto;bottom:30vh;max-width:88vw}
+  #title{font-size:min(22vh,34vw)}
+  #hud{right:70px;gap:.9em 1.6em}
+  .read{min-width:7em}
+  #gauge{width:60px}
+  #gauge .mark{font-size:0;padding-right:10px}
+  #gauge .mark b{font-size:10px}
+  .chapter{bottom:30vh}
+}
+@media (prefers-reduced-motion:reduce){
+  #sound.on i s{animation:none;height:8px}
+}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-label="实时计算的黑洞图像：拖动可以环顾四周"></canvas>
+<div id="track" aria-hidden="true"></div>
+
+<!-- 开场 -->
+<section id="intro" aria-live="polite">
+  <div class="in">
+    <div class="coord line">赤经 17h 45m 40.04s　赤纬 −29° 00′ 28.1″　距地球 26,670 光年</div>
+    <h1 class="line">你挂在一根缆绳上，下方是人马座 A*。</h1>
+    <p class="line">银河系中心的超大质量黑洞。下面的画面由你的浏览器实时计算：每个像素的光线，都会沿着爱因斯坦方程弯曲。戴上耳机效果最好。</p>
+    <div class="row line">
+      <button class="btn" id="go">开始下降</button>
+      <button class="btn ghost" id="goMute">静音进入</button>
+    </div>
+  </div>
+</section>
+
+<!-- 顶栏 -->
+<div class="layer" id="top">
+  <button id="sound" aria-pressed="false"><i><s></s><s></s><s></s><s></s></i><span>声音</span></button>
+</div>
+
+<!-- 标题 -->
+<div class="layer" id="title" aria-hidden="true">视界</div>
+<div class="layer" id="lede">
+  一次向<strong>人马座 A*</strong>的下降。四百三十万个太阳的质量，塞进一个比水星轨道还小的球里。你从三十个史瓦西半径的高度出发。
+  <div class="how">向下滚动放出缆绳，拖动画面环顾四周。</div>
+</div>
+
+<!-- 章节 -->
+<article class="layer chapter" data-a=".09" data-b=".205">
+  <h2>它在发光</h2>
+  <p>黑洞自己不发光，发光的是正在落进去的东西。气体以接近光速绕行，被摩擦加热到上千万度。朝你冲来的那一侧更亮、更蓝，这是多普勒效应。吸积盘的背面你也看得见：它的光被引力折过黑洞顶端，弯到了你眼前。</p>
+</article>
+<article class="layer chapter" data-a=".29" data-b=".425">
+  <h2>最后的轨道</h2>
+  <p>三个史瓦西半径。再往里，任何速度都维持不了圆周运动，吸积盘在这里断开，物质不再绕行，只剩坠落。此刻你的缆绳要承受近五万倍重力。现实中没有东西撑得住，这里我们假装它可以。</p>
+</article>
+<article class="layer chapter" data-a=".45" data-b=".565">
+  <h2>光子球</h2>
+  <p>在这个高度，光自己也被困进了圆形轨道。朝侧面看，理论上你能看见自己的后脑勺，那是绕了黑洞一整圈才回来的光。那道极细的亮环，就是无数条这样的光路叠在一起。</p>
+</article>
+<article class="layer chapter" data-a=".615" data-b=".725">
+  <h2>回头</h2>
+  <p>前方只剩下黑暗。转过身：整个宇宙正在被压进你头顶一个越来越小的圆里，所有星光都在变蓝、变亮。这是你离开时的方向，也是唯一还能出去的方向。</p>
+</article>
+<article class="layer chapter" data-a=".755" data-b=".865" data-earth="1">
+  <h2>外面的时间</h2>
+  <p>看一眼地球日历。你在这里悬停的每一秒，外面都在快进。你认识的人老去，城市、语言、大陆的形状，在你一次呼吸之间被改写。这不是比喻，而是广义相对论。</p>
+</article>
+<article class="layer chapter" data-a=".895" data-b="9">
+  <h2>缆绳到头了</h2>
+  <p>距离视界已经不到一毫米。就算现在往回爬，你也回不到出发时的那个时代了。</p>
+  <button class="btn" id="letgo">松手</button>
+</article>
+
+<!-- 仪表 -->
+<div class="layer" id="hud" aria-live="off">
+  <div class="read"><div class="k">距视界</div><div class="v" id="v-dist">—</div></div>
+  <div class="read"><div class="k">悬停所需推力</div><div class="v" id="v-thrust">—</div></div>
+  <div class="read"><div class="k">逃逸速度</div><div class="v" id="v-esc">—</div></div>
+  <div class="read"><div class="k">外界时间流速</div><div class="v" id="v-rate">—</div></div>
+  <div class="read" id="r-earth"><div class="k">地球日历</div><div class="v" id="v-earth">—</div></div>
+  <div class="read"><div class="k">你的时钟（现实 1 秒 = 1 小时）</div><div class="v" id="v-self">—</div></div>
+</div>
+
+<!-- 深度计 -->
+<div class="layer" id="gauge" aria-hidden="true"><div class="rail"></div></div>
+
+<!-- 视界之内 -->
+<div class="layer" id="inside" aria-live="polite">
+  <div id="thought"></div>
+  <div id="count"><div class="n" id="cn">66.6</div><div class="l">剩余固有时间 / 秒</div></div>
+</div>
+<div id="toast"></div>
+
+<!-- 尾声 -->
+<section id="epilogue" aria-live="polite">
+  <div class="in">
+    <div class="big">10<sup>87</sup><span>年后</span></div>
+    <p>人马座 A* 会通过霍金辐射慢慢蒸发。构成你的信息如果真的没有丢失，会被一个光子一个光子地还给宇宙。</p>
+    <p class="note">黑洞图像完全由你的显卡在浏览器里实时计算：每条光线都沿史瓦西度规下的零测地线积分；吸积盘颜色来自黑体辐射，并叠加了多普勒频移和引力红移。仪表上的距离、推力、逃逸速度、时间膨胀和 66.6 秒，都是按 430 万倍太阳质量算出来的真实数值。视界内部的画面属于艺术处理。</p>
+    <button class="btn" id="again">再坠落一次</button>
+  </div>
+</section>
+
+<div id="nogl">这个页面需要 WebGL2。<br>请换用较新版本的 Chrome、Edge、Safari 或 Firefox。</div>
+
+<!-- ===================== 着色器 ===================== -->
+<script type="x-shader/x-fragment" id="fs-scene">#version 300 es
+precision highp float;
+uniform vec2  uRes;
+uniform float uTime;
+uniform vec3  uCam;
+uniform mat3  uBasis;
+uniform float uTanF;
+uniform float uCamG;      // sqrt(1 - rs/r) at camera
+uniform float uBlue;      // sky blueshift boost for hovering observer
+uniform float uInside;    // 0 outside, 1 inside
+uniform float uInT;       // 0..1 progress to singularity
+uniform int   uSteps;
+out vec4 fragColor;
+
+#define DIN  3.0
+#define DOUT 15.0
+#define PI 3.14159265
+
+float h31(vec3 p){p=fract(p*vec3(.1031,.1030,.0973));p+=dot(p,p.yxz+33.33);return fract((p.x+p.y)*p.z);}
+vec3  h33(vec3 p){p=fract(p*vec3(.1031,.1030,.0973));p+=dot(p,p.yxz+33.33);return fract((p.xxy+p.yxx)*p.zyx);}
+
+float n3(vec3 p){
+  vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+  float a=h31(i),b=h31(i+vec3(1,0,0)),c=h31(i+vec3(0,1,0)),d=h31(i+vec3(1,1,0));
+  float e=h31(i+vec3(0,0,1)),g=h31(i+vec3(1,0,1)),h=h31(i+vec3(0,1,1)),k=h31(i+vec3(1,1,1));
+  return mix(mix(mix(a,b,f.x),mix(c,d,f.x),f.y),mix(mix(e,g,f.x),mix(h,k,f.x),f.y),f.z);
+}
+float fbm(vec3 p){float s=0.,a=.5;for(int i=0;i<5;i++){s+=a*n3(p);p=p*2.03+vec3(1.7,9.2,3.1);a*=.5;}return s;}
+float fbm3o(vec3 p){float s=0.,a=.5;for(int i=0;i<3;i++){s+=a*n3(p);p=p*2.07+vec3(4.1,1.3,7.7);a*=.5;}return s;}
+
+// 黑体近似（开尔文 → 线性 RGB）
+vec3 blackbody(float T){
+  T=clamp(T,1000.,40000.)/100.;
+  vec3 c;
+  c.r = T<=66. ? 1. : 1.2929*pow(T-60.,-.1332);
+  c.g = T<=66. ? .3901*log(T)-.6318 : 1.1299*pow(T-60.,-.0755);
+  c.b = T>=66. ? 1. : (T<=19. ? 0. : .5432*log(T-10.)-1.1963);
+  c=clamp(c,0.,1.);
+  return pow(c,vec3(2.2)); // 转线性，保留饱和度
+}
+
+vec3 sky(vec3 d){
+  vec3 c=vec3(0);
+  // 星星：两层网格
+  for(int L=0;L<3;L++){
+    float s = L==0?90.:(L==1?210.:420.);
+    vec3 p=d*s; vec3 id=floor(p); vec3 f=fract(p);
+    float h=h31(id+float(L)*17.);
+    float th = L==0?.92:(L==1?.9:.88);
+    if(h>th){
+      vec3 sp=h33(id+3.1)*.5+.25;
+      float dd=length(f-sp);
+      float m=pow((h-th)/(1.-th),2.5);
+      float T=2800.+h33(id+9.).x*12000.;
+      c+=blackbody(T)*m*exp(-dd*dd*(L==0?70.:40.))*(L==0?5.:(L==1?2.:1.));
+    }
+  }
+  // 银河带
+  vec3 N=normalize(vec3(.35,1.,.18));
+  float b=dot(d,N);
+  float band=exp(-b*b*9.);
+  float cloud=fbm(d*3.2+2.);
+  float dust=smoothstep(.45,.75,fbm(d*7.5+11.));
+  vec3 mw=mix(vec3(.9,.78,.6),vec3(.55,.68,.95),smoothstep(.3,.8,fbm3o(d*2.+5.)));
+  c+=mw*band*pow(cloud,2.6)*.2*(1.-.9*dust*band);
+  c+=vec3(.004,.005,.008)*fbm3o(d*1.5);
+  return c;
+}
+
+vec3 blueshiftSky(vec3 c){
+  float k=uBlue;
+  float lum=dot(c,vec3(.3,.55,.15));
+  float t=smoothstep(1.,30.,k);
+  c=mix(c,lum*vec3(.55,.8,1.45),t);
+  return c*min(pow(k,.8),9.);
+}
+
+vec4 disk(vec3 q, vec3 v){
+  float r=length(q.xz);
+  float edge=smoothstep(DIN,DIN+.35,r)*(1.-smoothstep(DOUT-7.,DOUT,r));
+  if(edge<=0.) return vec4(0);
+  float phi=atan(q.z,q.x);
+  float om=4.2*pow(r,-1.5);
+  // 流动噪声：两相交替，避免差速旋转把纹理剪切到无限细
+  float T=6.;
+  float t1=fract(uTime/T), t2=fract(uTime/T+.5);
+  float w1=1.-abs(2.*t1-1.);
+  float a1=phi+om*t1*T*1.0, a2=phi+om*t2*T*1.0;
+  vec3 p1=vec3(cos(a1)*2.2,sin(a1)*2.2,r*1.6)+vec3(0,0,floor(uTime/T)*3.7);
+  vec3 p2=vec3(cos(a2)*2.2,sin(a2)*2.2,r*1.6)+vec3(0,0,floor(uTime/T+.5)*3.7+11.);
+  float n=mix(fbm(p2*vec3(1.,1.,2.2)),fbm(p1*vec3(1.,1.,2.2)),w1);
+  float rings=.75+.25*sin(r*5.+n*9.);
+  float dens=edge*pow(clamp(n*1.45-.12,0.,1.),2.2)*rings*1.6;
+  dens*=1.+2.2*exp(-(r-DIN)*1.6); // 内缘更亮
+
+  // 温度剖面（Shakura–Sunyaev 薄盘）
+  float Tp=pow(r/3.,-.75)*pow(max(1.-sqrt(3./r),0.),.25)/.488;
+  float Tk=3700.*Tp+1300.;
+  // 多普勒 + 引力红移
+  vec3 tang=normalize(vec3(-q.z,0.,q.x));
+  float beta=clamp(sqrt(.5/(r-1.)),0.,.99);
+  float gam=inversesqrt(1.-beta*beta);
+  vec3 nph=-normalize(v);
+  float D=1./(gam*(1.-beta*dot(tang,nph)));
+  float g=sqrt(1.-1./r)/uCamG;
+  float f=clamp(D*g,.05,5.);
+  vec3 col=blackbody(Tk*f)*pow(f,3.8)*1.15;
+  float a=clamp(dens*1.15,0.,1.);
+  return vec4(col*dens,a);
+}
+
+vec3 traceOutside(vec3 ro, vec3 rd){
+  vec3 p=ro, v=rd;
+  vec3 hh=cross(p,v); float h2=dot(hh,hh);
+  vec3 col=vec3(0); float trans=1.;
+  bool escaped=false;
+  for(int i=0;i<520;i++){
+    if(i>=uSteps) break;
+    float r=length(p);
+    float dt=clamp(.09*(r-1.),.00025,2.2);
+    if(r>DOUT+2.) dt=max(dt,.12*r);
+    vec3 acc=-1.5*h2*p/pow(r,5.);
+    vec3 vn=v+acc*dt;
+    vec3 pn=p+vn*dt;
+    // 穿越盘面
+    if(p.y*pn.y<0.){
+      float t=p.y/(p.y-pn.y);
+      vec3 q=mix(p,pn,t);
+      float rq=length(q.xz);
+      if(rq>DIN&&rq<DOUT){
+        vec4 d=disk(q,vn);
+        col+=trans*d.rgb;
+        trans*=1.-d.a;
+      }
+    }
+    // 薄薄的发光雾：盘上下的散射
+    float rxz=length(pn.xz);
+    if(rxz>DIN-.2&&rxz<DOUT){
+      float hz=abs(pn.y);
+      float fog=exp(-hz*hz*40./(rxz*.15+.2))*smoothstep(DIN-.2,DIN+1.,rxz)*(1.-smoothstep(8.,DOUT,rxz));
+      col+=trans*vec3(1.,.5,.2)*fog*dt*.02*min(1./uCamG,4.);
+    }
+    p=pn; v=vn;
+    if(dot(p,p)<1.0){ break; }
+    if(trans<.01) break;
+    if(r>60.&&dot(p,v)>0.){ escaped=true; break; }
+  }
+  if(!escaped && length(p)>=1.0 && trans>.01){
+    escaped = dot(p,v)>0.;   // 步数耗尽但仍在外逃：当作逃逸
+  }
+  if(escaped) col+=trans*blueshiftSky(sky(normalize(v)));
+  return col;
+}
+
+vec3 traceInside(vec3 rd){
+  vec3 U=normalize(uCam);
+  float ca=clamp(dot(rd,U),-1.,1.);
+  float ang=acos(ca);
+  float t=uInT;
+  float cA=mix(.62,.012,pow(t,.55));
+  vec3 side=normalize(rd-U*ca+vec3(1e-5,2e-5,0.));
+  vec3 col=vec3(0);
+  if(ang<cA){
+    float k=ang/cA;
+    vec3 dd=normalize(U*cos(k*1.45)+side*sin(k*1.45));
+    vec3 s=sky(dd)*(6.+40.*t);
+    float lum=dot(s,vec3(.3,.55,.15));
+    vec3 tint=mix(vec3(.6,.85,1.5),vec3(1.6,.5,.25),smoothstep(.35,1.,t));
+    col=mix(s,lum*tint,.7);
+  }
+  float w=.004+.05*cA;
+  float ring=exp(-pow((ang-cA)/w,2.));
+  col+=ring*mix(vec3(1.4,.85,.45),vec3(1.8,.35,.2),t)*(2.5+6.*t);
+  // 追着你落进来的物质：径向细丝
+  float la=log(max(ang,1e-3));
+  float fil=fbm3o(side*7.+vec3(0,0,la*3.-uTime*1.6));
+  fil=pow(clamp(fil*1.35,0.,1.),7.);
+  col+=vec3(1.,.5,.25)*fil*(.9-.6*t)*smoothstep(cA,cA+.2,ang)*exp(-ang*.9)*2.;
+  // 晚期：视野开始脉动
+  col*=1.+.35*t*t*sin(uTime*9.);
+  return col;
+}
+
+void main(){
+  vec2 uv=(gl_FragCoord.xy-.5*uRes)/uRes.y;
+  vec3 rd=normalize(uBasis*vec3(uv*2.*uTanF,1.));
+  vec3 col = uInside>.5 ? traceInside(rd) : traceOutside(uCam,rd);
+  fragColor=vec4(col,1.);
+}
+</script>
+
+<script type="x-shader/x-fragment" id="fs-post">#version 300 es
+precision highp float;
+uniform sampler2D uTex;
+uniform vec2  uRes;
+uniform float uTime;
+uniform float uAb;
+uniform float uStretch;
+uniform float uFlash;
+uniform float uFade;
+uniform float uExpo;
+uniform float uGrain;
+out vec4 fragColor;
+vec3 aces(vec3 x){return clamp((x*(2.51*x+.03))/(x*(2.43*x+.59)+.14),0.,1.);}
+float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
+void main(){
+  vec2 uv=gl_FragCoord.xy/uRes;
+  vec2 c=uv-.5;
+  // 潮汐拉伸（面条化）
+  c.y/=1.+uStretch;
+  c.x*=1.+uStretch*.45;
+  c.x+=sin(c.y*18.+uTime*4.)*.0025*uStretch;
+  uv=c+.5;
+  vec2 dir=c*uAb;
+  vec3 col;
+  col.r=texture(uTex,uv+dir).r;
+  col.g=texture(uTex,uv).g;
+  col.b=texture(uTex,uv-dir).b;
+  vec3 bl=textureLod(uTex,uv,2.).rgb*.22+textureLod(uTex,uv,3.).rgb*.24+textureLod(uTex,uv,4.).rgb*.22
+         +textureLod(uTex,uv,5.).rgb*.18+textureLod(uTex,uv,6.5).rgb*.16;
+  col+=bl*.32;
+  float lum=dot(col,vec3(.2126,.7152,.0722));
+  col=max(mix(vec3(lum),col,1.3),0.);
+  col=aces(col*uExpo);
+  col=pow(col,vec3(1./2.2));
+  float vig=1.-smoothstep(.35,1.25,length((gl_FragCoord.xy/uRes-.5)*vec2(uRes.x/uRes.y,1.)));
+  col*=mix(.55,1.,vig);
+  col+=(hash(gl_FragCoord.xy+fract(uTime)*97.)-.5)*uGrain;
+  col=mix(col,vec3(1.),uFlash);
+  col*=1.-uFade;
+  fragColor=vec4(col,1.);
+}
+</script>
+
+<script type="x-shader/x-vertex" id="vs">#version 300 es
+in vec2 aPos;
+void main(){gl_Position=vec4(aPos,0.,1.);}
+</script>
+
+<!-- ===================== 程序 ===================== -->
+<script>
+(()=>{
+'use strict';
+const $=s=>document.querySelector(s);
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- 物理常数：人马座 A* ---------- */
+const G=6.674e-11, C=2.99792458e8, MSUN=1.989e30;
+const M=4.3e6*MSUN;
+const RS=2*G*M/(C*C);                  // ≈ 1.27e10 m
+const G0=9.80665;
+const HOVER_K=C*C/(2*RS)/G0;           // 悬停加速度系数（单位 g）
+const TAU_MAX=Math.PI*G*M/(C*C*C);     // 视界到奇点的最长固有时间 ≈ 66.6 s
+const PROPER_SCALE=3600;               // 现实 1 秒 = 你的 1 小时
+const START=new Date(); START.setSeconds(0,0);
+
+/* ---------- WebGL ---------- */
+const canvas=$('#gl');
+const gl=canvas.getContext('webgl2',{antialias:false,alpha:false,powerPreference:'high-performance',preserveDrawingBuffer:false});
+if(!gl){ $('#nogl').style.display='grid'; $('#intro').style.display='none'; return; }
+const floatOK=!!gl.getExtension('EXT_color_buffer_float');
+
+function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src.trim());gl.compileShader(s);
+  if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(s));throw new Error('shader');}return s;}
+function prog(fsId){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,$('#vs').textContent));
+  gl.attachShader(p,sh(gl.FRAGMENT_SHADER,$(fsId).textContent));gl.bindAttribLocation(p,0,'aPos');gl.linkProgram(p);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(p));throw new Error('link');}
+  const u={};const n=gl.getProgramParameter(p,gl.ACTIVE_UNIFORMS);
+  for(let i=0;i<n;i++){const info=gl.getActiveUniform(p,i);u[info.name]=gl.getUniformLocation(p,info.name);}
+  return {p,u};}
+const SCENE=prog('#fs-scene'), POST=prog('#fs-post');
+const vao=gl.createVertexArray();gl.bindVertexArray(vao);
+const vb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,vb);
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+
+let tex=null,fbo=null,fw=0,fh=0;
+function makeTarget(w,h){
+  if(tex) gl.deleteTexture(tex); if(fbo) gl.deleteFramebuffer(fbo);
+  tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);
+  const levels=Math.floor(Math.log2(Math.max(w,h)))+1;
+  gl.texStorage2D(gl.TEXTURE_2D,levels,floatOK?gl.RGBA16F:gl.RGBA8,w,h);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  fbo=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+  fw=w;fh=h;
+}
+let quality=.45;                        // 场景渲染分辨率（相对 CSS 像素 × dpr）
+const DPR=Math.min(devicePixelRatio||1,2);
+function resize(){
+  const w=innerWidth,h=innerHeight;
+  canvas.width=Math.round(w*DPR);canvas.height=Math.round(h*DPR);
+  const sw=Math.max(160,Math.round(w*DPR*quality)),sh_=Math.max(100,Math.round(h*DPR*quality));
+  if(sw!==fw||sh_!==fh) makeTarget(sw,sh_);
+}
+addEventListener('resize',resize);resize();
+
+/* ---------- 下降曲线：滚动进度 → log10(r-1) ---------- */
+const KEYS=[[0,Math.log10(29)],[.12,Math.log10(11)],[.25,Math.log10(4.5)],[.37,Math.log10(2)],[.5,Math.log10(.5)],
+            [.6,-1],[.7,-3],[.8,-8],[.9,-14],[1,-14]];
+const ss=t=>t*t*(3-2*t);
+function logXAt(p){
+  p=Math.min(1,Math.max(0,p));
+  for(let i=0;i<KEYS.length-1;i++){const [a,la]=KEYS[i],[b,lb]=KEYS[i+1];
+    if(p<=b){const t=(p-a)/(b-a);return la+(lb-la)*(.25*t+.75*ss(t));}}
+  return KEYS[KEYS.length-1][1];
+}
+
+/* ---------- 深度计 ---------- */
+const GAUGE_TOP=Math.log10(29),GAUGE_BOT=-14;
+const invP=L=>{let a=0,b=.9;for(let i=0;i<40;i++){const m=(a+b)/2;if(logXAt(m)>L)a=m;else b=m;}return (a+b)/2;};
+const gpos=L=>invP(L)/.9*100;
+(()=>{const g=$('#gauge');
+  for(let L=1;L>=-14;L-=(L>-3?1:2)){const t=document.createElement('div');t.className='tick';t.style.top=gpos(L)+'%';g.appendChild(t);}
+  const marks=[[Math.log10(14),'15 Rs','吸积盘外缘'],[Math.log10(2),'3 Rs','最内稳定轨道'],[Math.log10(.5),'1.5 Rs','光子球'],[-14,'1 Rs','视界','h']];
+  for(const [L,b,s,c] of marks){const m=document.createElement('div');m.className='mark'+(c?' '+c:'');m.style.top=gpos(L)+'%';m.innerHTML=`<b>${b}</b>${s}`;g.appendChild(m);}
+  const me=document.createElement('div');me.className='me';me.id='me';g.appendChild(me);
+})();
+const meEl=$('#me');
+
+/* ---------- 格式化 ---------- */
+const nf=(n,d=0)=>n.toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d});
+function fmtDist(m){
+  if(m>=1e9) return nf(m/1e9,2)+'<small>百万公里</small>';
+  if(m>=1e4) return nf(m/1e3,0)+'<small>公里</small>';
+  if(m>=1) return nf(m,1)+'<small>米</small>';
+  if(m>=1e-3) return nf(m*1e3,2)+'<small>毫米</small>';
+  if(m>=1e-6) return nf(m*1e6,2)+'<small>微米</small>';
+  return nf(m*1e9,2)+'<small>纳米</small>';
+}
+function fmtBig(x){
+  if(x<1e4) return nf(x,x<10?2:0);
+  if(x<1e8) return nf(x/1e4,1)+'<small>万</small>';
+  if(x<1e12) return nf(x/1e8,2)+'<small>亿</small>';
+  return nf(x/1e12,2)+'<small>万亿</small>';
+}
+function fmtEsc(x){ // x = r-1
+  const r=1+x;
+  let def = x<1e-6 ? x/2-3*x*x/8 : 1-1/Math.sqrt(r);
+  const pct=(1-def)*100;
+  if(def>.05) return nf(pct,1)+'<small>% 光速</small>';
+  const digits=Math.min(15,Math.max(2,Math.ceil(-Math.log10(def*100))+1));
+  let s=pct.toFixed(digits);
+  if(x<1e-6){ // 手动拼接，避免浮点吞掉尾数
+    const d=def*100; const k=Math.ceil(-Math.log10(d));
+    s='99.'+'9'.repeat(Math.max(0,k-1))+'…';
+  }
+  return s+'<small>% 光速</small>';
+}
+function fmtHMS(sec){sec=Math.floor(sec);const h=Math.floor(sec/3600),m=Math.floor(sec/60)%60,s=sec%60;
+  return (h>=24?Math.floor(h/24)+'天 ':'')+String(h%24).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');}
+function fmtEarth(sec){
+  const years=sec/31557600;
+  if(years<3000){
+    const d=new Date(START.getTime()+sec*1000);
+    if(years<2) return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 <small>${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}</small>`;
+    return `${d.getFullYear()}年${d.getMonth()+1}月`;
+  }
+  const y=START.getFullYear()+years;
+  return '公元 '+nf(Math.floor(y))+'<small>年</small>';
+}
+
+/* ---------- 声音（全部实时合成） ---------- */
+const Audio={ctx:null,on:false,
+  init(){
+    if(this.ctx) return;
+    const A=window.AudioContext||window.webkitAudioContext; if(!A) return;
+    const ctx=this.ctx=new A();
+    const master=this.master=ctx.createGain();master.gain.value=0;
+    const comp=ctx.createDynamicsCompressor();comp.threshold.value=-18;comp.ratio.value=4;
+    master.connect(comp).connect(ctx.destination);
+    // 低频嗡鸣
+    this.lp=ctx.createBiquadFilter();this.lp.type='lowpass';this.lp.frequency.value=380;this.lp.Q.value=.7;
+    this.droneG=ctx.createGain();this.droneG.gain.value=.16;
+    this.lp.connect(this.droneG).connect(master);
+    this.osc=[41.2,61.74,82.41,123.5].map((f,i)=>{const o=ctx.createOscillator();o.type=i%2?'triangle':'sawtooth';o.frequency.value=f;o.detune.value=(i-1.5)*6;
+      const g=ctx.createGain();g.gain.value=i===3?.18:.32;o.connect(g).connect(this.lp);o.start();return {o,f};});
+    // 风声（带通噪声）
+    const buf=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const d=buf.getChannelData(0);
+    let b=0;for(let i=0;i<d.length;i++){b=.985*b+.015*(Math.random()*2-1);d[i]=b*9;}
+    const ns=ctx.createBufferSource();ns.buffer=buf;ns.loop=true;
+    this.bp=ctx.createBiquadFilter();this.bp.type='bandpass';this.bp.frequency.value=320;this.bp.Q.value=.8;
+    this.noiseG=ctx.createGain();this.noiseG.gain.value=.05;
+    ns.connect(this.bp).connect(this.noiseG).connect(master);ns.start();
+    // 地球信标：持续尖啸（频率极高时）
+    this.whine=ctx.createOscillator();this.whine.type='sine';this.whine.frequency.value=900;
+    this.whineG=ctx.createGain();this.whineG.gain.value=0;this.whine.connect(this.whineG).connect(master);this.whine.start();
+    this.nextPing=ctx.currentTime+.5;this.nextBeat=0;
+  },
+  set(on){
+    this.init(); if(!this.ctx) return;
+    this.on=on; if(on&&this.ctx.state!=='running') this.ctx.resume();
+    this.master.gain.setTargetAtTime(on?.9:0,this.ctx.currentTime,.4);
+    const b=$('#sound');b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.querySelector('span').textContent=on?'声音 开':'声音 关';
+  },
+  ping(t,f,g=.06){const c=this.ctx,o=c.createOscillator(),e=c.createGain();o.type='sine';o.frequency.value=f;
+    e.gain.setValueAtTime(0,t);e.gain.linearRampToValueAtTime(g,t+.006);e.gain.exponentialRampToValueAtTime(.0001,t+.28);
+    o.connect(e).connect(this.master);o.start(t);o.stop(t+.3);},
+  thump(t,g=.5){const c=this.ctx,o=c.createOscillator(),e=c.createGain();o.type='sine';
+    o.frequency.setValueAtTime(95,t);o.frequency.exponentialRampToValueAtTime(38,t+.18);
+    e.gain.setValueAtTime(0,t);e.gain.linearRampToValueAtTime(g,t+.01);e.gain.exponentialRampToValueAtTime(.0001,t+.4);
+    o.connect(e).connect(this.master);o.start(t);o.stop(t+.45);},
+  update(st){
+    if(!this.ctx||!this.on) return;
+    const c=this.ctx,now=c.currentTime,tc=.15;
+    if(st.mode==='descent'||st.mode==='falling'){
+      const g=st.g;                     // sqrt(1-1/r)
+      const deep=.35+.65*Math.pow(g,.5);
+      this.osc.forEach(({o,f})=>o.frequency.setTargetAtTime(f*deep,now,tc));
+      this.lp.frequency.setTargetAtTime(120+520*g,now,tc);
+      this.noiseG.gain.setTargetAtTime(.04+.16*(1-g),now,tc);
+      this.bp.frequency.setTargetAtTime(200+900*(1-g),now,tc);
+      this.droneG.gain.setTargetAtTime(.16,now,tc);
+      // 地球信标：外界越快，信号越密、越尖
+      const rate=Math.min(400,.7/Math.max(g,1e-9));
+      const pitch=Math.min(3400,520*Math.pow(1/Math.max(g,1e-9),.28));
+      this.whine.frequency.setTargetAtTime(pitch,now,.05);
+      this.whineG.gain.setTargetAtTime(.035*Math.min(1,Math.max(0,(rate-18)/40)),now,.08);
+      if(rate<45){
+        if(this.nextPing<now) this.nextPing=now+.02;
+        while(this.nextPing<now+.12){this.ping(this.nextPing,pitch,.05);this.nextPing+=1/rate;}
+      }
+    }else if(st.mode==='inside'){
+      this.whineG.gain.setTargetAtTime(0,now,.02);
+      const t=st.inT;
+      this.droneG.gain.setTargetAtTime(.1+.1*t,now,.3);
+      this.osc.forEach(({o,f})=>o.frequency.setTargetAtTime(f*(.3+.25*t),now,.3));
+      this.lp.frequency.setTargetAtTime(90+400*t*t,now,.3);
+      this.noiseG.gain.setTargetAtTime(.02+.25*t*t,now,.3);
+      const iv=1.25-1.0*t;
+      if(this.nextBeat<now) this.nextBeat=now+.05;
+      while(this.nextBeat<now+.12){this.thump(this.nextBeat,.45);this.thump(this.nextBeat+.22,.25);this.nextBeat+=iv;}
+    }
+  },
+  cut(){ if(!this.ctx) return; const now=this.ctx.currentTime;
+    [this.droneG,this.noiseG,this.whineG].forEach(g=>{g.gain.cancelScheduledValues(now);g.gain.setValueAtTime(0,now);});
+    this.nextPing=Infinity;this.nextBeat=Infinity; },
+  restore(){ if(!this.ctx) return; const now=this.ctx.currentTime; this.nextPing=now+.3; this.nextBeat=0;
+    this.droneG.gain.setTargetAtTime(.16,now,1); }
+};
+$('#sound').addEventListener('click',()=>Audio.set(!Audio.on));
+
+/* ---------- 状态 ---------- */
+const S={
+  mode:'intro', p:0, pS:0, logX:Math.log10(29), x:29,
+  earthSec:0, selfSec:0,
+  yaw:0,pitch:0,yawT:0,pitchT:0, drag:null, mx:0,my:0,
+  lookBack:0,
+  fallT:0, fallFrom:0, inT:0, insideStart:0, endT:0,
+  flash:0, fade:1, t0:performance.now(),
+};
+
+/* ---------- 开场 ---------- */
+requestAnimationFrame(()=>requestAnimationFrame(()=>$('#intro').classList.add('ready')));
+function begin(sound){
+  $('#intro').classList.add('gone');
+  if(sound) Audio.set(true); else { Audio.init(); Audio.set(false); }
+  S.mode='descent';
+  scrollTo(0,0);
+}
+$('#go').addEventListener('click',()=>begin(true));
+$('#goMute').addEventListener('click',()=>begin(false));
+
+/* ---------- 交互：拖动环视 ---------- */
+canvas.addEventListener('pointerdown',e=>{
+  if(e.pointerType!=='mouse'&&e.pointerType!=='pen') return;
+  S.drag={x:e.clientX,y:e.clientY,yaw:S.yawT,pitch:S.pitchT};canvas.classList.add('drag');canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener('pointermove',e=>{
+  S.mx=e.clientX/innerWidth-.5;S.my=e.clientY/innerHeight-.5;
+  if(!S.drag) return;
+  S.yawT=S.drag.yaw-(e.clientX-S.drag.x)*.0045;
+  S.pitchT=Math.max(-1.3,Math.min(1.3,S.drag.pitch+(e.clientY-S.drag.y)*.0045));
+});
+const endDrag=()=>{S.drag=null;canvas.classList.remove('drag');};
+canvas.addEventListener('pointerup',endDrag);canvas.addEventListener('pointercancel',endDrag);
+
+/* ---------- 松手 ---------- */
+function letGo(){
+  if(S.mode!=='descent') return;
+  S.mode='falling';S.fallT=0;S.fallFrom=S.logX;
+  document.body.classList.add('locked');
+  $('#letgo').blur();
+}
+$('#letgo').addEventListener('click',letGo);
+
+/* ---------- 视界之内：禁止回头 ---------- */
+let toastTimer=0;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),2200);}
+let wheelCool=0;
+function denyScroll(dy){
+  if(S.mode!=='inside') return;
+  const now=performance.now(); if(now<wheelCool) return; wheelCool=now+1800;
+  toast(dy<0?'向上是过去。过去不接受来访。':'向下也没用。奇点不在下面，在以后。');
+}
+addEventListener('wheel',e=>{ if(S.mode==='inside'||S.mode==='falling'){e.preventDefault();denyScroll(e.deltaY);} },{passive:false});
+let touchY=0;
+addEventListener('touchstart',e=>{touchY=e.touches[0].clientY;},{passive:true});
+addEventListener('touchmove',e=>{ if(S.mode==='inside'||S.mode==='falling'){e.preventDefault();denyScroll(touchY-e.touches[0].clientY);} },{passive:false});
+addEventListener('keydown',e=>{
+  if((S.mode==='inside'||S.mode==='falling')&&['ArrowUp','ArrowDown','PageUp','PageDown',' ','Home','End'].includes(e.key)){
+    e.preventDefault();denyScroll(['ArrowUp','PageUp','Home'].includes(e.key)?-1:1);}
+});
+
+const THOUGHTS=[
+  [.4,'你已经穿过了视界。<br>什么都没有发生。'],
+  [7,'对这么大的黑洞来说，视界处的潮汐力轻到几乎感觉不到。没有墙，也没有闪光。'],
+  [16,'头顶的光，是追着你掉进来的星光。它们还能追上你，但你发出的光，再也追不上任何人。'],
+  [26,'在这里，“向外”不再是一个方向。<br>试着往上滚动。'],
+  [36,'奇点不在你前方，而在你的未来。就像明天，你没法绕开它。'],
+  [45,'点火挣扎只会让剩下的时间更短。活得最久的办法，是什么都不做。'],
+  [53,'现在，头和脚受到的力开始不一样了。'],
+  [61,'……'],
+];
+let thoughtIdx=-1;
+function enterInside(){
+  S.mode='inside';S.insideStart=performance.now();S.inT=0;thoughtIdx=-1;
+  $('#inside').classList.add('on');
+  ['#hud','#gauge','#title','#lede'].forEach(q=>{$(q).style.opacity=0;});
+  chapters.forEach(c=>{c.el.style.opacity=0;c.el.style.visibility='hidden';});
+  S.lookBack=Math.PI;
+  Audio.restore();
+}
+function finish(){
+  S.mode='end';S.endT=performance.now();
+  Audio.cut();
+}
+$('#again').addEventListener('click',()=>{
+  $('#epilogue').classList.remove('on');
+  $('#inside').classList.remove('on');$('#thought').innerHTML='';
+  document.body.classList.remove('locked');
+  scrollTo(0,0);S.p=S.pS=0;S.logX=Math.log10(29);
+  S.earthSec=0;S.selfSec=0;S.flash=0;S.fade=1;S.lookBack=0;
+  $('#hud').style.opacity='';$('#gauge').style.opacity='';
+  S.mode='descent';Audio.restore();
+});
+
+/* ---------- 章节显隐 ---------- */
+const chapters=[...document.querySelectorAll('.chapter')].map(el=>({el,a:+el.dataset.a,b:+el.dataset.b,earth:!!el.dataset.earth}));
+const titleEl=$('#title'),ledeEl=$('#lede'),earthEl=$('#r-earth');
+const V={dist:$('#v-dist'),thrust:$('#v-thrust'),esc:$('#v-esc'),rate:$('#v-rate'),earth:$('#v-earth'),self:$('#v-self')};
+const smooth=(e0,e1,x)=>{const t=Math.min(1,Math.max(0,(x-e0)/(e1-e0)));return t*t*(3-2*t);};
+const lerpHex=(a,b,t)=>{const pa=a.match(/\w\w/g).map(h=>parseInt(h,16)),pb=b.match(/\w\w/g).map(h=>parseInt(h,16));
+  return '#'+pa.map((v,i)=>Math.round(v+(pb[i]-v)*t).toString(16).padStart(2,'0')).join('');};
+
+/* ---------- 向量 ---------- */
+const norm=v=>{const l=Math.hypot(...v);return v.map(x=>x/l);};
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const add=(a,b,s=1)=>a.map((x,i)=>x+b[i]*s);
+const mul=(a,s)=>a.map(x=>x*s);
+
+/* ---------- 主循环 ---------- */
+let last=performance.now(),frameAvg=16,qTimer=0,domTick=0;
+function frame(now){
+  const dt=Math.min(.1,(now-last)/1000);last=now;
+  const time=(now-S.t0)/1000;
+  frameAvg+=( (dt*1000)-frameAvg)*.05;
+
+  // 自适应画质
+  qTimer+=dt;
+  if(qTimer>1.2){qTimer=0;
+    let nq=quality;
+    if(frameAvg>24) nq=Math.max(.3,quality-.08);
+    else if(frameAvg<15.5) nq=Math.min(1/DPR*1.2,quality+.05);
+    if(Math.abs(nq-quality)>.01){quality=nq;resize();}
+  }
+
+  // 滚动 → 进度
+  if(S.mode==='descent'||S.mode==='intro'){
+    const max=document.documentElement.scrollHeight-innerHeight;
+    S.p=max>0?scrollY/max:0;
+  }
+  S.pS+=(S.p-S.pS)*Math.min(1,dt*4);
+
+  let logX;
+  if(S.mode==='falling'){
+    S.fallT+=dt;
+    const t=Math.min(1,S.fallT/3.2);
+    logX=S.fallFrom+(-22-S.fallFrom)*t*t;
+    S.flash=Math.max(0,(S.fallT-2.9)*4)*(S.fallT<3.4?1:0);
+    if(S.fallT>=3.4){S.flash=1;enterInside();}
+  }else{
+    logX=logXAt(S.pS);
+  }
+  if(S.mode!=='inside'&&S.mode!=='end') S.logX=logX;
+  const x=Math.pow(10,S.logX), r=1+x;
+  const g=Math.sqrt(x/r);                         // sqrt(1-1/r)
+
+  // 时间
+  if(S.mode==='descent'||S.mode==='falling'){
+    S.selfSec+=dt*PROPER_SCALE;
+    S.earthSec+=dt*PROPER_SCALE/g;
+  }
+  if(S.mode==='inside'){
+    S.inT=Math.min(1,(now-S.insideStart)/1000/TAU_MAX);
+    if(S.inT>=1) finish();
+  }
+  S.flash=Math.max(0,S.flash-dt*(S.mode==='inside'?.9:0));
+  S.fade=Math.max(0,S.fade-dt*.5);
+
+  // ---- 相机 ----
+  const pS=S.pS;
+  // 阴影张角：sinα = (3√3/2)·√(1-1/r)/r；光子球内 α > 90°
+  const rr=1+Math.pow(10,logXAt(pS)), gg=Math.sqrt(1-1/rr);
+  let alpha=Math.asin(Math.min(1,2.598*gg/rr)); if(rr<1.5) alpha=Math.PI-alpha;
+  const vHalf=(52+18*smooth(.45,.8,pS))*Math.PI/360, hHalf=Math.atan(Math.tan(vHalf)*innerWidth/innerHeight);
+  const yawBase=Math.max(0,Math.min(Math.PI,alpha+(.12*smooth(.2,.45,pS)-.5*(1-smooth(.2,.45,pS)))*hHalf));
+  const lbDesc=yawBase+(Math.PI-yawBase)*smooth(.6,.7,pS);
+  const lbTarget = S.mode==='descent' ? lbDesc : (S.mode==='falling'?Math.PI:S.lookBack);
+  S.lookBack+=(lbTarget-S.lookBack)*Math.min(1,dt*2.2);
+  if(!S.drag){ S.yawT*=Math.pow(.25,dt); S.pitchT*=Math.pow(.25,dt); }
+  S.yaw+=(S.yawT-S.yaw)*Math.min(1,dt*8); S.pitch+=(S.pitchT-S.pitch)*Math.min(1,dt*8);
+  const par = REDUCED?0:1;
+  const shake = (S.mode==='falling'? S.fallT*.004 : 0) + (S.mode==='inside'? .004+S.inT*S.inT*.02 : 0);
+
+  // 着色器里的半径：视界附近用对数压缩，避免单精度浮点崩溃
+  let xs = x>=2.5e-3 ? x : Math.pow(10, Math.log10(2.5e-3) - .5*Math.min(1,(Math.log10(2.5e-3)-S.logX)/11));
+  const rS=1+xs;
+  const theta=(84.5-3*smooth(0,.5,pS))*Math.PI/180;
+  const phi=.4+pS*1.1+(REDUCED?0:time*.012);
+  const cam=[rS*Math.sin(theta)*Math.cos(phi), rS*Math.cos(theta), rS*Math.sin(theta)*Math.sin(phi)];
+  let f=norm(mul(cam,-1));
+  let rt=norm(cross(f,[0,1,0]));
+  let up=cross(rt,f);
+  const Y=S.yaw+S.lookBack+S.mx*.06*par+(Math.random()-.5)*shake;
+  const P=S.pitch-S.my*.04*par+(Math.random()-.5)*shake + (S.lookBack>1.5? .0 : 0);
+  let f1=add(mul(f,Math.cos(Y)),rt,Math.sin(Y)); let rt1=add(mul(rt,Math.cos(Y)),f,-Math.sin(Y));
+  let f2=add(mul(f1,Math.cos(P)),up,Math.sin(P)); let up1=add(mul(up,Math.cos(P)),f1,-Math.sin(P));
+  // 轻微滚转
+  const roll=(S.mode==='inside'?S.inT*.5:0)+.06*Math.sin(time*.1)*par;
+  const rt2=add(mul(rt1,Math.cos(roll)),up1,Math.sin(roll)), up2=add(mul(up1,Math.cos(roll)),rt1,-Math.sin(roll));
+  const basis=new Float32Array([...rt2,...up2,...f2]);
+  const fov=(52+18*smooth(.45,.8,pS))*Math.PI/180;
+
+  // 蓝移增亮（悬停观察者看外部宇宙）
+  const gS=Math.sqrt(xs/rS);
+  const blue=Math.min(1/g,1e3);
+
+  // ---- 渲染场景 ----
+  gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.viewport(0,0,fw,fh);
+  gl.useProgram(SCENE.p);const u=SCENE.u;
+  gl.uniform2f(u.uRes,fw,fh);gl.uniform1f(u.uTime,time);
+  gl.uniform3fv(u.uCam,cam);gl.uniformMatrix3fv(u.uBasis,false,basis);
+  gl.uniform1f(u.uTanF,Math.tan(fov/2));
+  gl.uniform1f(u.uCamG,gS);gl.uniform1f(u.uBlue,Math.max(1,Math.min(blue,80)));
+  const inside=(S.mode==='inside'||S.mode==='end')?1:0;
+  gl.uniform1f(u.uInside,inside);gl.uniform1f(u.uInT,S.inT);
+  gl.uniform1i(u.uSteps,quality<.4?260:360);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+  gl.bindTexture(gl.TEXTURE_2D,tex);gl.generateMipmap(gl.TEXTURE_2D);
+
+  // ---- 后期 ----
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,canvas.width,canvas.height);
+  gl.useProgram(POST.p);const q=POST.u;
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex);gl.uniform1i(q.uTex,0);
+  gl.uniform2f(q.uRes,canvas.width,canvas.height);gl.uniform1f(q.uTime,time);
+  const stretch = inside ? Math.pow(Math.max(0,(S.inT-.72)/.28),2.2)*2.4 : 0;
+  gl.uniform1f(q.uStretch,stretch);
+  gl.uniform1f(q.uAb,.002+.012*smooth(.55,.9,pS)+(inside?.01+S.inT*.03:0));
+  let fade=S.fade, flash=S.flash;
+  if(S.mode==='end'){const e=(now-S.endT)/1000; flash=Math.max(0,1-e*1.5)*(e<.08?1:1); fade=Math.min(1,e*1.2);
+    if(e>1.6&&!$('#epilogue').classList.contains('on')) $('#epilogue').classList.add('on'); }
+  
+  gl.uniform1f(q.uFlash,Math.min(1,flash));gl.uniform1f(q.uFade,fade);
+  gl.uniform1f(q.uExpo,inside?1.1:1.0);gl.uniform1f(q.uGrain,REDUCED?.015:.035);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+
+  // ---- DOM（每两帧更新一次数字） ----
+  domTick^=1;
+  if(S.mode!=='inside'&&S.mode!=='end'){
+    const heroO=1-smooth(.015,.07,pS);
+    titleEl.style.opacity=heroO;ledeEl.style.opacity=heroO;
+    ledeEl.style.transform=`translateY(${(-pS*400).toFixed(1)}px)`;
+    let earthHot=false;
+    for(const c of chapters){
+      const o=smooth(c.a,c.a+.028,pS)*(1-smooth(c.b-.028,c.b,pS));
+      c.el.style.opacity=o.toFixed(3);
+      c.el.style.transform=`translateY(${((1-o)*18).toFixed(1)}px)`;
+      c.el.style.visibility=o<.01?'hidden':'visible';
+      if(c.earth&&o>.4) earthHot=true;
+    }
+    earthEl.classList.toggle('hot',earthHot);
+    if(domTick){
+      V.dist.innerHTML=fmtDist(x*RS);
+      V.thrust.innerHTML=fmtBig(HOVER_K/(r*r*g))+'<small>g</small>';
+      V.esc.innerHTML=fmtEsc(x);
+      V.rate.innerHTML='×'+fmtBig(1/g);
+      V.earth.innerHTML=fmtEarth(S.earthSec);
+      V.self.innerHTML='+'+fmtHMS(S.selfSec);
+    }
+    meEl.style.top=Math.min(100,gpos(Math.max(S.logX,-14)))+'%';
+    // 强调色：从吸积盘的琥珀色 → 蓝移后的冰蓝
+    const k=smooth(-.5,-6,S.logX);
+    document.documentElement.style.setProperty('--accent',lerpHex('FFB36B','9FD2FF',k));
+  }
+  if(S.mode==='inside'){
+    const tp=(now-S.insideStart)/1000;
+    const left=Math.max(0,TAU_MAX-tp);
+    const cn=$('#cn'); cn.textContent=left.toFixed(1);
+    while(thoughtIdx+1<THOUGHTS.length && tp>=THOUGHTS[thoughtIdx+1][0]){
+      thoughtIdx++; const th=$('#thought'); th.style.opacity=0;
+      const html=THOUGHTS[thoughtIdx][1];
+      setTimeout(()=>{th.innerHTML=html;th.style.opacity=1;},450);
+    }
+    const s=stretch;
+    const tr=`scale(${(1/(1+s*.55)).toFixed(3)},${(1+s*1.6).toFixed(3)})`;
+    $('#thought').style.transform=tr;
+    $('#count').style.transform=`scale(${(1/(1+s*.4)).toFixed(3)},${(1+s*2.2).toFixed(3)})`;
+  }
+
+  Audio.update({mode:S.mode,g:Math.max(g,1e-9),inT:S.inT});
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+// 调试入口：?p=0.5 直接跳到某个进度（用于截图）
+const qp=new URLSearchParams(location.search);
+if(qp.has('p')){ $('#intro').classList.add('gone');S.mode='descent';
+  requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;scrollTo(0,max*+qp.get('p'));S.pS=+qp.get('p');}); }
+if(qp.has('inside')){ $('#intro').classList.add('gone');S.mode='descent';S.pS=S.p=1;setTimeout(()=>{enterInside();S.insideStart=performance.now()-(+qp.get('inside'))*1000;},50);}
+})();
+</script>
+</body>
+</html>
