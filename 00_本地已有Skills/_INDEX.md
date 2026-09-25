@@ -1,6 +1,8 @@
 # 00_本地已有Skills
 
-读 `00_本地已有Skills/<id>/SKILL.md` 全文。有 `references/` 时按需读单个文件。`scripts/` 为可执行辅助。
+用于：本机直装。设计评审、画布设计、品牌/图/视频生成、素材处理、发布上线
+
+读 `00_本地已有Skills/<id>/SKILL.md` 全文。`references/` 按需读单个文件。`scripts/` 为可执行辅助。
 
 | id | 何时用 | 资源 |
 |---|---|---|

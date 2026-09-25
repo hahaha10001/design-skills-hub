@@ -1,0 +1,53 @@
+# Build output — archives are attached to GitHub Releases, not committed
+dist/
+*.skill
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Screenshot harness build output — the images it produces are committed under
+# demo/, the machinery that produces them is not.
+tools/screenshots/.next/
+tools/screenshots/next-env.d.ts
+
+# visual-regression.mjs run output — diff images and the JSON summary are
+# per-run scratch, regenerated every invocation. Only tools/screenshots/baselines/
+# is the committed artifact.
+tools/screenshots/.diff-output/
+tools/screenshots/visual-regression-report.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Locally composed Pages upload and the images `pages:verify` writes beside it.
+# The real upload is built by .github/workflows/pages.yml on the runner and is
+# never committed; these are its local stand-ins.
+site-check/
+site-check-*.png
+
+# Generated / transient
+tsconfig.tests.json
+tsconfig.golds.*.json
+*.tsbuildinfo
+.DS_Store
+*.tmp
+*.bak
+*.draft
+
+# Agent scratch worktrees
+.claude/
+
+# Output from the local `impeccable` design-critique skill. Not part of the pack
+# and never committed. It was showing as untracked in three worktrees at once,
+# and persistent untracked noise in `git status` is the exact condition that
+# produced commit 30d7a90 — 22 files swept in from a second session by a
+# `git add -A`. Cheaper to stop generating the noise than to guard it.
+.impeccable/
+
+# Ad hoc render audits (tools/screenshots/audit-*.mjs). Images for judging
+# a layout by eye; regenerated on demand, never a source of truth.
+.audit/
+.audit-*/

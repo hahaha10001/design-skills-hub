@@ -1,6 +1,8 @@
 # 05_交互与微动效
 
-读 `05_交互与微动效/<id>/SKILL.md` 全文。有 `references/` 时按需读单个文件。`scripts/` 为可执行辅助。
+用于：组件级交互与状态：按钮/表单/弹窗/导航/表格/加载/空状态/错误
+
+读 `05_交互与微动效/<id>/SKILL.md` 全文。`references/` 按需读单个文件。`scripts/` 为可执行辅助。
 
 | id | 何时用 | 资源 |
 |---|---|---|
@@ -35,3 +37,33 @@
 | emil--prototype | Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker | — |
 | emil--review-animations | Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design | — |
 | emil--write-swift | How to write modern Swift well — modeling with value types, Swift 6 data-race safety and approachable | — |
+| fdpro--data-tables | Tables, grids, charts and dashboards — sorting, filtering, pagination, selection, KPIs, data fetching | references/examples |
+| fdpro--design-research | Live web research protocol — browse component libraries, design galleries and motion sites, extract | references/examples |
+| fdpro--forms | Forms and auth — validation, RHF + Zod, error states, checkout, login/signup, OTP/MFA, payments. Use | references/examples |
+| fdpro--platform | Platform surfaces — mobile/PWA, desktop, React Native, i18n, SEO/metadata, payments, transactional | references/examples |
+| fdpro--react-performance | React/Next.js performance — waterfalls, bundle size, RSC, memoization, rendering, virtualization, Core | references/examples |
+| feindex--sortablejs-drag-sort | Use when selecting or implementing drag sorting, draggable lists, SortableJS, dnd-kit, or related | — |
+| feindex--tubiao-auto-icon-selector | 图标库选型与资源引用专项。仅在用户要求选择或比较图标库、查找特殊图标、离线图标资源时使用；普通按钮加图标先复用项目现有库，不为此启动选型或安装依赖。 | — |
+| pencil--best-in-world-research | World-class practice research. This skill should be used when the user asks what the best in the world | — |
+| uiflx--add-form | Full workflow for adding a new form pattern to ui-flx. Covers file structure | — |
+| uxcel--activity-feed | Design or critique an activity feed / stream — a scannable list of updates where what matters stands | — |
+| uxcel--buttons | Design or critique UI buttons — pick the right button type for the action's importance, apply | — |
+| uxcel--checkout-payment | Design or critique a checkout, cart, payment, or booking flow — the path from "ready to buy" to "order | — |
+| uxcel--empty-states | Design or critique empty states — first-use screens, cleared states, no-results pages, and 404s that | — |
+| uxcel--error-recovery | Design or critique how a product prevents, surfaces, and recovers from errors — input/validation | — |
+| uxcel--inputs-and-forms | Design or critique forms and input fields — field selection, labels, layout, validation, error states | — |
+| uxcel--loaders-and-progress | Design or critique loading states and progress indicators — match the feedback type (spinner, text | — |
+| uxcel--menus | Design or critique UI menus — pick the right menu type (dropdown, cascading, contextual | — |
+| uxcel--microcopy | Audit interface copy — labels, buttons, errors, empty states, tooltips, notifications, form hints | — |
+| uxcel--modals-and-dialogs | Design or critique modals, dialogs, alerts, popovers, and bottom sheets — gate WHEN interrupting users | — |
+| uxcel--navigation | Design or critique navigation systems — match the nav pattern (top bar, sidebar, tabs, hamburger, mega | — |
+| uxcel--notifications-and-toasts | Design or critique notifications — pick the right type (badge, banner, snackbar, toast, alert, push) | — |
+| uxcel--onboarding | Design or critique a user-onboarding flow — the first-run experience that gets users to value fast | — |
+| uxcel--pricing | Design or critique a pricing page. Applies the always-true core (plan ordering, CTA clarity, ethics | — |
+| uxcel--search | Design or critique search experiences — search input, auto-suggest, results page, filtering/sorting | — |
+| uxcel--selection-controls | Design or critique selection controls — pick the right control (checkbox, radio button, toggle switch | — |
+| uxcel--settings | Design or critique a settings / preferences page — organizing many options without overwhelm, plus the | — |
+| uxcel--tables | Design or critique data tables and lists — scannable structure, alignment rules (left for text, right | — |
+| uxcel--tooltips | Design or critique tooltips and contextual hints — decide when a tooltip clarifies vs. when it's a | — |
+| uxuiadk--performance | Optimize UI performance against Core Web Vitals — LCP, INP, CLS — with loading/code-split strategy | — |
+| uxuiadk--ux-writing | Write or review UI copy — buttons, errors, empty states, microcopy, notifications, labels — using the | — |

@@ -15,16 +15,21 @@ miora-image-generation	00_本地已有Skills	图片生成与编辑的决策层�
 miora-video-generation	00_本地已有Skills	视频生成的决策层。当交付物是会动的内容时使用——覆盖镜头与运动描述、时长与画幅、主体一致性、失败处置与跨轮次。	references	00_本地已有Skills/miora-video-generation/SKILL.md
 sites	00_本地已有Skills	将生成内容发布为在线链接，或取消发布已上线的应用。适合网站、小游戏等交互式内容，支持任意可作为单端口 HTTP 服务运行的项目（静态站点 / PDF / Node.js / Python / Go）		00_本地已有Skills/sites/SKILL.md
 ui-design-system	00_本地已有Skills	专业UI生成与现有界面优化技能。当用户请求生成UI界面、设计页面、优化现有界面、创建组件库、设计系统、App界面、Web界面、Dashboard、Landing	references	00_本地已有Skills/ui-design-system/SKILL.md
+aesthetic--aesthetic-application	01_设计品味与反AI味	Use this skill when you need a complete developer-ready design specification for a named aesthetic: W3C	references	01_设计品味与反AI味/aesthetic--aesthetic-application/SKILL.md
+aesthetic--aesthetic-literacy	01_设计品味与反AI味	Use this skill when a user names or describes a visual aesthetic (Y2K, vaporwave, brutalist	references	01_设计品味与反AI味/aesthetic--aesthetic-literacy/SKILL.md
 anthropic--algorithmic-art	01_设计品味与反AI味	Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use	templates	01_设计品味与反AI味/anthropic--algorithmic-art/SKILL.md
 anthropic--brand-guidelines	01_设计品味与反AI味	Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from		01_设计品味与反AI味/anthropic--brand-guidelines/SKILL.md
 anthropic--canvas-design	01_设计品味与反AI味	Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this		01_设计品味与反AI味/anthropic--canvas-design/SKILL.md
 anthropic--frontend-design	01_设计品味与反AI味	Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one		01_设计品味与反AI味/anthropic--frontend-design/SKILL.md
 anthropic--theme-factory	01_设计品味与反AI味	Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML	themes	01_设计品味与反AI味/anthropic--theme-factory/SKILL.md
 anthropic--web-artifacts-builder	01_设计品味与反AI味	Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend	scripts	01_设计品味与反AI味/anthropic--web-artifacts-builder/SKILL.md
+carson--design-exploration	01_设计品味与反AI味	Generates multiple distinct design variants of a component or page, each with a completely different		01_设计品味与反AI味/carson--design-exploration/SKILL.md
+ibelick--baseline-ui	01_设计品味与反AI味	Quickly deslop UI code by fixing spacing, hierarchy, typography, and small layout issues. Use when the		01_设计品味与反AI味/ibelick--baseline-ui/SKILL.md
 impeccable--impeccable	01_设计品味与反AI味	Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden	scripts/reference	01_设计品味与反AI味/impeccable--impeccable/SKILL.md
 mengto--audit-ai-design-slop	01_设计品味与反AI味	Audit websites, apps, screenshots, mockups, and design code for harmful AI-design clichés, generic	agents	01_设计品味与反AI味/mengto--audit-ai-design-slop/SKILL.md
 mengto--design-first-ui-prompting	01_设计品味与反AI味	Use when you need design-first, spec-driven, skimmable prompts for UI generation. Covers prompt		01_设计品味与反AI味/mengto--design-first-ui-prompting/SKILL.md
 mengto--no-ai-design-slop	01_设计品味与反AI味	Prevent and remove generic AI-generated design defaults, incoherent visual choices, and established UI	agents	01_设计品味与反AI味/mengto--no-ai-design-slop/SKILL.md
+polished--polished-ui-design	01_设计品味与反AI味	Guides an agent to generate polished, professional web UI that avoids the generic "AI slop" / "vibe	references	01_设计品味与反AI味/polished--polished-ui-design/SKILL.md
 superdesign--superdesign	01_设计品味与反AI味	"Design or redesign frontend UI, presentations, and graphics on the Superdesign canvas with a choice of	references/agents	01_设计品味与反AI味/superdesign--superdesign/SKILL.md
 taste--brandkit	01_设计品味与反AI味	Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems		01_设计品味与反AI味/taste--brandkit/SKILL.md
 taste--brutalist-skill	01_设计品味与反AI味	Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid		01_设计品味与反AI味/taste--brutalist-skill/SKILL.md
@@ -39,9 +44,22 @@ taste--soft-skill	01_设计品味与反AI味	Teaches the AI to design like a hig
 taste--stitch-skill	01_设计品味与反AI味	Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce		01_设计品味与反AI味/taste--stitch-skill/SKILL.md
 taste--taste-skill	01_设计品味与反AI味	Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief		01_设计品味与反AI味/taste--taste-skill/SKILL.md
 taste--taste-skill-v1	01_设计品味与反AI味	The original v1 taste-skill, preserved for projects depending on its exact behavior. The current		01_设计品味与反AI味/taste--taste-skill-v1/SKILL.md
+tasteful--tasteful-ui	01_设计品味与反AI味	"UI design and implementation for real product surfaces with taste-first critique, reference routing	references	01_设计品味与反AI味/tasteful--tasteful-ui/SKILL.md
 tastemaker--tastemaker	01_设计品味与反AI味	Generate genuinely beautiful, on-brand UI instead of generic "AI slop" — use whenever the user asks to	scripts/references/assets	01_设计品味与反AI味/tastemaker--tastemaker/SKILL.md
+transitions--transitions-polish	01_设计品味与反AI味	Polish and refine existing motion against the transitions.dev motion-token scale — duration, distance		01_设计品味与反AI味/transitions--transitions-polish/SKILL.md
+uiflx--make-interfaces-feel-better	01_设计品味与反AI味	Design engineering principles for making interfaces feel polished. Use when building UI components		01_设计品味与反AI味/uiflx--make-interfaces-feel-better/SKILL.md
+uxcel--aesthetics	01_设计品味与反AI味	Audit the visual quality of a UI against established visual-design principles — hierarchy, emphasis		01_设计品味与反AI味/uxcel--aesthetics/SKILL.md
+uxuiadk--apply-aesthetic	01_设计品味与反AI味	Apply a visual direction — an archetype (high-end agency, editorial minimal, brutalist, soft-SaaS		01_设计品味与反AI味/uxuiadk--apply-aesthetic/SKILL.md
+uxuiadk--design-doctrine	01_设计品味与反AI味	The house rules for ANY design or UI work - the verification protocol (run the gate, never claim a		01_设计品味与反AI味/uxuiadk--design-doctrine/SKILL.md
+uxuiadk--redesign	01_设计品味与反AI味	Upgrade an existing website or app to premium quality without breaking functionality — audit the		01_设计品味与反AI味/uxuiadk--redesign/SKILL.md
+compass--motion-and-interaction	02_震撼视觉特效	Design and implement purposeful frontend motion and interaction details. Use when Codex needs to add	references/agents	02_震撼视觉特效/compass--motion-and-interaction/SKILL.md
 emil--animate	02_震撼视觉特效	Build an animation from scratch, making the decisions in the order that determines whether it feels		02_震撼视觉特效/emil--animate/SKILL.md
 emil--animate-expo	02_震撼视觉特效	Build animations in React Native and Expo, making the decisions in the order that determines whether		02_震撼视觉特效/emil--animate-expo/SKILL.md
+fdpro--animations	02_震撼视觉特效	Motion — easing and timing rules, Framer Motion, GSAP, scroll-driven experiences, view transitions	references/examples	02_震撼视觉特效/fdpro--animations/SKILL.md
+fdpro--canvas-typography	02_震撼视觉特效	Generative and kinetic typography — particle text, scramble and decode effects, text on a path, and	references/examples	02_震撼视觉特效/fdpro--canvas-typography/SKILL.md
+fdpro--threejs-3d	02_震撼视觉特效	3D web experiences with React Three Fiber — scenes, geometry, materials, lighting, shaders	references/examples	02_震撼视觉特效/fdpro--threejs-3d/SKILL.md
+flornkm--webgl-components	02_震撼视觉特效	"Build small, always-on WebGL visuals (identity avatars, ambient orbs, glass and iridescent surfaces	scripts	02_震撼视觉特效/flornkm--webgl-components/SKILL.md
+ibelick--fixing-motion-performance	02_震撼视觉特效	Audit and fix animation performance issues including layout thrashing, compositor properties		02_震撼视觉特效/ibelick--fixing-motion-performance/SKILL.md
 mengto--3d-falling-leaves	02_震撼视觉特效	Build recognizable falling leaves in world space using instanced geometry, independent tumble, coupled	agents	02_震撼视觉特效/mengto--3d-falling-leaves/SKILL.md
 mengto--3d-four-seasons	02_震撼视觉特效	Add coordinated spring, summer, fall, and winter states to a 3D scene, blending foliage, sunlight, sky	agents	02_震撼视觉特效/mengto--3d-four-seasons/SKILL.md
 mengto--3d-high-poly-models	02_震撼视觉特效	Create or integrate highly detailed 3D models with smooth silhouettes, shaped surfaces, believable	agents	02_震撼视觉特效/mengto--3d-high-poly-models/SKILL.md
@@ -118,14 +136,49 @@ oc--gsap-timeline	02_震撼视觉特效	Official GSAP skill for timelines — gs
 oc--gsap-utils	02_震撼视觉特效	Official GSAP skill for gsap.utils — clamp, mapRange, normalize, interpolate, random, snap, toArray		02_震撼视觉特效/oc--gsap-utils/SKILL.md
 oc--scroll-experience	02_震撼视觉特效	Expert in building immersive scroll-driven experiences - parallax storytelling, scroll animations		02_震撼视觉特效/oc--scroll-experience/SKILL.md
 oc--vue-bits	02_震撼视觉特效	Vue Bits 动画组件库使用指南 — Vue 3 + TypeScript + Tailwind 的高端动画 UI 组件库（React Bits 的 Vue 移植版）。当用户需要为 Vue		02_震撼视觉特效/oc--vue-bits/SKILL.md
+transitions--transitions-dev	02_震撼视觉特效	Production-ready CSS transitions for web apps. Use when implementing notification badges, dropdowns		02_震撼视觉特效/transitions--transitions-dev/SKILL.md
+brandref--design-md-skill-main	03_落地页与视觉风格	Reference library of 74 real-world brand design systems (Claude, Linear, Stripe, Vercel, Figma, Apple		03_落地页与视觉风格/brandref--design-md-skill-main/SKILL.md
+carson--grok-cli	03_落地页与视觉风格	Run Grok CLI headless for real-time X/Twitter and news research. Use when the user says "use grok"		03_落地页与视觉风格/carson--grok-cli/SKILL.md
+carson--x-algorithm	03_落地页与视觉风格	Write X (Twitter) posts that the For You algorithm actually rewards. Grounded in the open-sourced X		03_落地页与视觉风格/carson--x-algorithm/SKILL.md
+compass--product-surface-copy	03_落地页与视觉风格	Write and revise concise product interface copy. Use when Codex needs to improve button labels	references/agents	03_落地页与视觉风格/compass--product-surface-copy/SKILL.md
+compass--reference-to-implementation	03_落地页与视觉风格	Analyze screenshots, mockups, visual references, or brand examples and translate them into	references/agents	03_落地页与视觉风格/compass--reference-to-implementation/SKILL.md
+compass--shipshape-frontend	03_落地页与视觉风格	Run a final release-readiness pass on frontend work. Use when Codex needs to verify responsive layouts	scripts/references/agents	03_落地页与视觉风格/compass--shipshape-frontend/SKILL.md
 devgtm--frontend-design	03_落地页与视觉风格	Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one		03_落地页与视觉风格/devgtm--frontend-design/SKILL.md
 devgtm--site-architecture	03_落地页与视觉风格	When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL	references	03_落地页与视觉风格/devgtm--site-architecture/SKILL.md
+dsref--awesome-design-systems-main	03_落地页与视觉风格	Reference library of 58 world-class design systems from companies like Linear, Stripe, Vercel, Apple	references	03_落地页与视觉风格/dsref--awesome-design-systems-main/SKILL.md
 elayadesign--landing-page-design	03_落地页与视觉风格	"Complete system for building high converting landing pages: intake questions, page structure, layout		03_落地页与视觉风格/elayadesign--landing-page-design/SKILL.md
+fdpro--agent-ops	03_落地页与视觉风格	Agent operating discipline — token budgeting, cross-session memory, self-improvement loops	references/examples	03_落地页与视觉风格/fdpro--agent-ops/SKILL.md
+fdpro--ai-ui-generation	03_落地页与视觉风格	Prompt-to-UI, JSON-to-UI and generative-interface patterns — component registries, schema validation	references/examples	03_落地页与视觉风格/fdpro--ai-ui-generation/SKILL.md
+fdpro--component-patterns	03_落地页与视觉风格	Patterns from modern component libraries — animated text, wrapper effects, ambient backgrounds, and	references/examples	03_落地页与视觉风格/fdpro--component-patterns/SKILL.md
+fdpro--frontend-design-pro-main	03_落地页与视觉风格	Production-grade frontend UI/UX skill registry. Auto-routes to the correct skill based on user intent	scripts	03_落地页与视觉风格/fdpro--frontend-design-pro-main/SKILL.md
+fdpro--landing-pages	03_落地页与视觉风格	Marketing pages — heroes, pricing, testimonials, bento grids, social proof, CTAs, empty states	references/examples	03_落地页与视觉风格/fdpro--landing-pages/SKILL.md
+fdpro--web-interface	03_落地页与视觉风格	UI review and audit — Vercel Web Interface Guidelines, copywriting, typography detail, contrast, touch	references/examples	03_落地页与视觉风格/fdpro--web-interface/SKILL.md
+feindex--frontend-components	03_落地页与视觉风格	Use for choosing and implementing frontend UI components, feature modules, and interaction patterns.		03_落地页与视觉风格/feindex--frontend-components/SKILL.md
+feindex--qianduan	03_落地页与视觉风格	用户说“前端skill”时的统一入口，也接受“前端”、qianduan、“做个页面”“写个组件”“做个动效”“做个图表”。先读项目，再按需选择已有的设计、组件、GSAP、图表和验收能力；用户不必指定下游		03_落地页与视觉风格/feindex--qianduan/SKILL.md
+feindex--web-coding-workflow	03_落地页与视觉风格	用户明确要求 VC、web-coding-workflow 或完整工程流程时使用。覆盖需求、架构、实现、调试和验收；普通“前端skill”页面或组件任务不自动进入此流程，不自动创建流程文档或提交 Git。		03_落地页与视觉风格/feindex--web-coding-workflow/SKILL.md
+feindex--web-perf	03_落地页与视觉风格	Analyzes web performance using Chrome DevTools MCP. Measures Core Web Vitals (LCP, INP, CLS) and		03_落地页与视觉风格/feindex--web-perf/SKILL.md
 gardenli--beautiful-article	03_落地页与视觉风格	"把用户提供的素材（网页 URL / PDF / DOCX / Markdown / 纯文本 / 截图 / 粘贴材料）编辑、设计成一篇美丽的、可离线打开和分享的**单文件 HTML 网页文章**。基于	scripts/references/assets	03_落地页与视觉风格/gardenli--beautiful-article/SKILL.md
 gardenli--web-design-engineer	03_落地页与视觉风格	"Build or redesign polished browser-rendered visual artifacts with HTML/CSS/JavaScript/React: pages	references/agents	03_落地页与视觉风格/gardenli--web-design-engineer/SKILL.md
+ibelick--create-design-md	03_落地页与视觉风格	Create or update a DESIGN.md from an existing product repository or public website. Use when asked to		03_落地页与视觉风格/ibelick--create-design-md/SKILL.md
+ibelick--fixing-metadata	03_落地页与视觉风格	Audit and fix HTML metadata including page titles, meta descriptions, canonical URLs, Open Graph tags		03_落地页与视觉风格/ibelick--fixing-metadata/SKILL.md
+ibelick--improve-ui	03_落地页与视觉风格	Audit an existing product surface against its own design evidence, identify verified UI problems, and	references/agents	03_落地页与视觉风格/ibelick--improve-ui/SKILL.md
+ibelick--ui-skills-root	03_落地页与视觉风格	Use before UI-related work to select the smallest useful UI Skills context through the ui-skills CLI.		03_落地页与视觉风格/ibelick--ui-skills-root/SKILL.md
+idankars--ad-creator	03_落地页与视觉风格	Generate static social-media ad images (Reels/TikTok/Instagram 9:16) for a brand using OpenAI		03_落地页与视觉风格/idankars--ad-creator/SKILL.md
+idankars--super-design	03_落地页与视觉风格	Master entry point for ALL UI, UX, visual-design, motion, and frontend-polish work. Knows 65+ design		03_落地页与视觉风格/idankars--super-design/SKILL.md
+idankars--verify-ui-actions	03_落地页与视觉风格	Verify that interactive UI actions actually DO something - not just that the page renders. Use this	scripts	03_落地页与视觉风格/idankars--verify-ui-actions/SKILL.md
+intent--articulate	03_落地页与视觉风格	Design the words in a product — labels, instructions, errors, confirmations, empty states, onboarding		03_落地页与视觉风格/intent--articulate/SKILL.md
+intent--blueprint	03_落地页与视觉风格	Map, analyze, and redesign the systems behind product experiences. Part of the Intent design strategy		03_落地页与视觉风格/intent--blueprint/SKILL.md
+intent--fortify	03_落地页与视觉风格	Harden designs for real-world use by systematically identifying and designing for every condition		03_落地页与视觉风格/intent--fortify/SKILL.md
+intent--include	03_落地页与视觉风格	Design for everyone by treating accessibility as a first-class design discipline, not a compliance		03_落地页与视觉风格/intent--include/SKILL.md
+intent--investigate	03_落地页与视觉风格	Guide and conduct user research — from planning through synthesis. Interview scripts, survey design		03_落地页与视觉风格/intent--investigate/SKILL.md
+intent--organize	03_落地页与视觉风格	Structure information so people can find what they need, understand where they are, and navigate		03_落地页与视觉风格/intent--organize/SKILL.md
+intent--philosopher	03_落地页与视觉风格	A cross-cutting cognitive mode for sitting with design problems before rushing to solve them. Part of		03_落地页与视觉风格/intent--philosopher/SKILL.md
+intent--transpose	03_落地页与视觉风格	Rethinks experiences for different platforms and contexts — not just resizing, but reconceiving. Part		03_落地页与视觉风格/intent--transpose/SKILL.md
 jezweb--landing-page	03_落地页与视觉风格	"Generate a complete, deployable landing page from a brief. Produces a single self-contained HTML file		03_落地页与视觉风格/jezweb--landing-page/SKILL.md
 jezweb--product-showcase	03_落地页与视觉风格	"Generate a comprehensive marketing website for a web app — multi-page with real screenshots, animated		03_落地页与视觉风格/jezweb--product-showcase/SKILL.md
 jezweb--tailwind-theme-builder	03_落地页与视觉风格	"Set up Tailwind v4 + shadcn/ui themed UI with dark mode. Install deps, configure CSS variables via	references/assets	03_落地页与视觉风格/jezweb--tailwind-theme-builder/SKILL.md
+juliands--design-flow	03_落地页与视觉风格	Run the full design-to-build workflow as a guided sequence. Orchestrates all designer skills in order		03_落地页与视觉风格/juliands--design-flow/SKILL.md
+juliands--grill-me	03_落地页与视觉风格	Interview the user relentlessly about a plan or design until reaching shared understanding, resolving		03_落地页与视觉风格/juliands--grill-me/SKILL.md
 mengto--agency-grid-layout-minimal	03_落地页与视觉风格	"Create a minimal agency design system with a disciplined editorial grid, oversized typography, quiet		03_落地页与视觉风格/mengto--agency-grid-layout-minimal/SKILL.md
 mengto--blue-cloudy-clean-modern	03_落地页与视觉风格	"Create a clean modern design system with a luminous blue sky atmosphere, soft drifting cloud light		03_落地页与视觉风格/mengto--blue-cloudy-clean-modern/SKILL.md
 mengto--blue-laser-clean-glass-layout	03_落地页与视觉风格	"Create a clean dark glass layout system with a thin blue laser atmosphere, frosted premium shells, and		03_落地页与视觉风格/mengto--blue-laser-clean-glass-layout/SKILL.md
@@ -160,12 +213,41 @@ mengto--technical-wireframe-info-layout	03_落地页与视觉风格	"Create a mo
 mengto--webgl-landing-steering	03_落地页与视觉风格	Use when creating or refining WebGL-heavy landing pages and you need to steer toward a specific visual		03_落地页与视觉风格/mengto--webgl-landing-steering/SKILL.md
 oc--interactive-portfolio	03_落地页与视觉风格	Expert in building portfolios that actually land jobs and clients - not just showing work, but creating		03_落地页与视觉风格/oc--interactive-portfolio/SKILL.md
 oc--landing-page-generator	03_落地页与视觉风格	"Generates high-converting Next.js/React landing pages with Tailwind CSS. Uses PAS, AIDA, and BAB	scripts/references	03_落地页与视觉风格/oc--landing-page-generator/SKILL.md
+pencil--pencilplaybook-main	03_落地页与视觉风格	"PencilPlaybook is the UI Skills / Taste-Skill for Pencil.dev + Claude Code — a design playbook that	references	03_落地页与视觉风格/pencil--pencilplaybook-main/SKILL.md
+pencil--skill-creator	03_落地页与视觉风格	Guide for creating effective skills. This skill should be used when users want to create a new skill	scripts	03_落地页与视觉风格/pencil--skill-creator/SKILL.md
+sheleg--sheleg-design	03_落地页与视觉风格	Use when deciding how something LOOKS or MOVES — cinematic landing pages and hero sections		03_落地页与视觉风格/sheleg--sheleg-design/SKILL.md
+transitions--refine-live	03_落地页与视觉风格	In-chat fallback for the Timeline Inspector Refine agent. Use when the user runs `/refine live`, asks		03_落地页与视觉风格/transitions--refine-live/SKILL.md
+uiflx--add-block	03_落地页与视觉风格	Full workflow for adding a new UI block to ui-flx: file structure, manifest, catalog + registry.json		03_落地页与视觉风格/uiflx--add-block/SKILL.md
+uiflx--add-pattern	03_落地页与视觉风格	Full workflow for adding a new UI pattern to ui-flx. Covers file structure		03_落地页与视觉风格/uiflx--add-pattern/SKILL.md
+uiflx--add-sketch	03_落地页与视觉风格	Full workflow for adding a new UI sketch to ui-flx. Sketches are low-fidelity, content-free wireframes		03_落地页与视觉风格/uiflx--add-sketch/SKILL.md
 uiuxpromax--banner-design	03_落地页与视觉风格	"Design banners for social media, ads, website heroes, creative assets, and print. Multiple art	references	03_落地页与视觉风格/uiuxpromax--banner-design/SKILL.md
 uiuxpromax--brand	03_落地页与视觉风格	Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for	scripts/references/templates	03_落地页与视觉风格/uiuxpromax--brand/SKILL.md
 uiuxpromax--design	03_落地页与视觉风格	"Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles	scripts/references/data	03_落地页与视觉风格/uiuxpromax--design/SKILL.md
 uiuxpromax--design-system	03_落地页与视觉风格	Token architecture, component specifications, and slide generation. Three-layer tokens	scripts/references/data/templates	03_落地页与视觉风格/uiuxpromax--design-system/SKILL.md
 uiuxpromax--ui-styling	03_落地页与视觉风格	Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind)	scripts/references	03_落地页与视觉风格/uiuxpromax--ui-styling/SKILL.md
 uiuxpromax--ui-ux-pro-max	03_落地页与视觉风格	"UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing	scripts/references/data	03_落地页与视觉风格/uiuxpromax--ui-ux-pro-max/SKILL.md
+ultimate--ui-ux-pro	03_落地页与视觉风格	World-class design intelligence for building, reviewing, or improving any design artifact — interfaces		03_落地页与视觉风格/ultimate--ui-ux-pro/SKILL.md
+ultra--ultra-frontend	03_落地页与视觉风格	Master frontend skill for Claude Code. Synthesizes ultra-frontend design system, uiuxpromax design	scripts/references	03_落地页与视觉风格/ultra--ultra-frontend/SKILL.md
+uxcel--analytics	03_落地页与视觉风格	"Run a product-analytics analysis that produces a decision, not a dashboard — start from the question		03_落地页与视觉风格/uxcel--analytics/SKILL.md
+uxcel--assumption-rigor	03_落地页与视觉风格	Run a structured rigor audit on how a team validated (or plans to validate) its assumptions — for a		03_落地页与视觉风格/uxcel--assumption-rigor/SKILL.md
+uxcel--cards	03_落地页与视觉风格	Design or critique UI cards — one-topic, scannable cards with clear hierarchy, the right container		03_落地页与视觉风格/uxcel--cards/SKILL.md
+uxcel--contact-support	03_落地页与视觉风格	Design or critique a contact/support experience — help center, FAQ, contact methods, live chat		03_落地页与视觉风格/uxcel--contact-support/SKILL.md
+uxcel--dark-patterns	03_落地页与视觉风格	Audit a UI, flow, or copy for dark (deceptive) patterns — design that manipulates users into unintended		03_落地页与视觉风格/uxcel--dark-patterns/SKILL.md
+uxcel--dashboard	03_落地页与视觉风格	Design or critique an analytics or data dashboard — which metrics earn a place, how to organize and		03_落地页与视觉风格/uxcel--dashboard/SKILL.md
+uxcel--decision-quality	03_落地页与视觉风格	Run a structured quality audit on a product decision or its rationale — a		03_落地页与视觉风格/uxcel--decision-quality/SKILL.md
+uxcel--design-from-scratch	03_落地页与视觉风格	Orchestrated, build-from-zero UX workflow. Establishes context once, then composes the generative		03_落地页与视觉风格/uxcel--design-from-scratch/SKILL.md
+uxcel--experimentation-ab	03_落地页与视觉风格	"Design or critique an A/B test or controlled product experiment with statistical rigor		03_落地页与视觉风格/uxcel--experimentation-ab/SKILL.md
+uxcel--gtm-plan	03_落地页与视觉风格	"Build a go-to-market plan that's a stage-appropriate system — customers, channels, pricing, timing		03_落地页与视觉风格/uxcel--gtm-plan/SKILL.md
+uxcel--heuristics	03_落地页与视觉风格	Run a structured usability audit of any UI against Nielsen's 10 heuristics. Produces a severity-rated		03_落地页与视觉风格/uxcel--heuristics/SKILL.md
+uxcel--idea-to-plan	03_落地页与视觉风格	Orchestrated, idea-to-plan PM workflow. Establishes context once, then composes the PM generative		03_落地页与视觉风格/uxcel--idea-to-plan/SKILL.md
+uxcel--login-signup	03_落地页与视觉风格	Design or critique a login / sign-up screen. Applies the always-true core (separate pages, minimal		03_落地页与视觉风格/uxcel--login-signup/SKILL.md
+uxcel--offboarding	03_落地页与视觉风格	Design or critique an offboarding flow — canceling a subscription, unsubscribing, or deleting an		03_落地页与视觉风格/uxcel--offboarding/SKILL.md
+uxcel--problem-statement	03_落地页与视觉风格	Write or critique a product problem statement — turning a vague prompt, signal, or feature request into		03_落地页与视觉风格/uxcel--problem-statement/SKILL.md
+uxcel--user-story	03_落地页与视觉风格	Write or critique a user story — a small unit of user value framed from a real persona's need, not a		03_落地页与视觉风格/uxcel--user-story/SKILL.md
+uxuiadk--data-dashboard	03_落地页与视觉风格	Build a dense, data-heavy screen - an analytics console or a trading terminal - with real charts drawn		03_落地页与视觉风格/uxuiadk--data-dashboard/SKILL.md
+uxuiadk--design-component	03_落地页与视觉风格	Design a UI component spec to the house quality bar — anatomy, variants, sizes, the 8 states, token		03_落地页与视觉风格/uxuiadk--design-component/SKILL.md
+uxuiadk--figma-integration	03_落地页与视觉风格	Keep Figma and code in sync — map the 3-tier DTCG tokens to Figma Variables (collections + modes), sync		03_落地页与视觉风格/uxuiadk--figma-integration/SKILL.md
+compass--design-system-starter	04_视觉系统与规范	Create or extend practical frontend design systems with tokens, component contracts, state rules, and	references/agents	04_视觉系统与规范/compass--design-system-starter/SKILL.md
 designer--accessibility-audit	04_视觉系统与规范	Audit an existing interface against WCAG, producing findings with severity ratings and remediation		04_视觉系统与规范/designer--accessibility-audit/SKILL.md
 designer--aesthetic-usability	04_视觉系统与规范	Apply the Aesthetic-Usability Effect — polished, consistent interfaces are perceived as more usable and		04_视觉系统与规范/designer--aesthetic-usability/SKILL.md
 designer--business-design	04_视觉系统与规范	Read financials, map competitive landscapes, and argue design decisions in the language of value. Use		04_视觉系统与规范/designer--business-design/SKILL.md
@@ -216,6 +298,11 @@ designer--typography-scale	04_视觉系统与规范	Create a modular type scale 
 designer--visual-hierarchy	04_视觉系统与规范	Establish hierarchy through size, weight, colour, spacing, and position so the eye lands in the		04_视觉系统与规范/designer--visual-hierarchy/SKILL.md
 designer--von-restorff-effect	04_视觉系统与规范	Apply the Von Restorff Effect — the element that differs from its neighbours is the one remembered. Use		04_视觉系统与规范/designer--von-restorff-effect/SKILL.md
 emil--animation-vocabulary	04_视觉系统与规范	Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its		04_视觉系统与规范/emil--animation-vocabulary/SKILL.md
+fdpro--color-themes	04_视觉系统与规范	Algorithmic colour theme generation in OKLCH — harmonic schemes, palettes derived from an image	references/examples	04_视觉系统与规范/fdpro--color-themes/SKILL.md
+fdpro--iconography	04_视觉系统与规范	Icon systems — sizing, weight matching, colour inheritance, hit areas, SVG accessibility, and avatar	references/examples	04_视觉系统与规范/fdpro--iconography/SKILL.md
+feindex--echarts	04_视觉系统与规范	You MUST use this when building, styling, debugging, or optimizing Apache ECharts charts in JavaScript	references/examples	04_视觉系统与规范/feindex--echarts/SKILL.md
+feindex--tailwind-design-system	04_视觉系统与规范	Build scalable design systems with Tailwind CSS v4, design tokens, component libraries, and responsive		04_视觉系统与规范/feindex--tailwind-design-system/SKILL.md
+ibelick--fixing-accessibility	04_视觉系统与规范	Audit and fix HTML accessibility issues including ARIA labels, keyboard navigation, focus management		04_视觉系统与规范/ibelick--fixing-accessibility/SKILL.md
 jakub--better-accessibility	04_视觉系统与规范	Helps your project comply with accessibility standards and best practices.	agents	04_视觉系统与规范/jakub--better-accessibility/SKILL.md
 jakub--better-colors	04_视觉系统与规范	Helps you build a color system and answer anything about color in your project. You can generate	agents	04_视觉系统与规范/jakub--better-colors/SKILL.md
 jakub--better-interface	04_视觉系统与规范	Combines all of the `better-*` skills into a single review across accessibility, layout, writing	agents	04_视觉系统与规范/jakub--better-interface/SKILL.md
@@ -227,6 +314,16 @@ jakub--break	04_视觉系统与规范	Renders a component you choose in every st
 jakub--explain-interface	04_视觉系统与规范	Helps you figure out how something was built on the web.	agents	04_视觉系统与规范/jakub--explain-interface/SKILL.md
 jakub--interface-review	04_视觉系统与规范	Reviews your work across multiple categories like UI, typography, layout, color, writing and	agents	04_视觉系统与规范/jakub--interface-review/SKILL.md
 jakub--variant	04_视觉系统与规范	Builds multiple variants of a component you're working on and helps you iterate and pick one.	agents	04_视觉系统与规范/jakub--variant/SKILL.md
+juliands--design-tokens	04_视觉系统与规范	Generate a design tokens file (CSS variables or Tailwind config) based on a chosen aesthetic		04_视觉系统与规范/juliands--design-tokens/SKILL.md
+uiflx--add-composition	04_视觉系统与规范	Full workflow for adding a new UI composition to ui-flx. Compositions are full, composed application		04_视觉系统与规范/uiflx--add-composition/SKILL.md
+uiflx--add-illustration	04_视觉系统与规范	Full workflow for adding a new UI illustration to ui-flx. Illustrations are elegant compositions across		04_视觉系统与规范/uiflx--add-illustration/SKILL.md
+uxcel--accessibility	04_视觉系统与规范	Run a structured WCAG 2.1 AA accessibility audit on a design, screen, component, or page. Produces a		04_视觉系统与规范/uxcel--accessibility/SKILL.md
+uxcel--color	04_视觉系统与规范	Design or critique a product's color palette and system — base hue, harmony, neutrals, semantic colors		04_视觉系统与规范/uxcel--color/SKILL.md
+uxcel--layout-spacing-grids	04_视觉系统与规范	Lay out a screen with disciplined spacing, sizing, and grids — every value on one base unit (8px/4px		04_视觉系统与规范/uxcel--layout-spacing-grids/SKILL.md
+uxcel--mobile-responsiveness	04_视觉系统与规范	Run a structured mobile-responsiveness audit on a design, screen, or component — viewport adaptation		04_视觉系统与规范/uxcel--mobile-responsiveness/SKILL.md
+uxcel--typography	04_视觉系统与规范	Design or critique a product's typography — typeface selection and pairing, type scale, hierarchy, and		04_视觉系统与规范/uxcel--typography/SKILL.md
+uxuiadk--migrate-design-system	04_视觉系统与规范	Map this token system to or from any external design system (Material Design 3, Apple HIG, Fluent		04_视觉系统与规范/uxuiadk--migrate-design-system/SKILL.md
+uxuiadk--token-build	04_视觉系统与规范	Set up or run the token build pipeline — transform the DTCG tokens/*.json (source of truth) into		04_视觉系统与规范/uxuiadk--token-build/SKILL.md
 designer--animation-principles	05_交互与微动效	Apply animation principles — easing, staging, follow-through — to one specific UI motion. Use when		05_交互与微动效/designer--animation-principles/SKILL.md
 designer--conversational-ux	05_交互与微动效	Design voice and conversational interfaces — dialog flows, error recovery, and persona. Use when the		05_交互与微动效/designer--conversational-ux/SKILL.md
 designer--doherty-threshold	05_交互与微动效	Apply the Doherty Threshold — keep system response under 400ms to preserve user flow. Use when		05_交互与微动效/designer--doherty-threshold/SKILL.md
@@ -258,6 +355,38 @@ emil--pick-ui-library	05_交互与微动效	Pick the right library for a given f
 emil--prototype	05_交互与微动效	Build multiple genuinely different versions of a UI piece you describe, rendered behind a visual picker		05_交互与微动效/emil--prototype/SKILL.md
 emil--review-animations	05_交互与微动效	Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design		05_交互与微动效/emil--review-animations/SKILL.md
 emil--write-swift	05_交互与微动效	How to write modern Swift well — modeling with value types, Swift 6 data-race safety and approachable		05_交互与微动效/emil--write-swift/SKILL.md
+fdpro--data-tables	05_交互与微动效	Tables, grids, charts and dashboards — sorting, filtering, pagination, selection, KPIs, data fetching	references/examples	05_交互与微动效/fdpro--data-tables/SKILL.md
+fdpro--design-research	05_交互与微动效	Live web research protocol — browse component libraries, design galleries and motion sites, extract	references/examples	05_交互与微动效/fdpro--design-research/SKILL.md
+fdpro--forms	05_交互与微动效	Forms and auth — validation, RHF + Zod, error states, checkout, login/signup, OTP/MFA, payments. Use	references/examples	05_交互与微动效/fdpro--forms/SKILL.md
+fdpro--platform	05_交互与微动效	Platform surfaces — mobile/PWA, desktop, React Native, i18n, SEO/metadata, payments, transactional	references/examples	05_交互与微动效/fdpro--platform/SKILL.md
+fdpro--react-performance	05_交互与微动效	React/Next.js performance — waterfalls, bundle size, RSC, memoization, rendering, virtualization, Core	references/examples	05_交互与微动效/fdpro--react-performance/SKILL.md
+feindex--sortablejs-drag-sort	05_交互与微动效	Use when selecting or implementing drag sorting, draggable lists, SortableJS, dnd-kit, or related		05_交互与微动效/feindex--sortablejs-drag-sort/SKILL.md
+feindex--tubiao-auto-icon-selector	05_交互与微动效	图标库选型与资源引用专项。仅在用户要求选择或比较图标库、查找特殊图标、离线图标资源时使用；普通按钮加图标先复用项目现有库，不为此启动选型或安装依赖。		05_交互与微动效/feindex--tubiao-auto-icon-selector/SKILL.md
+pencil--best-in-world-research	05_交互与微动效	World-class practice research. This skill should be used when the user asks what the best in the world		05_交互与微动效/pencil--best-in-world-research/SKILL.md
+uiflx--add-form	05_交互与微动效	Full workflow for adding a new form pattern to ui-flx. Covers file structure		05_交互与微动效/uiflx--add-form/SKILL.md
+uxcel--activity-feed	05_交互与微动效	Design or critique an activity feed / stream — a scannable list of updates where what matters stands		05_交互与微动效/uxcel--activity-feed/SKILL.md
+uxcel--buttons	05_交互与微动效	Design or critique UI buttons — pick the right button type for the action's importance, apply		05_交互与微动效/uxcel--buttons/SKILL.md
+uxcel--checkout-payment	05_交互与微动效	Design or critique a checkout, cart, payment, or booking flow — the path from "ready to buy" to "order		05_交互与微动效/uxcel--checkout-payment/SKILL.md
+uxcel--empty-states	05_交互与微动效	Design or critique empty states — first-use screens, cleared states, no-results pages, and 404s that		05_交互与微动效/uxcel--empty-states/SKILL.md
+uxcel--error-recovery	05_交互与微动效	Design or critique how a product prevents, surfaces, and recovers from errors — input/validation		05_交互与微动效/uxcel--error-recovery/SKILL.md
+uxcel--inputs-and-forms	05_交互与微动效	Design or critique forms and input fields — field selection, labels, layout, validation, error states		05_交互与微动效/uxcel--inputs-and-forms/SKILL.md
+uxcel--loaders-and-progress	05_交互与微动效	Design or critique loading states and progress indicators — match the feedback type (spinner, text		05_交互与微动效/uxcel--loaders-and-progress/SKILL.md
+uxcel--menus	05_交互与微动效	Design or critique UI menus — pick the right menu type (dropdown, cascading, contextual		05_交互与微动效/uxcel--menus/SKILL.md
+uxcel--microcopy	05_交互与微动效	Audit interface copy — labels, buttons, errors, empty states, tooltips, notifications, form hints		05_交互与微动效/uxcel--microcopy/SKILL.md
+uxcel--modals-and-dialogs	05_交互与微动效	Design or critique modals, dialogs, alerts, popovers, and bottom sheets — gate WHEN interrupting users		05_交互与微动效/uxcel--modals-and-dialogs/SKILL.md
+uxcel--navigation	05_交互与微动效	Design or critique navigation systems — match the nav pattern (top bar, sidebar, tabs, hamburger, mega		05_交互与微动效/uxcel--navigation/SKILL.md
+uxcel--notifications-and-toasts	05_交互与微动效	Design or critique notifications — pick the right type (badge, banner, snackbar, toast, alert, push)		05_交互与微动效/uxcel--notifications-and-toasts/SKILL.md
+uxcel--onboarding	05_交互与微动效	Design or critique a user-onboarding flow — the first-run experience that gets users to value fast		05_交互与微动效/uxcel--onboarding/SKILL.md
+uxcel--pricing	05_交互与微动效	Design or critique a pricing page. Applies the always-true core (plan ordering, CTA clarity, ethics		05_交互与微动效/uxcel--pricing/SKILL.md
+uxcel--search	05_交互与微动效	Design or critique search experiences — search input, auto-suggest, results page, filtering/sorting		05_交互与微动效/uxcel--search/SKILL.md
+uxcel--selection-controls	05_交互与微动效	Design or critique selection controls — pick the right control (checkbox, radio button, toggle switch		05_交互与微动效/uxcel--selection-controls/SKILL.md
+uxcel--settings	05_交互与微动效	Design or critique a settings / preferences page — organizing many options without overwhelm, plus the		05_交互与微动效/uxcel--settings/SKILL.md
+uxcel--tables	05_交互与微动效	Design or critique data tables and lists — scannable structure, alignment rules (left for text, right		05_交互与微动效/uxcel--tables/SKILL.md
+uxcel--tooltips	05_交互与微动效	Design or critique tooltips and contextual hints — decide when a tooltip clarifies vs. when it's a		05_交互与微动效/uxcel--tooltips/SKILL.md
+uxuiadk--performance	05_交互与微动效	Optimize UI performance against Core Web Vitals — LCP, INP, CLS — with loading/code-split strategy		05_交互与微动效/uxuiadk--performance/SKILL.md
+uxuiadk--ux-writing	05_交互与微动效	Write or review UI copy — buttons, errors, empty states, microcopy, notifications, labels — using the		05_交互与微动效/uxuiadk--ux-writing/SKILL.md
+compass--brief-to-interface	06_评审_审计_交付流程	Convert rough product briefs, feature ideas, or vague app and site requests into a concrete interface	references/agents	06_评审_审计_交付流程/compass--brief-to-interface/SKILL.md
+compass--interface-quality-audit	06_评审_审计_交付流程	Audit existing frontend interfaces for design quality, usability, accessibility, and implementation	scripts/references/agents	06_评审_审计_交付流程/compass--interface-quality-audit/SKILL.md
 designer--a-b-test-design	06_评审_审计_交付流程	Design an A/B experiment — hypothesis, variants, primary metric, and sample size. Use when a change can		06_评审_审计_交付流程/designer--a-b-test-design/SKILL.md
 designer--accessibility-test-plan	06_评审_审计_交付流程	Plan accessibility testing — assistive technologies, participant criteria, WCAG coverage, and session		06_评审_审计_交付流程/designer--accessibility-test-plan/SKILL.md
 designer--affinity-diagram	06_评审_审计_交付流程	Cluster many qualitative data points into themes and insight statements. Use when synthesising across		06_评审_审计_交付流程/designer--affinity-diagram/SKILL.md
@@ -293,6 +422,16 @@ designer--version-control-strategy	06_评审_审计_交付流程	Define version 
 designer--wireframe-spec	06_评审_审计_交付流程	Specify wireframe layout — content priority, component placement, and annotation. Use when defining		06_评审_审计_交付流程/designer--wireframe-spec/SKILL.md
 devgtm--landing-page-auditor	06_评审_审计_交付流程	Audits any landing or service page across 48 checks in 10 categories for LLM/AI discoverability, GEO	references	06_评审_审计_交付流程/devgtm--landing-page-auditor/SKILL.md
 devgtm--web-design-guidelines	06_评审_审计_交付流程	Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check		06_评审_审计_交付流程/devgtm--web-design-guidelines/SKILL.md
+fdpro--testing	06_评审_审计_交付流程	Component testing — Vitest, Testing Library, jest-axe, Playwright e2e, Storybook stories, mock policy	references/examples	06_评审_审计_交付流程/fdpro--testing/SKILL.md
+feindex--webapp-testing	06_评审_审计_交付流程	Focused acceptance testing for local web UI changes, including responsive layout, interactions		06_评审_审计_交付流程/feindex--webapp-testing/SKILL.md
+intent--evaluate	06_评审_审计_交付流程	Structured UX evaluation that produces quantitative assessments, identifies specific issues, and routes		06_评审_审计_交付流程/intent--evaluate/SKILL.md
+intent--intent	06_评审_审计_交付流程	The entry point for Intent, a UX and design strategy system. Sets project context, routes to	references	06_评审_审计_交付流程/intent--intent/SKILL.md
+intent--journey	06_评审_审计_交付流程	Design any user-facing experience end-to-end: task flows, multi-step workflows, navigation structures		06_评审_审计_交付流程/intent--journey/SKILL.md
+intent--localize	06_评审_审计_交付流程	Adapts experiences across cultures and languages — not just translation, but cultural reconception		06_评审_审计_交付流程/intent--localize/SKILL.md
+intent--measure	06_评审_审计_交付流程	Defines and tracks UX success through metrics, measurement frameworks, and experimentation. Part of the		06_评审_审计_交付流程/intent--measure/SKILL.md
+intent--specify	06_评审_审计_交付流程	Bridges design and engineering by producing detailed specs, organized handoff packages, asset		06_评审_审计_交付流程/intent--specify/SKILL.md
+intent--strategize	06_评审_审计_交付流程	Frames product design problems before solutions exist. Synthesizes research, sizes opportunities		06_评审_审计_交付流程/intent--strategize/SKILL.md
+intent--wireframe	06_评审_审计_交付流程	Design the structural anatomy of screens at wireframe fidelity — what goes where and why, before anyone	references	06_评审_审计_交付流程/intent--wireframe/SKILL.md
 jezweb--design-loop	06_评审_审计_交付流程	"Autonomous multi-page site builder using a baton-passing loop. Each iteration reads a task from		06_评审_审计_交付流程/jezweb--design-loop/SKILL.md
 jezweb--design-review	06_评审_审计_交付流程	"Review a web app or page for visual design quality — layout, typography, spacing, colour, hierarchy		06_评审_审计_交付流程/jezweb--design-review/SKILL.md
 jezweb--design-system	06_评审_审计_交付流程	"Extract a complete design system from an existing website or screenshot into a DESIGN.md file		06_评审_审计_交付流程/jezweb--design-system/SKILL.md
@@ -300,6 +439,24 @@ jezweb--responsiveness-check	06_评审_审计_交付流程	"Test website respons
 jezweb--ux-audit	06_评审_审计_交付流程	"Walk through a live web app AS a real user to find usability + behavioural bugs that static reviews	references	06_评审_审计_交付流程/jezweb--ux-audit/SKILL.md
 jezweb--ux-compare	06_评审_审计_交付流程	"Compare UX patterns across multiple reference apps using pattern libraries produced by ux-extract	references	06_评审_审计_交付流程/jezweb--ux-compare/SKILL.md
 jezweb--ux-extract	06_评审_审计_交付流程	"Exhaustively extract UX patterns from a reference web app. Walks every screen, captures screenshots of	references	06_评审_审计_交付流程/jezweb--ux-extract/SKILL.md
+juliands--brief-to-tasks	06_评审_审计_交付流程	Break a design brief into an ordered checklist of independently buildable tasks using vertical slices		06_评审_审计_交付流程/juliands--brief-to-tasks/SKILL.md
+pencil--best-in-world-strategy	06_评审_审计_交付流程	Excellence-first strategic decision support. This skill should be used when users need to choose	references	06_评审_审计_交付流程/pencil--best-in-world-strategy/SKILL.md
+uiflx--add-intent	06_评审_审计_交付流程	Full workflow for adding a new UI intent to ui-flx. Covers file structure, decision demo files		06_评审_审计_交付流程/uiflx--add-intent/SKILL.md
+uxcel--assumption-testing	06_评审_审计_交付流程	Plan how to test the assumptions behind a product idea before building — decompose the idea into its		06_评审_审计_交付流程/uxcel--assumption-testing/SKILL.md
+uxcel--discovery	06_评审_审计_交付流程	Plan or critique a product discovery process — figuring out what to build before building it		06_评审_审计_交付流程/uxcel--discovery/SKILL.md
+uxcel--okr-metric-validity	06_评审_审计_交付流程	Run a structured validity audit on OKRs, KPIs, North Star Metrics, or any success-metric set. Produces		06_评审_审计_交付流程/uxcel--okr-metric-validity/SKILL.md
+uxcel--okrs-kpis	06_评审_审计_交付流程	Write OKRs, KPIs, or a North Star Metric derived from product strategy — or review an existing goal		06_评审_审计_交付流程/uxcel--okrs-kpis/SKILL.md
+uxcel--personas-jtbd	06_评审_审计_交付流程	Build or critique an audience-understanding artifact — research-based user personas, a Jobs-to-Be-Done		06_评审_审计_交付流程/uxcel--personas-jtbd/SKILL.md
+uxcel--prioritization	06_评审_审计_交付流程	Decide what to build first, or critique a prioritization. Derives criteria from strategy, picks the		06_评审_审计_交付流程/uxcel--prioritization/SKILL.md
+uxcel--prioritization-rigor	06_评审_审计_交付流程	Run a structured rigor audit on prioritization decisions, scored backlogs, RICE/ICE/MoSCoW outputs, or		06_评审_审计_交付流程/uxcel--prioritization-rigor/SKILL.md
+uxcel--product-review	06_评审_审计_交付流程	Orchestrated review of a PM artifact (spec, PRD, OKRs, roadmap, prioritization, strategy). Routes by		06_评审_审计_交付流程/uxcel--product-review/SKILL.md
+uxcel--product-spec	06_评审_审计_交付流程	Write a product requirements document (PRD) or spec anchored to a validated problem, with measurable		06_评审_审计_交付流程/uxcel--product-spec/SKILL.md
+uxcel--roadmap	06_评审_审计_交付流程	Create or critique a product roadmap — outcome-oriented, theme-based, confidence-aware (Now-Next-Later)		06_评审_审计_交付流程/uxcel--roadmap/SKILL.md
+uxcel--spec-quality	06_评审_审计_交付流程	Run a structured quality audit on a product spec, PRD, or requirements document. Produces a		06_评审_审计_交付流程/uxcel--spec-quality/SKILL.md
+uxcel--vision-strategy	06_评审_审计_交付流程	Produce or critique a product vision and/or product strategy — an aspirational destination and the		06_评审_审计_交付流程/uxcel--vision-strategy/SKILL.md
+uxuiadk--a11y-audit	06_评审_审计_交付流程	Audit a UI or design against WCAG 2.2 AA/AAA and ARIA patterns, returning criterion-referenced findings		06_评审_审计_交付流程/uxuiadk--a11y-audit/SKILL.md
+uxuiadk--design-qa	06_评审_审计_交付流程	Set up or run design QA gates — token + hardcoded-value lint, automated a11y (axe), contrast, visual		06_评审_审计_交付流程/uxuiadk--design-qa/SKILL.md
+uxuiadk--governance	06_评审_审计_交付流程	Govern how the design system evolves — SemVer for tokens/components, the contribution workflow		06_评审_审计_交付流程/uxuiadk--governance/SKILL.md
 gardenli--gpt-image-2	07_素材与图像生成	面向 GPT Image 2 的图像生成 / 编辑技能。可在 3 种环境下使用：(A) Garden 本地模式，通过 OpenAI 兼容接口直接出图并落盘；(B) Host-Native 模式，把本	scripts/references	07_素材与图像生成/gardenli--gpt-image-2/SKILL.md
 gardenli--web-video-presentation	07_素材与图像生成	把一篇文章或口播稿，做成"看起来像视频"的点击驱动 16:9 网页演示，可选合成口播音频。流程：原始文章 → **一次产出**口播稿 + outline 开发计划 → 用户**一次对齐** 5 件事（稿子	scripts/references/themes/templates	07_素材与图像生成/gardenli--web-video-presentation/SKILL.md
 jezweb--ai-image-generator	07_素材与图像生成	"Generate AI images using Gemini or GPT APIs directly. Covers model selection (Gemini for scenes; GPT	references	07_素材与图像生成/jezweb--ai-image-generator/SKILL.md
@@ -317,6 +474,12 @@ mengto--stitched-full-page-capture	07_素材与图像生成	Capture or repair re
 mengto--unsplash-asset-images	07_素材与图像生成	Use when you need to pick high-quality Unsplash images for product/design assets (avatars, headshots		07_素材与图像生成/mengto--unsplash-asset-images/SKILL.md
 oc--openai-compatible-imagegen	07_素材与图像生成	Primary image-generation route for this Codex environment. Generate, edit, and batch-generate images	scripts/references/examples/agents	07_素材与图像生成/oc--openai-compatible-imagegen/SKILL.md
 oc--openai-image-gen	07_素材与图像生成	Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery. 用 OpenAI 兼容	scripts	07_素材与图像生成/oc--openai-image-gen/SKILL.md
+uxuiadk--image-to-code	07_素材与图像生成	Turn a reference image, screenshot, or mockup into token-driven, accessible code — infer the design		07_素材与图像生成/uxuiadk--image-to-code/SKILL.md
+carson--opencode-memory	08_工程流程与质量	Browse local OpenCode history: sessions, messages, plans, prompt history, and prior decisions. Use when	references	08_工程流程与质量/carson--opencode-memory/SKILL.md
+fdpro--react-components	08_工程流程与质量	Reusable React component APIs — buttons, cards, modals, tabs, dropdowns, shadcn/Radix primitives	references/examples	08_工程流程与质量/fdpro--react-components/SKILL.md
+feindex--playwright	08_工程流程与质量	"Use when the task requires automating a real browser from the terminal (navigation, form filling		08_工程流程与质量/feindex--playwright/SKILL.md
+feindex--vercel-react-best-practices	08_工程流程与质量	React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be		08_工程流程与质量/feindex--vercel-react-best-practices/SKILL.md
+flornkm--prefer-container-queries	08_工程流程与质量	"Enforce Tailwind container queries over viewport breakpoints for responsive components. Use when		08_工程流程与质量/flornkm--prefer-container-queries/SKILL.md
 jezweb--react-patterns	08_工程流程与质量	"React 19 performance patterns and composition architecture for Vite + Cloudflare projects. 50+ rules		08_工程流程与质量/jezweb--react-patterns/SKILL.md
 jezweb--shadcn-ui	08_工程流程与质量	"Install and configure shadcn/ui components for React projects. Guides component selection	references	08_工程流程与质量/jezweb--shadcn-ui/SKILL.md
 oc--vue-best-practices	08_工程流程与质量	MUST be used for Vue.js tasks. Strongly recommends Composition API with `<script setup>` and TypeScript	references	08_工程流程与质量/oc--vue-best-practices/SKILL.md
@@ -332,3 +495,78 @@ superpowers--using-superpowers	08_工程流程与质量	Use when starting any co
 superpowers--verification-before-completion	08_工程流程与质量	Use when about to claim work is complete, fixed, or passing, before committing or creating PRs		08_工程流程与质量/superpowers--verification-before-completion/SKILL.md
 superpowers--writing-plans	08_工程流程与质量	Use when you have a spec or requirements for a multi-step task, before touching code		08_工程流程与质量/superpowers--writing-plans/SKILL.md
 superpowers--writing-skills	08_工程流程与质量	Use when creating new skills, editing existing skills, or verifying skills work before deployment	examples	08_工程流程与质量/superpowers--writing-skills/SKILL.md
+uxuiadk--design-code	08_工程流程与质量	Generate production-ready, accessible, token-driven component code for ANY framework — React+Tailwind		08_工程流程与质量/uxuiadk--design-code/SKILL.md
+bergside--agentic	09_视觉风格预设	Conversational AI-first interface with minimal controls, clear outcomes, and delegated task flows for		09_视觉风格预设/bergside--agentic/SKILL.md
+bergside--ant	09_视觉风格预设	Structured, enterprise-focused design system emphasizing clarity, consistency, and efficiency for		09_视觉风格预设/bergside--ant/SKILL.md
+bergside--artistic	09_视觉风格预设	High-contrast, expressive style with creative typography and bold color choices for visually striking		09_视觉风格预设/bergside--artistic/SKILL.md
+bergside--basic	09_视觉风格预设	Print-inspired visual language for books, magazines, and reports with editorial grids and expressive		09_视觉风格预设/bergside--basic/SKILL.md
+bergside--bento	09_视觉风格预设	Modular grid layout with card-like blocks, clear hierarchy, soft spacing, and subtle visual contrast		09_视觉风格预设/bergside--bento/SKILL.md
+bergside--bold	09_视觉风格预设	Strong visual presence with heavyweight typography, high-contrast colors, and commanding layouts.		09_视觉风格预设/bergside--bold/SKILL.md
+bergside--brutalism	09_视觉风格预设	Raw, anti-design aesthetic inspired by concrete architecture with unadorned elements, jarring layouts		09_视觉风格预设/bergside--brutalism/SKILL.md
+bergside--cafe	09_视觉风格预设	Cozy cafe-inspired interface with warm tones, soft typography, and clean layouts for a relaxed browsing		09_视觉风格预设/bergside--cafe/SKILL.md
+bergside--claude	09_视觉风格预设	"A research-journal aesthetic printed on warm stone — authoritative, editorial, almost achromatic		09_视觉风格预设/bergside--claude/SKILL.md
+bergside--claymorphism	09_视觉风格预设	Soft, rounded 3D-like shapes mimicking malleable clay with playful, puffy elements and colorful		09_视觉风格预设/bergside--claymorphism/SKILL.md
+bergside--clean	09_视觉风格预设	Simplicity-focused design with ample whitespace, legible typography, and a limited color palette to		09_视觉风格预设/bergside--clean/SKILL.md
+bergside--codex	09_视觉风格预设	"A radically minimal, blank-canvas interface built as a pure edge-to-edge surface, with almost no color		09_视觉风格预设/bergside--codex/SKILL.md
+bergside--colorful	09_视觉风格预设	Vibrant, high-contrast palettes and gradients for engaging, memorable, and modern user experiences.		09_视觉风格预设/bergside--colorful/SKILL.md
+bergside--contemporary	09_视觉风格预设	Current-era minimalist design with bento grids, dark mode support, and high-performance accessible		09_视觉风格预设/bergside--contemporary/SKILL.md
+bergside--corporate	09_视觉风格预设	Professional, brand-aligned design with structured grids, minimalist layouts, and consistent enterprise		09_视觉风格预设/bergside--corporate/SKILL.md
+bergside--cosmic	09_视觉风格预设	Futuristic sci-fi aesthetic with dark themes, vibrant neon accents, and immersive spatial elements.		09_视觉风格预设/bergside--cosmic/SKILL.md
+bergside--creative	09_视觉风格预设	Playful, character-driven design with expressive typography and bold graphics for landing pages and		09_视觉风格预设/bergside--creative/SKILL.md
+bergside--dithered	09_视觉风格预设	Dot-pattern rendering technique that simulates shades with a limited palette for nostalgic, retro		09_视觉风格预设/bergside--dithered/SKILL.md
+bergside--doodle	09_视觉风格预设	Hand-drawn, sketch-like style with doodles, handwritten fonts, and imperfect lines for a playful		09_视觉风格预设/bergside--doodle/SKILL.md
+bergside--dramatic	09_视觉风格预设	High-contrast, theatrical design with bold layouts, immersive visuals, and unconventional compositions		09_视觉风格预设/bergside--dramatic/SKILL.md
+bergside--editorial	09_视觉风格预设	Magazine-inspired editorial layout with refined serif typography, structured grids, and elegant reading		09_视觉风格预设/bergside--editorial/SKILL.md
+bergside--enterprise	09_视觉风格预设	Dark-themed cloud-platform aesthetic with modular grids, glass-like panels, and strong data hierarchy		09_视觉风格预设/bergside--enterprise/SKILL.md
+bergside--expressive	09_视觉风格预设	Vibrant, personality-driven design with bold colors, playful graphics, and dynamic layouts that balance		09_视觉风格预设/bergside--expressive/SKILL.md
+bergside--fantasy	09_视觉风格预设	Game-inspired fantasy aesthetic with bold, premium visuals, rich color palettes, and immersive thematic		09_视觉风格预设/bergside--fantasy/SKILL.md
+bergside--fiction	09_视觉风格预设	"A playful, energetic, cartoonesque interface inspired by friendly children's-book illustrations — warm		09_视觉风格预设/bergside--fiction/SKILL.md
+bergside--flat	09_视觉风格预设	Two-dimensional minimalist style with vibrant colors, clean typography, and no 3D effects for fast		09_视觉风格预设/bergside--flat/SKILL.md
+bergside--friendly	09_视觉风格预设	Approachable, intuitive design with rounded elements, ample whitespace, and soft pastel color palettes.		09_视觉风格预设/bergside--friendly/SKILL.md
+bergside--futuristic	09_视觉风格预设	Forward-looking design with tech-inspired typography, modern layouts, and a sleek, innovation-driven		09_视觉风格预设/bergside--futuristic/SKILL.md
+bergside--geometric	09_视觉风格预设	Geometric, structured design with clean typography, neutral colors, precise shapes, and intuitive		09_视觉风格预设/bergside--geometric/SKILL.md
+bergside--glassmorphism	09_视觉风格预设	Frosted glass effect with translucent layers, subtle blur, and luminous borders for depth and modern		09_视觉风格预设/bergside--glassmorphism/SKILL.md
+bergside--gradient	09_视觉风格预设	Smooth color transitions and gradient-rich surfaces for modern, playful interfaces with visual depth.		09_视觉风格预设/bergside--gradient/SKILL.md
+bergside--immersive	09_视觉风格预设	"An immersive, interactive, exhibit-style interface that blends storytelling, animation, and gamified		09_视觉风格预设/bergside--immersive/SKILL.md
+bergside--levels	09_视觉风格预设	Conversion-focused design that removes friction and guides users toward action through clarity, trust		09_视觉风格预设/bergside--levels/SKILL.md
+bergside--lingo	09_视觉风格预设	Playful, minimal design with bright colors, rounded shapes, tactile 3D borders, and friendly		09_视觉风格预设/bergside--lingo/SKILL.md
+bergside--material	09_视觉风格预设	Google's Material Design with layered surfaces, dynamic theming, built-in motion, and responsive		09_视觉风格预设/bergside--material/SKILL.md
+bergside--matrix	09_视觉风格预设	"A cyber-slick, dark-only Matrix-inspired interface defined by minimalist fashion, high-tech digital		09_视觉风格预设/bergside--matrix/SKILL.md
+bergside--minimal	09_视觉风格预设	Stripped-back design emphasizing whitespace, clean typography, and restrained color for maximum clarity		09_视觉风格预设/bergside--minimal/SKILL.md
+bergside--modern	09_视觉风格预设	Contemporary editorial style with serif typography, minimal palettes, and clean layouts for polished		09_视觉风格预设/bergside--modern/SKILL.md
+bergside--mono	09_视觉风格预设	Monospace-driven, matrix-inspired design with high-contrast elements, compact density, and a		09_视觉风格预设/bergside--mono/SKILL.md
+bergside--neobrutalism	09_视觉风格预设	Modern take on brutalism with bold borders, vivid accent colors, and raw, high-contrast layouts on warm		09_视觉风格预设/bergside--neobrutalism/SKILL.md
+bergside--neon	09_视觉风格预设	Electric neon glow effects with high-contrast color pairings for bold, attention-grabbing interfaces.		09_视觉风格预设/bergside--neon/SKILL.md
+bergside--neumorphism	09_视觉风格预设	Soft, extruded UI elements with inner and outer shadows on monochromatic surfaces for a tactile		09_视觉风格预设/bergside--neumorphism/SKILL.md
+bergside--pacman	09_视觉风格预设	Retro arcade-inspired design with pixel fonts, dotted borders, playful high-contrast colors, and 8-bit		09_视觉风格预设/bergside--pacman/SKILL.md
+bergside--paper	09_视觉风格预设	Paper-textured, print-inspired design with minimal colors, clean serif/sans typography, and tactile		09_视觉风格预设/bergside--paper/SKILL.md
+bergside--perspective	09_视觉风格预设	Spatial depth design with isometric views, vanishing points, and layered elements that guide attention		09_视觉风格预设/bergside--perspective/SKILL.md
+bergside--power	09_视觉风格预设	High-end dark aesthetic with bold headings, monochromatic palette, and premium feel for premium brand		09_视觉风格预设/bergside--power/SKILL.md
+bergside--premium	09_视觉风格预设	Apple-inspired premium aesthetic with precise spacing, modern typography, and a refined, polished		09_视觉风格预设/bergside--premium/SKILL.md
+bergside--professional	09_视觉风格预设	Polished, business-ready design with modern typography, structured layouts, and a trustworthy visual		09_视觉风格预设/bergside--professional/SKILL.md
+bergside--pulse	09_视觉风格预设	Dynamic, vibrant style with thick borders, geometric shapes, high-contrast colors, and expressive		09_视觉风格预设/bergside--pulse/SKILL.md
+bergside--refined	09_视觉风格预设	Carefully curated, modern minimal style with elegant serif typography and understated, sophisticated		09_视觉风格预设/bergside--refined/SKILL.md
+bergside--retro	09_视觉风格预设	Throwback design with vintage-inspired typography, high-contrast retro palettes, and nostalgic visual		09_视觉风格预设/bergside--retro/SKILL.md
+bergside--riso	09_视觉风格预设	"A playful, joyful, two-color risograph print aesthetic built on a single warm off-white paper surface		09_视觉风格预设/bergside--riso/SKILL.md
+bergside--roku	09_视觉风格预设	App dashboard with purple-themed aesthetic, top-bar navigation, card-based layouts, and developer-first		09_视觉风格预设/bergside--roku/SKILL.md
+bergside--sega	09_视觉风格预设	"A playful, arcade-inspired interface for games — built on the VT323 pixel typeface, hard-edged 0px		09_视觉风格预设/bergside--sega/SKILL.md
+bergside--shadcn	09_视觉风格预设	Shadcn/ui-inspired design with minimal, clean components, monochrome palette, and utility-first		09_视觉风格预设/bergside--shadcn/SKILL.md
+bergside--sketch	09_视觉风格预设	"A friendly, hand-drawn sketch interface inspired by pencil illustrations on warm cream paper. Soft		09_视觉风格预设/bergside--sketch/SKILL.md
+bergside--skeumorphism	09_视觉风格预设	Real-world mimicry with textured surfaces, 3D effects, and familiar physical metaphors for intuitive		09_视觉风格预设/bergside--skeumorphism/SKILL.md
+bergside--sleek	09_视觉风格预设	Modern minimalist aesthetic with clean lines, intentional color palette, subtle interactions, and		09_视觉风格预设/bergside--sleek/SKILL.md
+bergside--spacious	09_视觉风格预设	Generous whitespace, consistent padding, and grid-based layouts for clean, readable, and breathing		09_视觉风格预设/bergside--spacious/SKILL.md
+bergside--square	09_视觉风格预设	Graceful, refined aesthetic with delicate typography, minimal palettes, and polished layouts that exude		09_视觉风格预设/bergside--square/SKILL.md
+bergside--stitch	09_视觉风格预设	Clean, high-contrast enterprise design for data-driven workflows with intuitive drag-and-drop patterns		09_视觉风格预设/bergside--stitch/SKILL.md
+bergside--storytelling	09_视觉风格预设	Narrative-driven design using visuals, copy, and interaction to guide users through engaging		09_视觉风格预设/bergside--storytelling/SKILL.md
+bergside--terracotta	09_视觉风格预设	"A sun-baked, clay-toned editorial interface built on warm cream surfaces, ink-brown headlines set in a		09_视觉风格预设/bergside--terracotta/SKILL.md
+bergside--tetris	09_视觉风格预设	Classic block-game inspired design with playful colors, bold display fonts, and compact, high-energy		09_视觉风格预设/bergside--tetris/SKILL.md
+bergside--vibrant	09_视觉风格预设	Lively, colorful design with bold playful typography, warm accents, and dynamic visual energy.		09_视觉风格预设/bergside--vibrant/SKILL.md
+bergside--vintage	09_视觉风格预设	1950s-1990s nostalgia with skeuomorphic touches, grainy textures, retro color palettes, and pixel-style		09_视觉风格预设/bergside--vintage/SKILL.md
+dsh--apple-minimal	09_视觉风格预设	苹果极简白风格：大量留白、大号细字重无衬线标题、黑白高对比 + 极少量点缀色、克制圆角、产品大图 + 单行导航。适合产品官网、落地页、作品集。Use when the user asks for an		09_视觉风格预设/dsh--apple-minimal/SKILL.md
+dsh--art-deco	09_视觉风格预设	装饰艺术风格（Art Deco）：对称几何、金色线条与边框、奢华深色底（墨绿/深蓝/黑）、衬线+几何字体、放射状装饰。适合高端品牌、奢华酒店、艺术/时尚类站点、精品店。Use when the user		09_视觉风格预设/dsh--art-deco/SKILL.md
+dsh--bento-grid	09_视觉风格预设	便当盒网格风格（Bento Grid）：圆角网格卡片布局、大小不一但严格对齐、卡片内图标+标题+描述组合、整体现代克制的 Apple 式审美。适合产品官网、功能展示、SaaS 首页、个人主页。Use		09_视觉风格预设/dsh--bento-grid/SKILL.md
+dsh--cyberpunk	09_视觉风格预设	赛博朋克风格（Cyberpunk）：暗黑底 + 霓虹青/品红/黄等高饱和霓虹描边、发光效果（glow）、故障/扫描线装饰、未来感黑体。适合科技产品、AI 工具、游戏、极客向落地页。Use when the		09_视觉风格预设/dsh--cyberpunk/SKILL.md
+dsh--dark-saas	09_视觉风格预设	深色 SaaS 产品界面风格（Linear 式）：近黑画布、浅灰文字、单一高饱和强调色、炭黑面板 + hairline 描边、自定义无衬线字体与负字距标题。适合开发者工具、数据看板、AI 产品官网与后台		09_视觉风格预设/dsh--dark-saas/SKILL.md
+dsh--japanese-minimal	09_视觉风格预设	日式极简排版风格（Japanese Minimal）：宋体/明朝体衬线、大量留白（「間」ma）、黑白为主 + 少量朱红点缀、细线分隔、克制静谧。适合文化/美学类产品、博客、艺术展、和风品牌、禅意落地页		09_视觉风格预设/dsh--japanese-minimal/SKILL.md
+dsh--neo-neumorphism	09_视觉风格预设	新拟态风格（Neumorphism）：同色系背景上通过内阴影+外阴影挤出"软浮雕"元素，低对比、柔和、圆润。适合个人主页、健康/理财类 App、演示 Demo。Use when the user asks		09_视觉风格预设/dsh--neo-neumorphism/SKILL.md
+dsh--vaporwave	09_视觉风格预设	蒸汽波风格（Vaporwave）：粉紫渐变天空、希腊雕像/罗马柱剪影、网格地平线、复古霓虹、80 年代复古未来感。适合艺术项目、音乐/文化向站点、实验性落地页。Use when the user asks		09_视觉风格预设/dsh--vaporwave/SKILL.md

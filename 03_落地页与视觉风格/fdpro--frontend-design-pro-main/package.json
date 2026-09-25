@@ -1,0 +1,55 @@
+{
+  "name": "frontend-design-pro",
+  "private": true,
+  "description": "Machine-enforced skill package for AI agents generating production-grade React/TypeScript UI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krishna-Modi12/frontend-design-pro.git"
+  },
+  "homepage": "https://github.com/Krishna-Modi12/frontend-design-pro#readme",
+  "bugs": {
+    "url": "https://github.com/Krishna-Modi12/frontend-design-pro/issues"
+  },
+  "scripts": {
+    "gates": "python scripts/build_release.py --dry-run",
+    "build": "python scripts/build_release.py",
+    "typecheck": "python scripts/typecheck_golds.py",
+    "constraints": "python scripts/test_constraints.py --dir catalog",
+    "references": "python scripts/check_references.py",
+    "figures": "python scripts/check_figures.py",
+    "figures:test": "python scripts/figure_pattern_test.py",
+    "paths:test": "python scripts/prose_path_test.py",
+    "hooks:test": "bash scripts/hook_status_test.sh",
+    "evals": "python scripts/run_evals.py --self-test --no-semantic",
+    "regression": "node scripts/parser_regression_test.js",
+    "banner": "node tools/readme-router/generate.mjs",
+    "banner:check": "node tools/readme-router/generate.mjs --check",
+    "pages:data": "node tools/pages-data/generate.mjs",
+    "pages:data:check": "node tools/pages-data/generate.mjs --check",
+    "test": "vitest run",
+    "screenshots": "npm --prefix tools/screenshots run capture --",
+    "showcase-thumbs": "npm --prefix tools/screenshots run showcase-thumbs --",
+    "demos:typecheck": "npm --prefix tools/screenshots exec -- tsc --noEmit -p tools/screenshots/tsconfig.json",
+    "demos:verify": "npm --prefix tools/screenshots run verify --",
+    "pages:verify": "npm --prefix tools/screenshots run verify:home --",
+    "showcase:verify": "npm --prefix tools/screenshots run verify:showcase --",
+    "visual-regression": "npm --prefix tools/screenshots run visual-regression --",
+    "security": "python scripts/check_security.py",
+    "security:test": "python scripts/test_security_patterns.py",
+    "token-report": "node tools/token-report/token-report.mjs",
+    "token-report:test": "node tools/token-report/token-report.test.mjs"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "jest-axe": "^9.0.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.10"
+  }
+}

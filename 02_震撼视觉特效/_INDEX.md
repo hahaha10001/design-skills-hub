@@ -1,11 +1,19 @@
 # 02_震撼视觉特效
 
-读 `02_震撼视觉特效/<id>/SKILL.md` 全文。有 `references/` 时按需读单个文件。`scripts/` 为可执行辅助。
+用于：3D/WebGL/Shader/粒子/GSAP 滚动叙事，把页面做出视觉冲击
+
+读 `02_震撼视觉特效/<id>/SKILL.md` 全文。`references/` 按需读单个文件。`scripts/` 为可执行辅助。
 
 | id | 何时用 | 资源 |
 |---|---|---|
+| compass--motion-and-interaction | Design and implement purposeful frontend motion and interaction details. Use when Codex needs to add | references/agents |
 | emil--animate | Build an animation from scratch, making the decisions in the order that determines whether it feels | — |
 | emil--animate-expo | Build animations in React Native and Expo, making the decisions in the order that determines whether | — |
+| fdpro--animations | Motion — easing and timing rules, Framer Motion, GSAP, scroll-driven experiences, view transitions | references/examples |
+| fdpro--canvas-typography | Generative and kinetic typography — particle text, scramble and decode effects, text on a path, and | references/examples |
+| fdpro--threejs-3d | 3D web experiences with React Three Fiber — scenes, geometry, materials, lighting, shaders | references/examples |
+| flornkm--webgl-components | "Build small, always-on WebGL visuals (identity avatars, ambient orbs, glass and iridescent surfaces | scripts |
+| ibelick--fixing-motion-performance | Audit and fix animation performance issues including layout thrashing, compositor properties | — |
 | mengto--3d-falling-leaves | Build recognizable falling leaves in world space using instanced geometry, independent tumble, coupled | agents |
 | mengto--3d-four-seasons | Add coordinated spring, summer, fall, and winter states to a 3D scene, blending foliage, sunlight, sky | agents |
 | mengto--3d-high-poly-models | Create or integrate highly detailed 3D models with smooth silhouettes, shaped surfaces, believable | agents |
@@ -82,3 +90,4 @@
 | oc--gsap-utils | Official GSAP skill for gsap.utils — clamp, mapRange, normalize, interpolate, random, snap, toArray | — |
 | oc--scroll-experience | Expert in building immersive scroll-driven experiences - parallax storytelling, scroll animations | — |
 | oc--vue-bits | Vue Bits 动画组件库使用指南 — Vue 3 + TypeScript + Tailwind 的高端动画 UI 组件库（React Bits 的 Vue 移植版）。当用户需要为 Vue | — |
+| transitions--transitions-dev | Production-ready CSS transitions for web apps. Use when implementing notification badges, dropdowns | — |

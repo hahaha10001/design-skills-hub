@@ -1,6 +1,8 @@
 # 07_素材与图像生成
 
-读 `07_素材与图像生成/<id>/SKILL.md` 全文。有 `references/` 时按需读单个文件。`scripts/` 为可执行辅助。
+用于：AI 配图、图标集、favicon、调色板、整页截图、录屏
+
+读 `07_素材与图像生成/<id>/SKILL.md` 全文。`references/` 按需读单个文件。`scripts/` 为可执行辅助。
 
 | id | 何时用 | 资源 |
 |---|---|---|
@@ -21,3 +23,4 @@
 | mengto--unsplash-asset-images | Use when you need to pick high-quality Unsplash images for product/design assets (avatars, headshots | — |
 | oc--openai-compatible-imagegen | Primary image-generation route for this Codex environment. Generate, edit, and batch-generate images | scripts/references/examples/agents |
 | oc--openai-image-gen | Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery. 用 OpenAI 兼容 | scripts |
+| uxuiadk--image-to-code | Turn a reference image, screenshot, or mockup into token-driven, accessible code — infer the design | — |

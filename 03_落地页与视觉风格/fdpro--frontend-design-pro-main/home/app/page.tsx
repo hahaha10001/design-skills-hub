@@ -1,0 +1,67 @@
+import type { ReactElement } from "react";
+import data from "../lib/data.generated.json";
+import type { GeneratedData } from "../lib/data.types";
+import SmoothScroll from "../components/SmoothScroll";
+import WorldProvider from "../components/WorldProvider";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import SectionProblem from "../components/SectionProblem";
+import SectionSkillCatalog from "../components/SectionSkillCatalog";
+import SectionHow from "../components/SectionHow";
+import SectionProof from "../components/SectionProof";
+import SectionShowcase from "../components/SectionShowcase";
+import SectionInstall from "../components/SectionInstall";
+import PageSpine from "../components/PageSpine";
+import { focusRing, tokenStyles } from "../lib/tokens";
+
+const payload = data as GeneratedData;
+
+/**
+ * Static at build time — this app has no client-only data dependency (unlike
+ * `demo/landing-page`'s fetched `/api/site/overview`), because every figure
+ * here comes from `data.generated.json`, imported directly rather than
+ * fetched. There's no loading/error/empty state to model because there's
+ * nothing asynchronous to wait on.
+ */
+export default function Page(): ReactElement {
+  return (
+    <WorldProvider>
+      <SmoothScroll>
+        <div className="min-h-[100dvh] bg-bg-page text-text-primary antialiased">
+          <style dangerouslySetInnerHTML={{ __html: tokenStyles }} />
+
+          <a
+            href="#main"
+            className={`${focusRing} sr-only rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-ink focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50`}
+          >
+            Skip to content
+          </a>
+
+          <Navbar version={payload.version} />
+
+          {/* `relative` is here for `PageSpine` below, which is absolutely
+              positioned against the whole of `<main>` — without it the spine
+              would resolve against the viewport and be one screen tall. */}
+          <main id="main" className="relative">
+            <Hero
+              installHref="#install"
+              howItWorksHref="#how-it-works"
+              figures={payload.figures}
+              references={payload.references}
+            />
+            <SectionProblem figures={payload.figures} />
+            <SectionSkillCatalog skills={payload.skills} />
+            <SectionHow skills={payload.skills} figures={payload.figures} />
+            <SectionProof figures={payload.figures} />
+            <SectionShowcase />
+            <SectionInstall adapters={payload.adapters} buildYear={new Date().getFullYear()} />
+
+            {/* Last, so it paints over the sections' own opaque backgrounds.
+                It lives in the outer margin and touches no content. */}
+            <PageSpine />
+          </main>
+        </div>
+      </SmoothScroll>
+    </WorldProvider>
+  );
+}

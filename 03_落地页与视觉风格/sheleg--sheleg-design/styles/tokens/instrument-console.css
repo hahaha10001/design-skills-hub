@@ -1,0 +1,124 @@
+/* SHELEG Design — Instrument Console token layer.
+   Copy verbatim; consume only var(--…) in components. */
+:root {
+  --base: #05070a;
+  --surface-1: #0a0e14;
+  --surface-2: #10151d;
+  --surface-3: #161c26;
+  --hairline: #1e2630;
+  --hairline-strong: #2b3542;
+  --ink: #eef2f7;
+  --ink-muted: #9aa7b6;
+  --ink-faint: #5f6b7a;
+  --accent: #3392ff;
+  --accent-dim: #1f5fb0;
+  --accent-bright: #6bb3ff;
+  --accent-ink: #0a0e14; /* text ON the accent — 6.17:1. White on #3392ff is 3.14 and fails. */
+  /* Two glows, two jobs, and both are named in the pack's Bans. --accent-glow is
+     the translucent halo behind a focused control; --signal-glow, declared below,
+     is the composite box-shadow the ONE active signal element wears. Until 1.45.0
+     the prose called --accent-glow "the only permitted glow" and then mandated the
+     composite, which it never named -- so the pack banned its own signature. */
+  --accent-glow: rgba(51, 146, 255, 0.18);
+
+  /* ---- Status: four roles, and the pack owns three hues ------------------
+     The prose has legislated success, warning, danger and info together since
+     this pack's first release, and the token layer shipped two of them -- so
+     `var(--danger)` was an undefined custom property, which is invalid at
+     computed-value time and falls back with no error anywhere (B-038).
+     --info is the signal hue by decision, not by accident: an infrastructure
+     console's "here is a fact" and its "here is the thing to press" are the same
+     blue, and giving info its own hue would break the pack's one-accent rule.
+     --danger is a PACK DECISION, not a measurement: the reference this pack was
+     read off paints no danger state, so there was nothing to measure. Chosen to
+     clear AA on every field this pack ships (6.02:1 on --base, 5.77 on
+     --surface-1, 5.10 on --surface-3) and to stay above the library's separation
+     floors against every peer, including under simulated CVD -- the numbers are
+     in the pack's Palette. */
+  --ok: #46d39a;
+  --warn: #e0a030;
+  --danger: #f4526b;
+  --info: var(--accent);
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  /* THE signature shadow: the one active signal element wears it, and nothing
+     else on the page does. Named here and in the pack's Texture, Micro-interactions
+     and Bans -- a mandated composite that appears in no prose is a value a reader
+     has to reconstruct from a literal. */
+  --signal-glow: 0 0 0 1px rgba(51, 146, 255, 0.4),
+    0 8px 30px rgba(51, 146, 255, 0.18);
+
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-base: 0.32s;
+  --dur-slow: 0.55s;
+  --dur-epic: 0.8s;
+  --stagger: 0.07s;
+  /* Derived, not chosen: MOTION_DOCTRINE.md puts button-press feedback in a
+     100-160 ms band, and this pack's fastest step is 180 ms, so the set above
+     could not express a compliant press. 0.16s is the band's own ceiling — the
+     value inside it nearest this pack's existing step. Named in `## Motion
+     tokens`; a token a pack's prose prescribes and its layer never defines is an
+     undefined custom property, which is invalid at computed-value time and falls
+     back with no error anywhere. That is B-038's class, and this one was
+     introduced by the commit that wrote the prose (B-042) and caught by the
+     check that commit's successor added. */
+  --dur-press: 0.16s;
+
+  /* `svh`, not `vh` or `dvh`, and the choice is the same one the five packs with a
+     `--hero-min-h` wrote into a comment. A hero wants the viewport that is visible
+     right now, so it takes `dvh`. This drives SECTION PADDING, which wants a height
+     that does NOT move: raw `vh` and `dvh` both re-lay out every section the moment
+     a mobile address bar shows or hides. `svh` is the small viewport — measured as
+     though the browser UI were shown — and it is stable for the whole scroll. */
+  --section: clamp(9rem, 24svh, 20rem);
+
+  --font-ui: var(--font-geist-sans, "Geist"), system-ui, sans-serif;
+  --font-data: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+
+  background-color: var(--base);
+  color: var(--ink);
+  color-scheme: dark;
+
+  /* Core role vocabulary — every pack resolves --bg, --ink and --accent, so a
+     cross-pack document can name them truthfully. Alias, never a new colour. */
+  --bg: var(--base); /* role alias -> --base, this pack's field */
+}
+
+/* Degrade to calm — MOTION_DOCTRINE.md §9. The doctrine's hardest line lands on
+   this pack, because this is the pack that mandates a WebGL particle field, a
+   scan/dim attention spotlight and scrubbed SVG instruments, and §9 says WebGL
+   and canvas scenes degrade to their CSS or SVG still. One of those three can
+   be reached from here and two cannot, and saying which at the declaration is
+   the point:
+
+     - The four durations and the stagger collapse. Every transition and every
+       reveal that spends them lands on its final state without travelling —
+       that includes the kit's only transition, .ic-btn's colour swap.
+     - The particle field is a rAF loop, and no custom property can stop one.
+       The scene branches on the reduced-motion hook and renders a single static
+       frame (SHELEG_DESIGN.md:364); `## Motion flavor` in instrument-console.md
+       now states the still for each motif, which is where an implementer of the
+       backdrop is actually reading.
+     - The scan/dim spotlight and the instrument scrub are driven by the scroll
+       clock, not by these tokens: under reduce every section renders lit and
+       every instrument renders drawn. The progress rail was already static.
+
+   `--motion-ease` is left alone: it is an ease-out, not an overshoot, and a
+   curve spent over 0s is inert. That is pigeonhole's lesson applied rather than
+   relearned — a duration collapses what a duration drives, and the rest is
+   stated where the implementer reads it. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0s;
+    --dur-press: 0s;
+    --dur-base: 0s;
+    --dur-slow: 0s;
+    --dur-epic: 0s;
+    --stagger: 0s;
+  }
+}

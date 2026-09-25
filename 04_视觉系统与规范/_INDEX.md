@@ -1,9 +1,12 @@
 # 04_视觉系统与规范
 
-读 `04_视觉系统与规范/<id>/SKILL.md` 全文。有 `references/` 时按需读单个文件。`scripts/` 为可执行辅助。
+用于：设计 token、配色、字阶、栅格、间距、暗色模式、无障碍、Web 规范
+
+读 `04_视觉系统与规范/<id>/SKILL.md` 全文。`references/` 按需读单个文件。`scripts/` 为可执行辅助。
 
 | id | 何时用 | 资源 |
 |---|---|---|
+| compass--design-system-starter | Create or extend practical frontend design systems with tokens, component contracts, state rules, and | references/agents |
 | designer--accessibility-audit | Audit an existing interface against WCAG, producing findings with severity ratings and remediation | — |
 | designer--aesthetic-usability | Apply the Aesthetic-Usability Effect — polished, consistent interfaces are perceived as more usable and | — |
 | designer--business-design | Read financials, map competitive landscapes, and argue design decisions in the language of value. Use | — |
@@ -54,6 +57,11 @@
 | designer--visual-hierarchy | Establish hierarchy through size, weight, colour, spacing, and position so the eye lands in the | — |
 | designer--von-restorff-effect | Apply the Von Restorff Effect — the element that differs from its neighbours is the one remembered. Use | — |
 | emil--animation-vocabulary | Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its | — |
+| fdpro--color-themes | Algorithmic colour theme generation in OKLCH — harmonic schemes, palettes derived from an image | references/examples |
+| fdpro--iconography | Icon systems — sizing, weight matching, colour inheritance, hit areas, SVG accessibility, and avatar | references/examples |
+| feindex--echarts | You MUST use this when building, styling, debugging, or optimizing Apache ECharts charts in JavaScript | references/examples |
+| feindex--tailwind-design-system | Build scalable design systems with Tailwind CSS v4, design tokens, component libraries, and responsive | — |
+| ibelick--fixing-accessibility | Audit and fix HTML accessibility issues including ARIA labels, keyboard navigation, focus management | — |
 | jakub--better-accessibility | Helps your project comply with accessibility standards and best practices. | agents |
 | jakub--better-colors | Helps you build a color system and answer anything about color in your project. You can generate | agents |
 | jakub--better-interface | Combines all of the `better-*` skills into a single review across accessibility, layout, writing | agents |
@@ -65,3 +73,13 @@
 | jakub--explain-interface | Helps you figure out how something was built on the web. | agents |
 | jakub--interface-review | Reviews your work across multiple categories like UI, typography, layout, color, writing and | agents |
 | jakub--variant | Builds multiple variants of a component you're working on and helps you iterate and pick one. | agents |
+| juliands--design-tokens | Generate a design tokens file (CSS variables or Tailwind config) based on a chosen aesthetic | — |
+| uiflx--add-composition | Full workflow for adding a new UI composition to ui-flx. Compositions are full, composed application | — |
+| uiflx--add-illustration | Full workflow for adding a new UI illustration to ui-flx. Illustrations are elegant compositions across | — |
+| uxcel--accessibility | Run a structured WCAG 2.1 AA accessibility audit on a design, screen, component, or page. Produces a | — |
+| uxcel--color | Design or critique a product's color palette and system — base hue, harmony, neutrals, semantic colors | — |
+| uxcel--layout-spacing-grids | Lay out a screen with disciplined spacing, sizing, and grids — every value on one base unit (8px/4px | — |
+| uxcel--mobile-responsiveness | Run a structured mobile-responsiveness audit on a design, screen, or component — viewport adaptation | — |
+| uxcel--typography | Design or critique a product's typography — typeface selection and pairing, type scale, hierarchy, and | — |
+| uxuiadk--migrate-design-system | Map this token system to or from any external design system (Material Design 3, Apple HIG, Fluent | — |
+| uxuiadk--token-build | Set up or run the token build pipeline — transform the DTCG tokens/*.json (source of truth) into | — |

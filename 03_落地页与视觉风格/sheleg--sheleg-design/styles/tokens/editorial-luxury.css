@@ -1,0 +1,103 @@
+/* SHELEG Design — Editorial Luxury token layer (origin: prowl.chat).
+   Copy verbatim; consume only var(--…) in components.
+   After any theme migration, sweep hardcoded hex/rgba literals. */
+:root {
+  --paper: #fbf6ec;
+  --paper-2: #f3ead9;
+  --paper-3: #ece0cb;
+  --espresso: #1b150e;
+  --espresso-2: #241c12;
+  --cream: #f4ecdc;
+  --ink: #241c14;
+  --ink-soft: #5b4f3d;
+  --ink-faint: #8a7c64;
+  --accent: #3f7d5f;
+  --accent-deep: #2f5e47;
+  --accent-weak: rgba(63, 125, 95, 0.12); /* tint fill (badges, wash) */
+  --accent-med: rgba(63, 125, 95, 0.34); /* hairline / border tint */
+  --accent-ink: #fbf6ec; /* text ON the accent — 6.93:1 on --accent-deep; 4.52:1 on --accent, AA by 0.02, so large text only there */
+  --accent-on-dark: #9fd9bc;
+  --terra: #b5623f;
+  --red: #a83a2b;
+
+  /* Status set — added 2026-08-13. Three of the four are values this pack
+     already owned; only warn and info are new, each its own family deepened
+     until it clears the AA floor for normal text on every cream ground this
+     pack renders on, not only the two obvious ones. The three ratios beside
+     each value are those grounds, lightest first. The status word renders in
+     --ink on the -weak tint, so status is never carried by colour alone. */
+  --status-ok:        #2f5e47;   /* 6.93 / 6.25 / 5.72 — = --accent-deep */
+  --status-warn:      #7d5416;   /* 6.19 / 5.58 / 5.11 */
+  --status-info:      #2f5c7d;   /* 6.61 / 5.96 / 5.46 */
+  --status-danger:    #a83a2b;   /* 5.90 / 5.32 / 4.87 — = --red */
+  --status-ok-weak:     rgba(47,94,71,0.12);
+  --status-warn-weak:   rgba(125,84,22,0.12);
+  --status-info-weak:   rgba(47,92,125,0.12);
+  --status-danger-weak: rgba(168,58,43,0.12);
+
+  /* Product register durations — the range the pack described in prose. */
+  --dur-hover: 0.12s;
+  --dur-state: 0.18s;
+  --hair: rgba(36, 28, 20, 0.13);
+  --hair-strong: rgba(36, 28, 20, 0.22);
+
+  --r: 14px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+
+  --shadow-sm: 0 2px 10px -4px rgba(36, 28, 20, 0.16);
+  --shadow: 0 18px 50px -28px rgba(36, 28, 20, 0.3),
+    0 4px 14px -10px rgba(36, 28, 20, 0.18);
+  --shadow-lg: 0 36px 90px -44px rgba(36, 28, 20, 0.42),
+    0 8px 24px -16px rgba(36, 28, 20, 0.2);
+  --inset-hi: inset 0 1px 0 rgba(255, 251, 242, 0.7);
+
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-brand: 0.7s;
+  --dur-fast: 0.18s;
+  --dur-base: 0.32s;
+  --dur-slow: 0.55s;
+  --dur-epic: 0.8s;
+  --stagger: 0.07s;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Newsreader", Georgia, serif;
+  --font-data: "JetBrains Mono", ui-monospace, monospace;
+
+  --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  background-color: var(--paper);
+  color: var(--ink);
+  color-scheme: light;
+
+  /* Core role vocabulary — every pack resolves --bg, --ink and --accent, so a
+     cross-pack document can name them truthfully. Alias, never a new colour. */
+  --bg: var(--paper); /* role alias -> --paper, this pack's field */
+}
+
+/* Degrade to calm — MOTION_DOCTRINE.md §9: "Shipping an animation without a
+   reduced-motion path is a bug, not a polish item." All eight durations this
+   layer declares are spent — the two product-register values by the kit's
+   hovers, the brand and the SHELEG set by the page's entrances — so all eight
+   collapse to 0s rather than to anything a reader could still perceive as
+   motion. The kit's .el-btn, .el-card and .el-dossier read --dur-fast and
+   --dur-base, so a hover lands on its final state instead of rising into it.
+
+   The two curves stay as declared: a curve spent over 0s is inert, and neither
+   overshoots (both stay inside 0..1 on the value axis), so there is no bounce
+   left to tame. What a custom property cannot express is an infinite animation
+   — this pack declares none, and one added later needs its own stop in the
+   component layer, not a smaller number here. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-hover: 0s;
+    --dur-state: 0s;
+    --dur-brand: 0s;
+    --dur-fast: 0s;
+    --dur-base: 0s;
+    --dur-slow: 0s;
+    --dur-epic: 0s;
+    --stagger: 0s;
+  }
+}

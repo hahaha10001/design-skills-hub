@@ -1,0 +1,149 @@
+/**
+ * home/ — design tokens, registered with Tailwind at build time.
+ *
+ * `@theme` is a Tailwind compiler directive, not CSS — it has to be compiled,
+ * so it lives here rather than in `lib/tokens.ts`, which carries only the
+ * plain CSS that is valid at runtime. Same split `demo/landing-page` uses, for
+ * the same reason: a browser handed `@theme` in a runtime `<style>` drops it as
+ * an unknown at-rule, and every utility built from it silently resolves to
+ * nothing.
+ *
+ * ── Every ratio below is computed, not eyed ──────────────────────────────────
+ *
+ * OKLCH → OKLab → linear sRGB → relative luminance → WCAG ratio, worst case
+ * across the three light grounds (`bg-page` / `bg-surface` / `bg-elevated`).
+ * Four of these values were corrected from a first draft that specified
+ * plausible-looking numbers and did not measure them — the same category of
+ * mistake `demo/landing-page/tokens.css` documents finding six of. Corrections
+ * here:
+ *
+ *   FAIL  text-muted   at L=65%          3.05 / 2.80 / 3.22   (needs 4.5)
+ *   FAIL  text-primary on bg-invert      1.00                 (needs 4.5)
+ *   FAIL  text-secondary on bg-invert    2.53                 (needs 4.5)
+ *   FAIL  border as a control boundary   1.49                 (needs 3.0)
+ *
+ * The fixes: `text-muted` moved to L=50% (5.67 / 5.19 / 5.98). `bg-invert`
+ * (footer only) gets its own ink pair at the SAME hue as the invert ground
+ * rather than reusing the page's warm ink, which is the same move
+ * `demo/landing-page` made for its dark surface's neutrals — `ink-invert`
+ * 15.31:1, `ink-invert-secondary` 6.53:1. `border-strong` is a second,
+ * darker token (L=60%, 3.73 / 3.42 / 3.94) for anything a control's boundary
+ * has to clear WCAG 1.4.11 on; the original `border` value stays as a
+ * decorative hairline, which carries no WCAG floor — same reasoning
+ * `demo/landing-page/tokens.css` gives for its own hairline border.
+ */
+
+@theme {
+  /* ── Ground ─────────────────────────────────────────────────────────────── */
+  --color-bg-page: oklch(98% 0.008 80);
+  /* Lightness held at 95% deliberately — accent-as-text on `bg-surface` is
+     still the page's tightest ratio (4.94; see the Accent block below), so
+     `bg-surface` can gain warmth but not lose luminance. It sat at exactly
+     4.50, the AA floor, under the previous accent; the current one brought
+     headroom, and the pin stays regardless — the constraint is structural,
+     and the next accent may not be as generous. The chroma
+     bump (0.015 → 0.022) and the hue shift toward `bg-page`'s own H=80 read as
+     a deeper cream of the same family — enough, alongside the 1px section seams
+     and the `signature` grain (both in `lib/tokens.ts`), to make the below-hero
+     sections read as distinct surfaces rather than one flat field. Re-verified
+     against `pages:verify`'s axe pass, not assumed. */
+  --color-bg-surface: oklch(95% 0.022 80);
+  --color-bg-elevated: oklch(100% 0.005 80);
+  /* Footer only. The one dark section on the page — see `SectionInstall`. */
+  --color-bg-invert: oklch(18% 0.02 270);
+
+  /* ── Accent — one chromatic colour on the whole page ──────────────────────
+     A deep marine blue. It clears AA in both directions without splitting into
+     two tokens the way `demo/landing-page`'s cobalt had to: as text on all
+     three light grounds (`bg-page` 5.40 / `bg-surface` 4.94 / `bg-elevated`
+     5.70) AND as a fill under white (5.72). One token does both jobs. The one
+     place it does NOT clear AA-body is as small text on `bg-invert` (3.29,
+     large-text only) — the footer uses it for large numerals/headings and
+     button fills only, never small links; see `ink-invert-secondary` for the
+     footer's body/link colour.
+
+     ── Why this hue, and not the terracotta that shipped through v14 ────────
+     Three measurements decided it, none of them taste:
+
+     1. `oklch(55% 0.18 45)` was OUT of the sRGB gamut. Its blue channel
+        computes to -0.0153 and every browser clipped it to zero, so the
+        authored value was never the rendered one — the chroma ceiling at that
+        L and H is 0.157. The old ratios were correct only because they had
+        been measured after the clip. This value is in gamut with room.
+     2. It sat almost exactly BETWEEN the two status colours: OKLab ΔE 0.085
+        to `--color-danger` and 0.085 to `--color-warning`. The page's primary
+        call-to-action was that close to its own critical-severity marker.
+        Marine's worst separation from any other chromatic token in the
+        palette is 0.167 (to the `mesh` world) — roughly double.
+     3. Cream ground plus terracotta accent is two thirds of a cluster the
+        pack's own always-loaded wall names as an AI-design default (root
+        `SKILL.md`, and `design-principles/references/anthropic-frontend-design.md`).
+        The face here is Geist, not a serif, so it was never the full three —
+        but a pack that tells agents not to reach for that palette should not
+        be wearing most of it on its own front door.
+
+     Lightness is not a free choice at any hue. Two floors pull opposite ways —
+     accent-as-text on `bg-surface` needs at least 4.5, and accent on the
+     footer's `bg-invert` needs at least 3.0 for the large numerals it already
+     fills — and between them they leave a window about four percentage points
+     wide at every hue. Chroma is pinned at 92% of the sRGB ceiling for this L
+     and H, so the browser never has to clip it. */
+  --color-accent: oklch(50.5% 0.088 225);
+  --color-accent-ink: oklch(100% 0 0);
+  --color-accent-glow: oklch(50.5% 0.088 225 / 0.12);
+
+  /* ── Ink ────────────────────────────────────────────────────────────────── */
+  --color-text-primary: oklch(18% 0.02 80);
+  --color-text-secondary: oklch(45% 0.03 85);
+  --color-text-muted: oklch(50% 0.025 85);
+
+  /* ── Edges ──────────────────────────────────────────────────────────────── */
+  --color-border: oklch(84% 0.02 80);
+  --color-border-strong: oklch(60% 0.03 80);
+
+  /* ── Footer-only ink, at bg-invert's own hue (H=270) ───────────────────────
+     `text-primary` measures 1.00:1 against `bg-invert` — they sit at nearly
+     identical lightness, one warm and one cool, and neither reads on the
+     other. A near-white/muted-cool pair scoped to the footer avoids reusing
+     the page's warm ink where it cannot be read. */
+  --color-ink-invert: oklch(93% 0.01 270);
+  --color-ink-invert-secondary: oklch(68% 0.02 270);
+
+  /* ── Emphasis — subordinate to the accent, for badges only ────────────────
+     `--color-accent` already does double duty as CTA fill, metric numbers,
+     eyebrow labels and the hero glow — that is correct restraint (one
+     chromatic hue on the page, not one occurrence of it). A badge is a
+     different job: a "Live" / "Static preview" marker on a Showcase card, or
+     a group tag on a SkillCatalog card, must read as quieter than a real
+     call-to-action, or it competes with the actual CTA for attention. Same
+     neutral hue family as ink/border (H≈85), not the accent's hue (H=45) —
+     a second neutral role, not a second accent. `--color-emphasis` on
+     `--color-emphasis-bg` measures 7.67:1 (AAA); `--color-emphasis` on
+     `bg-surface`/`bg-page`/`bg-elevated` (for a badge sitting directly on a
+     section background rather than its own bg) measures 8.66 / 9.46 / 9.99:1
+     — all well clear of 4.5:1 AA. Computed via the same OKLCH → OKLab →
+     linear sRGB → relative luminance → WCAG pipeline as every ratio above;
+     re-verify against `pages:verify`'s live axe pass once built regardless,
+     since that check has caught a token measuring correctly in isolation but
+     failing against a real tinted background before (see `CLAUDE.md`). */
+  --color-emphasis: oklch(38% 0.03 85);
+  --color-emphasis-bg: oklch(91% 0.015 85);
+
+  /* ── Severity — status colour, not a second accent ─────────────────────────
+     `SectionProof`'s live checker needs to tell `critical`/`high`/`medium`
+     apart at a glance (a gutter dot, a finding row's marker) — a job colour
+     can't do at H=45 alone without three shades of the same hue reading as
+     one blur. This is a deliberate, scoped exception to the page's stated
+     one-chromatic-hue restraint (see the Accent comment above): both hues
+     sit far from H=45 so neither reads as a second brand accent, and neither
+     is ever used for a CTA, a link, or anything decorative — diagnostic
+     status only. `medium` reuses `--color-text-muted` rather than a third
+     hue, matching how real linters treat their quietest severity as neutral,
+     not another alarm colour.
+     Computed via the same OKLCH → OKLab → linear sRGB → relative luminance
+     → WCAG pipeline as every ratio above, worst case across the three light
+     grounds: `--color-danger` 6.26 / 5.73 / 6.61, `--color-warning`
+     5.30 / 4.85 / 5.60 — both clear 4.5:1 AA on every ground with room. */
+  --color-danger: oklch(50% 0.19 25);
+  --color-warning: oklch(52% 0.15 75);
+}

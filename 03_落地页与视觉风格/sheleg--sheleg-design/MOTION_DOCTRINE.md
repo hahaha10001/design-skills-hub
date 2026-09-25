@@ -1,0 +1,396 @@
+# Motion doctrine
+
+The SHELEG core says motion rides one clock, layers, and degrades to calm. That
+tells you how motion is *built*. This file tells you whether to build it at all,
+how long it runs, what curve it rides, and which forms are simply wrong.
+
+Every number here is a decision someone else already paid for. Use them.
+
+---
+
+## Contents
+
+- 1. Should this animate at all?
+- 2. Easing
+- 3. Duration
+- 4. Springs
+- 5. Forbidden forms
+- 6. Scroll motion
+- 7. Motion that came from a design tool
+- 8. Anti-drift
+- 9. Reduced motion
+- 10. Pre-flight
+- How the calibration dials bind
+
+## 1. Should this animate at all?
+
+The first question is not "what animation" — it is "how often will a person see
+this". Frequency decides, and it decides before taste gets a vote.
+
+| How often a user sees it | Decision |
+|---|---|
+| 100+ times a day — command palette, keyboard shortcut, tab switch | **No animation. Ever.** |
+| Tens of times a day — hover, list navigation, inline toggles | Remove it, or cut it to the floor |
+| Occasional — modals, drawers, toasts, page transitions | Standard animation |
+| Rare or first-time — onboarding, empty-to-filled, celebration | Delight is allowed here |
+
+**Never animate a keyboard-initiated action.** Those fire hundreds of times a
+day; animation turns them from instant into laggy and disconnects the result
+from the keypress. Raycast has no open/close animation, and that is the correct
+answer for something opened two hundred times a day — not an oversight.
+
+A pack with a high motion register does not overrule this table. The register
+says how motion *feels* where it exists; the table says where it exists.
+
+### What it must be for
+
+Every animation answers "why does this move?" in one sentence. Valid answers:
+
+- **Spatial consistency** — a toast leaves the way it arrived, so swipe-to-dismiss
+  feels obvious rather than learned.
+- **State indication** — the thing changed and the change is visible.
+- **Feedback** — the interface heard the click.
+- **Explanation** — the motion shows how the feature works.
+- **Preventing a jarring cut** — appearing and vanishing with no transition reads
+  as broken.
+
+"It looked cool" is not an answer. If you cannot write the sentence, delete the
+animation.
+
+---
+
+## 2. Easing
+
+### The decision tree
+
+```
+Is the element entering or leaving?
+  yes -> ease-out          (starts fast; the interface feels immediate)
+  no  -> is it moving or morphing on screen?
+           yes -> ease-in-out
+         is it a hover or colour change?
+           yes -> ease
+         is it constant motion (marquee, progress, scrub)?
+           yes -> linear
+         otherwise -> ease-out
+```
+
+### `ease-in` is banned in UI
+
+It starts slow. The delay lands in the exact moment the user is watching hardest
+— just after the click. A dropdown on `ease-in` at 300 ms *feels* slower than
+the same dropdown on `ease-out` at 300 ms, with identical duration on the clock.
+Keep `ease-in` for something leaving the screen entirely, and even then prefer
+`ease-in-out`.
+
+### The curves
+
+The built-in CSS easings are too weak to read as intentional. Use these:
+
+```css
+:root {
+  /* UI interactions: enters, exits, state changes */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Movement and morphing on screen */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  /* Drawers and sheets — the iOS feel, from Ionic */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+```
+
+A pack may override these — that is what `## Motion tokens` is for — but it
+names its curve explicitly. A pack that ships no curve inherits these three, and
+`linear` and `ease-in-out` are never defaults.
+
+---
+
+## 3. Duration
+
+One table decides every duration verdict, and each row carries a canonical
+rule ID so a checker and this document cannot disagree. A row is keyed by
+PURPOSE + frequency + platform; a value is judged by exactly ONE row — the
+most specific that matches — and the verdict cites the row's ID.
+
+| ID | Purpose (frequency, platform) | Duration | Over it |
+|---|---|---|---|
+| DUR-FEEDBACK | Button press feedback, toggles (every click, all) | 100–160 ms | FAIL |
+| DUR-OVERLAY | tooltips, small popovers (frequent, all) | 125–200 ms | FAIL |
+| DUR-SELECT | dropdowns, selects (frequent, all) | 150–250 ms | FAIL |
+| DUR-SPATIAL | modal / drawer / sheet transition (occasional, desktop) | 200–300 ms | FAIL |
+| DUR-SHEET-MOBILE | full-height sheet riding `--ease-drawer` (occasional, mobile) | 200–500 ms | FAIL — the one spatial exception, and it names its platform |
+| DUR-ENTRANCE | marketing, explanatory, scrollytelling entrance (once per view, all) | longer, authored off a reference | never gates content |
+
+**UI motion stays at or under 300 ms.** That gate is the ceiling of
+DUR-FEEDBACK through DUR-SPATIAL — a control may sit on 300 with a reason, 301
+is over — and the two rows below it
+are its ONLY exceptions, each explicit: DUR-SHEET-MOBILE because the iOS sheet
+feel genuinely runs long on that platform, DUR-ENTRANCE because an entrance is
+not UI motion. A 400 ms desktop modal is one verdict — FAIL under DUR-SPATIAL —
+not a value caught between a permissive row and a strict gate; the old
+`200–500 ms` modal row that overlapped the gate is gone. A token names its row:
+`--dur-reveal: 500ms` answers to DUR-ENTRANCE and `--dur-fast: 150ms` to
+DUR-FEEDBACK — both correct; the same 500 ms on a button FAILs DUR-FEEDBACK.
+
+Speed is not only comfort — it is perceived performance. A faster spinner makes
+an identical load feel shorter. A tooltip that skips its delay after the first
+one makes the whole toolbar feel quicker. Easing amplifies this: `ease-out` at
+200 ms reads faster than `ease-in` at 200 ms because movement starts at once.
+
+---
+
+## 4. Springs
+
+Springs have no duration; they settle. Reach for them when motion should feel
+physical rather than scheduled:
+
+- drag with momentum,
+- gestures a user may reverse mid-flight,
+- decorative pointer tracking,
+- anything that should feel alive rather than played back.
+
+Prefer Apple's parameterisation — it is the one you can reason about:
+
+```js
+{ type: "spring", duration: 0.5, bounce: 0.2 }   // preferred
+{ type: "spring", mass: 1, stiffness: 100, damping: 10 }   // when you need the control
+```
+
+Keep `bounce` between 0.1 and 0.3, and keep it out of most UI. Bounce belongs to
+drag-to-dismiss and to play, not to a settings panel.
+
+**Interruptibility is the real reason to use one.** A spring keeps its velocity
+when interrupted; CSS keyframes restart from zero. Expand a row, hit Escape
+mid-flight, and a spring reverses smoothly from wherever it is while a keyframe
+animation snaps and replays.
+
+Tying a value directly to pointer position feels artificial because it has no
+inertia. Run it through a spring instead of assigning it — and only when the
+effect is decorative. On a functional readout, no motion beats smoothed motion.
+
+---
+
+## 5. Forbidden forms
+
+These are not stylistic preferences. Each one is a defect with a known failure.
+
+- **A HEAVY scroll handler — the defect is the WORK, not the API.** A passive
+  listener doing a cheap read (`addEventListener("scroll", fn, {passive: true})`
+  toggling a flag or class) is legitimate — MDN documents exactly this pattern
+  with throttling
+  (https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event).
+  What fails is the work inside: synchronous layout reads (thrashing), state
+  writes per frame, an unthrottled handler doing real computation. The recipe:
+  passive listener → cheap read → batch writes in rAF → clean up on unmount —
+  and a handler is rejected only on a MEASURED defect (long tasks, dropped
+  frames in a profile), never on the API's name. `useScroll()`,
+  `ScrollTrigger`, `IntersectionObserver` and `animation-timeline: view()`
+  stay the first reach because they make the cheap path the default.
+- **Scroll progress computed from `window.scrollY` into component state** — the
+  work-per-frame defect above in its worst form: a re-render on every frame.
+- **`requestAnimationFrame` loops that write to component state** — use motion
+  values (`useMotionValue` / `useTransform`) so the work stays off the render
+  cycle.
+- **State for continuous input** — pointer position, scroll progress, magnetic
+  hover, physics. Storing these in `useState` re-renders the tree on every
+  movement and collapses on mobile.
+- **Animating a property that triggers layout** — `top`, `left`, `width`,
+  `height`, `padding`, `margin`, `gap`, `font-size`. These re-lay-out the
+  document on every frame. Animate `transform` and `opacity`, which the
+  compositor handles alone; `filter` and `clip-path` are CONDITIONAL, not
+  free — a small clipped element is fine, while a full-screen animated blur
+  passes only a MEASURED performance budget on the target devices (web.dev's
+  animations guide warns about exactly this cost:
+  https://web.dev/articles/animations-guide). Profile at 60 AND 120 Hz, and
+  check `prefers-reduced-motion` separately — a budget met at 60 Hz with
+  motion on says nothing about either. Paint-only
+  changes (`background-color`, `border-color`, `color`, `box-shadow`) are
+  cheaper than layout and are permitted — §2 gives them an ease and §9 treats a
+  colour change as the baseline everything else is measured against. The ban is
+  on **layout**, not on everything outside a list of four; an earlier wording
+  said "anything but `transform`, `opacity`, `filter`, `clip-path`", which
+  contradicted both of those sections — and a still-earlier one called filter
+  and clip-path unconditionally safe, which the budget above replaces.
+- **`backdrop-filter` on a scrolling container** — continuous GPU repaint. Blur
+  belongs on fixed or sticky elements.
+- **Grain and noise on a scrolling container** — same reason. Put them on a
+  `position: fixed; pointer-events: none` layer.
+- **`will-change` left behind** — it is a hint for motion about to happen, not a
+  decoration. Remove it when the animation ends.
+- **More than one marquee per page.** One can carry content; two read as filler.
+
+---
+
+## 6. Scroll motion
+
+- **Under `scrub`, easing must be `none`.** The scrollbar is already the clock;
+  a second easing curve on top of it makes the motion feel detached from the
+  hand. This is the most common scroll bug and the least obvious.
+- **In React, use `useGSAP` from `@gsap/react`, never a bare `useEffect`.** It
+  reverts the context and kills the ScrollTriggers for you. Hand-rolled cleanup
+  is where leaked triggers and doubled animations come from.
+- **Pin at the top: `start: "top top"`.** A sticky stack or horizontal pan that
+  uses `"top center"` or `"top 80%"` begins mid-scroll and shows the user half a
+  slide before it catches.
+- **`markers: true` is a development tool.** It never ships.
+- **Do not mix engines in one component tree.** GSAP, Three.js and Motion each
+  want the frame; pick one per subtree and isolate it in a leaf.
+
+---
+
+## 7. Motion that came from a design tool
+
+When animation values arrive from a design file rather than being authored:
+
+1. **Do not invent motion.** A node with no animation data stays still. Never
+   borrow a duration or curve from a neighbouring element, and never animate
+   something because the rest of the component is animated.
+2. **Validate one animation end to end before repeating it.** "Renders without
+   errors" is not "renders correctly". One wrong curve is obvious; the same
+   wrong curve on twenty nodes is an afternoon.
+3. **Factor repeats out.** Elements usually share one animation and differ only
+   by delay or offset. Ship one reusable component or one `variants` object
+   parameterised by what varies. The same transition literal pasted fifteen
+   times is a defect even when it runs.
+4. **Layout transforms and animated transforms collide.** A Tailwind utility
+   like `-translate-x-1/2` writes the same CSS `transform` that a motion library
+   writes inline — so the animation silently erases the centring. Split it: a
+   static wrapper carries the layout transform, an inner animated element
+   carries rotate/scale/opacity. Or encode the offset in the animation itself
+   (`x: "-50%"`) and keep it in every keyframe.
+
+---
+
+## 8. Anti-drift
+
+The failure this whole skill exists to prevent: the tokens are right, the pack
+is right, and the built page is generic anyway. Drift happens at application
+time, not at specification time.
+
+While implementing against a pack, never:
+
+- simplify a distinctive section into a default template row,
+- compress the pack's spacing into a tighter default,
+- replace its type hierarchy with a plain one,
+- collapse varied sections into one repeated pattern,
+- reintroduce nested boxes the pack removed,
+- swap a named font for a system stack "for now",
+- drop the signature element because it was the hardest part.
+
+The built page must still read as the same design as the pack. If a decision
+makes it easier to build and less like the pack, it is drift — name it out loud
+or do not make it.
+
+---
+
+## 9. Reduced motion
+
+Not a feature. A contract.
+
+- Anything beyond a colour change honours `prefers-reduced-motion: reduce`.
+- Infinite loops, parallax, scroll hijack, magnetic physics and spring chases
+  collapse to static or instant — not to "slower".
+- In a motion library, gate on the reduced-motion hook and render the resting
+  state. In CSS, put motion behind `@media (prefers-reduced-motion: no-preference)`.
+- WebGL and canvas scenes degrade to their CSS or SVG still.
+
+**Shipping an animation without a reduced-motion path is a bug, not a polish
+item.** It fails review the same way a crash does.
+
+### Three things the blanket rule cannot reach
+
+The common remedy is one rule — `*, ::before, ::after { animation-duration:
+.01ms !important; transition-duration: .01ms !important;
+animation-iteration-count: 1 !important }` — and it is better than nothing.
+What it is not is complete, and all three holes were measured on one page
+(`nautilustrader.io`, 2026-08-22, the `patchbay` reference).
+
+- **It cannot stop SMIL.** `<animate>`, `<animateMotion>` and
+  `<animateTransform>` are not CSS animations and do not read
+  `animation-duration`. That page's architecture diagram carries 32 particles on
+  `<animateMotion>` and every one keeps moving with the preference on. The fix is
+  `svg.pauseAnimations()` behind the same query — one call, and it must be wired
+  by hand.
+- **It cannot stop JavaScript.** A reveal that writes `opacity` and `transform`
+  inline per scroll frame is not a transition; zeroing durations only makes the
+  hidden state arrive instantly. On that page 48 wrappers do this, so with the
+  preference on the content is **still hidden until scrolled**. Anything that can
+  hide content must read the query itself and render revealed.
+- **It teleports a loop that does not end where it began.** Collapsing the
+  duration to `.01ms` jumps the element to its final keyframe. That is harmless
+  only when `0%` and `100%` are identical — which is exactly how that page's four
+  ambient light loops are written, and why the blunt remedy happens to be safe
+  there. **Write perpetual loops so their first and last frames match**, and the
+  cheap remedy stops being a gamble.
+
+The rule behind all three: **the query is a signal, not a mechanism.** Every
+layer that can move — CSS, SMIL, script, canvas, WebGL — has to be told
+separately, and the pre-flight item below is worded "actually turning it on"
+because turning it on is the only thing that finds the layer you forgot.
+
+---
+
+## 10. Pre-flight
+
+Before calling motion done:
+
+- [ ] Every animation survives the "why does this move?" sentence.
+- [ ] Nothing on the 100+/day path animates at all.
+- [ ] No `ease-in` in UI; curves are named, not inherited by accident.
+- [ ] UI durations at or under 300 ms; entrances declared as entrances; the table was consulted, not guessed.
+- [ ] No banned form from §5 appears anywhere in the diff.
+- [ ] Every `scrub` carries `ease: "none"`.
+- [ ] Every ScrollTrigger has a cleanup path.
+- [ ] `markers` removed.
+- [ ] Reduced motion tested by actually turning it on.
+- [ ] The page still looks like the pack (§8).
+- [ ] Nothing in the diff is a rendered video standing in for page motion. If a file
+      IS the right answer, the obligations move with it —
+      [`MOTION_PRODUCTION.md`](./MOTION_PRODUCTION.md) owns that seam, including where
+      this section's contract lands once there is no user to read a media query.
+
+---
+
+## How the calibration dials bind
+
+- **The pack wins on values, the dials win on amount.** A dial never invents a
+  colour, a face, or a radius — those come from the pack's token layer. It
+  decides how much asymmetry the grid carries, how much of the page moves, and
+  how tightly it is packed.
+- **`MOTION_INTENSITY` is capped by the frequency table**, not the other way
+  round. A 9 on a settings screen still means the keyboard path does not
+  animate. Read [`MOTION_DOCTRINE.md`](./MOTION_DOCTRINE.md) §1 first; the dial
+  turns up what is left after that table has cut.
+- **Motion claimed is motion shown.** Above 4, the page actually moves —
+  entrance on the hero, reveal on key sections, response on the primary action.
+  A static page announcing 7 is broken. If working motion will not fit the
+  scope, drop the dial to 3 and ship a clean still page; never half-build motion
+  that stalls, cuts off, or jumps.
+- **A standalone pack pins its own ceiling.** `workbench`, `briefing-room` and
+  `ledger` are not cinematic; `MOTION_INTENSITY` above 3 on any of the three is a
+  misread of the pack, not a bold choice — `ledger` allows exactly three loops,
+  all of them state (a typing cursor, thinking dots, a live heartbeat), and stops
+  all three under reduced motion. `pigeonhole` is cinematic but at the family's floor: it bans the scroll clock,
+scrubbing, parallax and a sticky nav, so `MOTION_INTENSITY` above **4** on it has
+nothing legal to buy. **`roster` has the same ceiling of 4** for the same reason —
+entrance, hover and two slow floats are its whole budget, and it bans scrubbing,
+parallax and `animation-timeline`; it keeps a sticky nav, which is the only difference.
+  **Four more standalone packs pin their own, and each states it in its own Register:**
+  `ora` at **4**, `tenor` at **4**, `paperclip` at **5** — the last one higher because it
+  is the only pack in the family that spends a native scroll-driven parallax —
+  and `bulletin` at **3**, because its whole measured motion budget is an entrance
+  fade, a 0.12s press and a 0.3s hover. Its depth is drawn as a hard ink offset
+  rather than animated, and animating that offset is precisely what flattens it.
+  **The lowest ceiling in the library is 2**, and four of them pin it. This sentence
+  called `bulletin` the lowest for four releases while two others already sat under
+  it, which is why the number is now derived: `validate_motion_ceiling_floor()`
+  recomputes the minimum from the packs' own Register lines and fails when this
+  paragraph disagrees with them.
+  `field-notes` is standalone **by default** and may opt into the cinematic layer — it carries a `## Motion flavor` section saying
+  how — so it is the one standalone pack without a hard ceiling. Read that
+  section before turning the dial up on it.
+
+Moved out of `SKILL.md` on 2026-08-16: the body was 6203 tokens against a
+< 5000 budget, and every rule here is about what §1's frequency table has already
+cut. The dial turns up what is left after that table — so the table and the dial
+belong in one file.
+

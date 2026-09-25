@@ -1,0 +1,469 @@
+/**
+ * Generates `home/lib/data.generated.json` — the payload behind the pack's
+ * own homepage (`home/`, served at the root of the Pages site).
+ *
+ * Run:  node tools/pages-data/generate.mjs
+ *       node tools/pages-data/generate.mjs --check     # fail if it is stale
+ *
+ * ── Why the site's data is generated ─────────────────────────────────────────
+ *
+ * The site has two interactive panels that are only worth building if they are
+ * true: a router that resolves a sentence to one skill the way the pack does,
+ * and a checker that runs a subset of the constraint suite against pasted
+ * code. Both need the registry's trigger keywords, each skill's declared core
+ * deps, and each skill's measured token budget — three sources that move
+ * independently and have each gone stale in this repo before.
+ *
+ * `scripts/check_figures.py`'s `SCAN` list covers `home/components/*.tsx`,
+ * `home/lib/*.ts` and `home/*.json`, so a figure written in the page's prose
+ * is held to the filesystem exactly as it was for `.github/pages/*.html`
+ * before this file replaced it. That is why the payload below is imported at
+ * build time rather than fetched or hand-copied: a React component that reads
+ * `data.figures.ciConstraints` cannot itself go stale, because there is no
+ * second, hand-typed copy of the number for it to drift from. The file this
+ * generator used to write (`.github/pages/data.js`) needed a second check —
+ * `checkMarkupFallbacks` — specifically because the static page ALSO carried a
+ * bare-numeral `<dd>` fallback for readers with JavaScript off, and that
+ * fallback was a hand-typed literal with nothing else forcing it to agree.
+ * `home/` has no JS-off fallback to duplicate a number into, so that check has
+ * no counterpart here — removing it is a simplification the new architecture
+ * earns, not a check dropped for convenience.
+ *
+ * ── The sources, and what each one is authoritative for ──────────────────────
+ *
+ *   SKILL.md (root)      the registry: id, path, trigger keywords, the ONE core
+ *                        dep the row advertises
+ *   catalog/<id>/SKILL.md the frontmatter `core-deps:` — what actually loads,
+ *                        which is a superset of the row's single cell
+ *   README.md            the three grouped skill tables: what each skill covers
+ *                        and a sentence that routes there. Prose belongs in
+ *                        prose; copying it here by hand would fork it.
+ *   check_figures.py     every count and token figure, including the per-skill
+ *                        budget table
+ *   install/             one directory per shipped adapter — the source of
+ *                        the "14 adapters" figure `metadata.json` states
+ *
+ * Nothing is counted where it can be derived. The predecessor of this file
+ * (`tools/readme-router/generate.mjs`) shipped a banner whose skill count was
+ * hand-decremented and whose guard compared it against another hand-maintained
+ * number: the banner and its guard agreed with each other and both were wrong.
+ * So every cross-source relationship below is asserted as a SET, not a count —
+ * the registry's ids against the directories on disk against the README's rows
+ * against the budget table's rows. A skill missing from any one of them is a
+ * named failure, not a silently shorter list. The adapter label map below
+ * follows the same rule: an `install/` directory with no mapped label fails
+ * generation rather than falling back to a guessed display name.
+ */
+
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HERE = fileURLToPath(new URL(".", import.meta.url));
+const REPO = join(HERE, "..", "..");
+const OUT = join(REPO, "home", "lib", "data.generated.json");
+
+const CHECK = process.argv.includes("--check");
+
+// Every skill inherits these two whether or not its frontmatter says so — the
+// root SKILL.md states it in prose right under the registry table. The router
+// panel has to add them or its cost meter under-reports every request.
+const BASE_DEPS = ["core/accessibility-baseline.md", "core/validate-checklist.md"];
+
+// Directory name under install/ -> display label on the homepage's adapter
+// matrix. `readme` isn't a directory; `generic` covers the AGENTS.md
+// convention rather than one product, so it gets that name instead of a
+// capitalized directory name that would mean nothing to a reader.
+const ADAPTER_LABELS = {
+  agents: "AGENTS.md",
+  aider: "Aider",
+  chatgpt: "ChatGPT",
+  claude: "Claude Code",
+  cline: "Cline",
+  codex: "Codex",
+  continue: "Continue",
+  copilot: "GitHub Copilot",
+  cursor: "Cursor",
+  gemini: "Gemini CLI",
+  generic: "Generic (AGENTS.md-style)",
+  roo: "Roo",
+  windsurf: "Windsurf",
+  zed: "Zed",
+};
+
+// ── Truth table ──────────────────────────────────────────────────────────────
+
+/**
+ * `--truth` prints a JSON object and then a human-readable budget table, so the
+ * object ends at the first closing brace alone at column zero. Both halves are
+ * used here: the object for the figures, the table for the per-skill budgets,
+ * which are the gate's own arithmetic rather than a second implementation of it.
+ */
+function truth() {
+  // Both spellings, because the two places this runs disagree about which one
+  // exists: ci.yml calls `python3`, and on Windows that name often resolves to a
+  // Store stub that exits non-zero instead of running.
+  const candidates = process.platform === "win32" ? ["python", "python3"] : ["python3", "python"];
+  let raw;
+  const failures = [];
+  for (const exe of candidates) {
+    try {
+      raw = execFileSync(exe, [join("scripts", "check_figures.py"), "--truth"], {
+        cwd: REPO,
+        encoding: "utf8",
+      });
+      break;
+    } catch (err) {
+      failures.push(`${exe}: ${err.message}`);
+    }
+  }
+  if (raw === undefined) {
+    throw new Error(
+      "could not run `scripts/check_figures.py --truth`. Python is required — a " +
+        "fallback to committed constants would be a silent path to a stale site.\n  " +
+        failures.join("\n  "),
+    );
+  }
+
+  const end = raw.indexOf("\n}");
+  if (end === -1) throw new Error("`--truth` printed no JSON object");
+  const figures = JSON.parse(raw.slice(0, end + 2));
+
+  const budgets = new Map();
+  for (const line of raw.slice(end + 2).split("\n")) {
+    const m = line.match(/^\s{2}([a-z0-9-]+)\s+([\d,]+)\s*$/);
+    if (m) budgets.set(m[1], Number(m[2].replace(/,/g, "")));
+  }
+  if (!budgets.size) throw new Error("`--truth` printed no per-skill budget table");
+  return { figures, budgets };
+}
+
+// ── Sources ──────────────────────────────────────────────────────────────────
+
+/** The registry table in the root SKILL.md — the thing that actually routes. */
+function registry() {
+  const src = readFileSync(join(REPO, "SKILL.md"), "utf8");
+  const rows = [];
+  const ROW =
+    /^\|\s*`([a-z0-9-]+)`\s*\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*`(core\/[a-z-]+\.md)`\s*\|/gm;
+  for (const m of src.matchAll(ROW)) {
+    rows.push({
+      id: m[1],
+      path: m[2],
+      keywords: m[3].split(",").map((k) => k.trim()).filter(Boolean),
+      registryDep: m[4],
+    });
+  }
+  if (!rows.length) throw new Error("parsed no rows out of the registry table in SKILL.md");
+  return rows;
+}
+
+/** Directories that hold a skill, which is the only definition that ships. */
+function skillIdsOnDisk() {
+  return readdirSync(join(REPO, "catalog"), { withFileTypes: true })
+    .filter((e) => e.isDirectory() && existsSync(join(REPO, "catalog", e.name, "SKILL.md")))
+    .map((e) => e.name)
+    .sort();
+}
+
+/**
+ * A skill's effective core deps: the two every skill inherits, plus whatever its
+ * own frontmatter declares.
+ *
+ * The dash has to be followed by whitespace. Without that, `-` immediately
+ * followed by `--` reads the frontmatter's own closing fence as a list item and
+ * the deps come back with a `--` in them — which is not hypothetical, it is what
+ * the first draft of this parser did in the sibling generator.
+ */
+function declaredDeps(id) {
+  const src = readFileSync(join(REPO, "catalog", id, "SKILL.md"), "utf8");
+  const block = src.match(/core-deps:[ \t]*\r?\n((?:[ \t]*-[ \t]+\S+[ \t]*\r?\n)+)/);
+  const declared = block ? [...block[1].matchAll(/-[ \t]+(\S+)/g)].map((m) => m[1]) : [];
+  if (!declared.length || declared.some((d) => !d.startsWith("core/"))) {
+    throw new Error(
+      `could not read core-deps: from catalog/${id}/SKILL.md — got [${declared.join(", ")}]`,
+    );
+  }
+  return [...new Set([...BASE_DEPS, ...declared])].sort();
+}
+
+/**
+ * README's three grouped skill tables. The "What it covers" and "Try saying"
+ * cells are authored prose that has been reviewed; the site quotes it rather
+ * than inventing a second description of the same nineteen things.
+ *
+ * Markdown emphasis and backticks are stripped, because the consumer sets these
+ * as plain text — the page never builds markup out of this payload.
+ */
+function readmeCopy() {
+  const src = readFileSync(join(REPO, "README.md"), "utf8");
+  const section = src.slice(src.indexOf("## The 19 skills"));
+  const stop = section.indexOf("\n## ", 4);
+  const body = stop === -1 ? section : section.slice(0, stop);
+
+  const plain = (s) =>
+    s
+      .replace(/`/g, "")
+      .replace(/\*\*/g, "")
+      .replace(/^\*|\*$/g, "")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&")
+      .trim();
+
+  const copy = new Map();
+  let group = "";
+  for (const line of body.split("\n")) {
+    const h = line.match(/^###\s+(.+?)\s*$/);
+    if (h) {
+      group = h[1];
+      continue;
+    }
+    const m = line.match(/^\|\s*\[`([a-z0-9-]+)`\]\([^)]+\)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*$/);
+    if (m) copy.set(m[1], { group, covers: plain(m[2]), trySaying: plain(m[3]) });
+  }
+  if (!copy.size) throw new Error("parsed no skill rows out of README's skill tables");
+  return copy;
+}
+
+/**
+ * The homepage's own curated `SkillCatalog` picks, from `home/lib/content.ts`.
+ * Read here (not imported — this script runs standalone, before anything is
+ * built) so a future skill rename or removal fails generation loudly instead
+ * of leaving `SkillCatalogGrid` silently rendering three cards instead of
+ * four. See the comment above `SKILL_CATALOG_IDS` in `content.ts` for why
+ * each one was picked.
+ */
+function catalogIds() {
+  const src = readFileSync(join(REPO, "home", "lib", "content.ts"), "utf8");
+  const m = src.match(/SKILL_CATALOG_IDS\s*=\s*\[([^\]]*)\]/);
+  if (!m) throw new Error("could not find SKILL_CATALOG_IDS in home/lib/content.ts");
+  const ids = [...m[1].matchAll(/"([a-z0-9-]+)"/g)].map((x) => x[1]);
+  if (!ids.length) throw new Error("home/lib/content.ts's SKILL_CATALOG_IDS is empty");
+  return ids;
+}
+
+/**
+ * One entry per `catalog/*&#47;references/**&#47;*.md`, sorted — the hero's geometry.
+ *
+ * `home/components/HeroDepthScene.tsx` builds one stratum per entry, thickness
+ * proportional to `tokens`. The slab is therefore the reference tree itself
+ * rather than a decorative stack of a round number of slices, which is the
+ * whole reason the hero can't be lifted onto another product.
+ *
+ * The enumeration and the measure both mirror `check_figures.py` exactly —
+ * `rglob("*.md")` under every `catalog/*&#47;references` directory, and
+ * LF-normalised bytes ÷ 4. They are then asserted against that file's own
+ * `--truth` output below, as a set relationship rather than a second count,
+ * per this generator's standing rule: two numbers derived independently from
+ * the same tree will eventually disagree, and the one nobody checks is the one
+ * that goes wrong.
+ */
+function references() {
+  const root = join(REPO, "catalog");
+  const out = [];
+
+  for (const skill of readdirSync(root, { withFileTypes: true })) {
+    if (!skill.isDirectory()) continue;
+    const dir = join(root, skill.name, "references");
+    if (!existsSync(dir)) continue;
+
+    const walk = (abs, rel) => {
+      for (const entry of readdirSync(abs, { withFileTypes: true })) {
+        const next = join(abs, entry.name);
+        if (entry.isDirectory()) {
+          walk(next, `${rel}${entry.name}/`);
+        } else if (entry.name.endsWith(".md")) {
+          // Identical body to `check_figures.py:tokens()` — a file an editor
+          // has rewritten to CRLF must not read high here and low there.
+          const bytes = readFileSync(next);
+          out.push({
+            skill: skill.name,
+            name: `${rel}${entry.name}`,
+            tokens: Math.floor(
+              bytes.toString("binary").split("\r\n").join("\n").length / 4,
+            ),
+          });
+        }
+      }
+    };
+    walk(dir, "");
+  }
+
+  if (!out.length) throw new Error("catalog/*/references holds no markdown");
+  return out.sort((a, b) =>
+    a.skill === b.skill ? a.name.localeCompare(b.name) : a.skill.localeCompare(b.skill),
+  );
+}
+
+/** The release this payload was generated from — the navbar's version badge. */
+function packVersion() {
+  const meta = JSON.parse(readFileSync(join(REPO, "metadata.json"), "utf8"));
+  if (typeof meta.version !== "string" || !meta.version) {
+    throw new Error("metadata.json has no version string");
+  }
+  return meta.version;
+}
+
+/** One entry per directory under `install/`, sorted — the shipped adapters. */
+function adapters() {
+  const dirs = readdirSync(join(REPO, "install"), { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
+    .sort();
+  if (!dirs.length) throw new Error("install/ holds no adapter directories");
+
+  const unmapped = dirs.filter((d) => !(d in ADAPTER_LABELS));
+  if (unmapped.length) {
+    throw new Error(
+      `install/ has directories with no display label: ${unmapped.join(", ")}\n` +
+        "  add them to ADAPTER_LABELS in tools/pages-data/generate.mjs",
+    );
+  }
+  return dirs.map((dir) => ({ dir, label: ADAPTER_LABELS[dir] }));
+}
+
+// ── Cross-source agreement ───────────────────────────────────────────────────
+
+function assertSameSet(what, a, aLabel, b, bLabel) {
+  const missing = a.filter((x) => !b.includes(x));
+  const extra = b.filter((x) => !a.includes(x));
+  if (missing.length || extra.length) {
+    throw new Error(
+      `${what} disagree.\n` +
+        (missing.length ? `  in ${aLabel} but not ${bLabel}: ${missing.join(", ")}\n` : "") +
+        (extra.length ? `  in ${bLabel} but not ${aLabel}: ${extra.join(", ")}\n` : ""),
+    );
+  }
+}
+
+// ── Render ───────────────────────────────────────────────────────────────────
+
+function render() {
+  const { figures, budgets } = truth();
+  const rows = registry();
+  const onDisk = skillIdsOnDisk();
+  const copy = readmeCopy();
+
+  const ids = rows.map((r) => r.id).sort();
+  assertSameSet("The registry rows and the skill directories", ids, "SKILL.md", onDisk, "catalog/");
+  assertSameSet("The registry rows and README's tables", ids, "SKILL.md", [...copy.keys()].sort(), "README.md");
+  assertSameSet(
+    "The registry rows and the budget table",
+    ids,
+    "SKILL.md",
+    [...budgets.keys()].sort(),
+    "check_figures.py --truth",
+  );
+  if (ids.length !== figures.skills) {
+    throw new Error(
+      `the registry holds ${ids.length} rows and the truth table counts ${figures.skills} skills`,
+    );
+  }
+
+  const catalog = catalogIds();
+  const catalogMissing = catalog.filter((id) => !ids.includes(id));
+  if (catalogMissing.length) {
+    throw new Error(
+      `home/lib/content.ts's SKILL_CATALOG_IDS references skills that don't exist ` +
+        `in the registry: ${catalogMissing.join(", ")}\n` +
+        "  fix the curated list in home/lib/content.ts — a skill was renamed or removed.",
+    );
+  }
+
+  const skills = rows
+    .map((r) => ({
+      ...r,
+      deps: declaredDeps(r.id),
+      budget: budgets.get(r.id),
+      ...copy.get(r.id),
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+
+  for (const s of skills) {
+    if (!s.keywords.length) throw new Error(`${s.id}: no trigger keywords`);
+    if (!existsSync(join(REPO, s.path))) throw new Error(`${s.id}: ${s.path} does not resolve`);
+  }
+
+  // The hero's geometry, held to the same truth table every figure is held to.
+  // Asserted rather than trusted: the slab draws one stratum per reference and
+  // scales it by that reference's tokens, so a divergence here would render a
+  // hero that quietly disagrees with the figure printed beside it.
+  const refs = references();
+  if (refs.length !== figures.reference_files) {
+    throw new Error(
+      `walked ${refs.length} reference files but the truth table counts ` +
+        `${figures.reference_files} — the enumeration here and ` +
+        "check_figures.py:169 have diverged",
+    );
+  }
+  const refTokens = refs.reduce((sum, r) => sum + r.tokens, 0);
+  if (refTokens !== figures.reference_depth_tokens) {
+    throw new Error(
+      `reference tokens sum to ${refTokens} but the truth table says ` +
+        `${figures.reference_depth_tokens} — the token measure here and ` +
+        "check_figures.py:tokens() have diverged",
+    );
+  }
+  const refSkills = [...new Set(refs.map((r) => r.skill))].sort();
+  const orphans = refSkills.filter((id) => !ids.includes(id));
+  if (orphans.length) {
+    throw new Error(
+      `references live under directories that are not registry skills: ${orphans.join(", ")}`,
+    );
+  }
+
+  // Only the figures the page actually states or draws. Re-exporting the whole
+  // truth table would put figures in front of a reader that no sentence on the
+  // page is responsible for, and Gate 11 cannot see a number the prose never
+  // makes a claim about.
+  const payload = {
+    figures: {
+      skills: figures.skills,
+      coreFiles: figures.core_files,
+      referenceFiles: figures.reference_files,
+      referenceDepthTokens: figures.reference_depth_tokens,
+      exampleFiles: figures.example_files,
+      antiExamples: figures.anti_examples,
+      testFiles: figures.test_files,
+      releaseGates: figures.release_gates,
+      parserConstraints: figures.parser_constraints,
+      regexConstraints: figures.regex_constraints,
+      ciConstraints: figures.ci_constraints,
+      registryTokens: figures.registry_tokens,
+      bandLow: figures.band_low,
+      bandHigh: figures.band_high,
+    },
+    baseDeps: BASE_DEPS,
+    skills,
+    references: refs,
+    adapters: adapters(),
+    version: packVersion(),
+  };
+
+  return JSON.stringify(payload, null, 2) + "\n";
+}
+
+// ── Main ─────────────────────────────────────────────────────────────────────
+
+const rendered = render();
+
+if (CHECK) {
+  const current = existsSync(OUT) ? readFileSync(OUT, "utf8") : "";
+  if (current === rendered) {
+    console.log("✓ home/lib/data.generated.json is current");
+    process.exit(0);
+  }
+  console.error(
+    "✗ home/lib/data.generated.json is stale — the registry, a skill's deps,\n" +
+      "  README's skill tables, install/'s adapters or a figure has moved since\n" +
+      "  it was generated.\n" +
+      "  Run `npm run pages:data` and commit the result.",
+  );
+  process.exit(1);
+}
+
+mkdirSync(dirname(OUT), { recursive: true });
+writeFileSync(OUT, rendered);
+console.log(`✓ wrote home/lib/data.generated.json (${rendered.length} bytes)`);
